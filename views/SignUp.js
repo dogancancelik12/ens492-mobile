@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 
 function SignUp() {
     return (
-        <View >
+        <View>
             <Text> SignUp </Text>
         </View>
     );
