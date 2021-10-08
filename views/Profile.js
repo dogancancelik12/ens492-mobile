@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 
 function Profile() {
     return (
-        <View >
+        <View>
             <SurbiHeader title={"Profile"}/>
         </View>
     );
