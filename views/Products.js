@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, View, TouchableOpacity} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import SurbiHeader from "../components/SurbiHeader";
 import {COLORS} from "../constants/Colors";
 import ProductsGridView from "../components/ProductsGridView";
 import RenderSearchBar from "../components/SearchBar";
 import {productsBicycles, productsCamping, productsScooters} from "../constants/MockData";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const RenderScooters = () => (
     <ProductsGridView products={productsScooters}/>
@@ -26,6 +27,7 @@ const renderScene = SceneMap({
 });
 
 function Products() {
+
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
         {key: 'scooters', title: 'Scooters'},
@@ -41,8 +43,14 @@ function Products() {
                 inactiveColor={COLORS.colorPrimary}
                 style={styles.tabBar}
                 indicatorStyle={styles.indicator}
+                labelStyle={{fontSize: 12, fontWeight: "500"}}
             />
-            <RenderSearchBar/>
+            <View style={styles.filter_search}>
+                <TouchableOpacity style={styles.filterButton}>
+                    <FontAwesome5 name={"filter"} size={22}/>
+                </TouchableOpacity>
+                <RenderSearchBar/>
+            </View>
         </>
 
     );
@@ -73,12 +81,26 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     indicator: {
-        backgroundColor: "black",
-        width: 50,
+        backgroundColor: "white",
+        width: 55,
         height: 2,
         borderRadius: 10,
         alignSelf: "center",
         marginLeft: 25
+    },
+    filter_search: {
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center"
+    },
+    filterButton: {
+        marginTop: 10,
+        backgroundColor: "#e7e7ea",
+        borderRadius: 20,
+        width: 40,
+        height: 40,
+        alignItems: "center",
+        justifyContent: "center",
     }
 });
 

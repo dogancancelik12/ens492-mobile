@@ -10,6 +10,9 @@ import MapScreen from "../views/MapScreen";
 import Profile from "../views/Profile";
 import SignUp from "../views/SignUp";
 import SplashScreen from "../views/SplashScreen";
+import ProductDetail from "../views/ProductDetail";
+import Cart from "../views/Cart";
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,6 +51,15 @@ function OnBoardingStack() {
                         headerShown: false
                     }}
                 />
+
+                <Stack.Screen
+                    name="Cart"
+                    component={Cart}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -69,7 +81,7 @@ const AppStack = () => {
 
             <Tab.Screen
                 name="Products"
-                component={Products}
+                component={ProductsStack}
                 options={{
                     tabBarIcon: ({color, size}) => (
                         <MaterialCommunityIcons name="scooter" color={color} size={size}/>
@@ -101,6 +113,28 @@ const AppStack = () => {
             />
         </Tab.Navigator>
     )
+}
+
+const ProductsStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Products_"
+                component={Products}
+                options={{
+                    headerShown: false
+                }}
+            />
+
+            <Stack.Screen
+                name="ProductDetail"
+                component={ProductDetail}
+                options={{
+                    headerShown: false
+                }}
+            />
+        </Stack.Navigator>
+    );
 }
 
 export default OnBoardingStack;

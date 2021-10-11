@@ -1,16 +1,25 @@
 import React from 'react';
-import {FlatList, Image, StyleSheet, Text, View} from "react-native";
+import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 
 function ProductsGridView({products}) {
 
+    const navigation = useNavigation();
+
     function renderProduct({item}) {
         return (
-            <View style={styles.carouselItem}>
+            <TouchableOpacity
+                style={styles.carouselItem}
+                onPress={() => {
+                    navigation.navigate("ProductDetail", {
+                        productName: item.title
+                    });
+                }}
+            >
                 <Image style={styles.carouselImage} source={{uri: item.image}}/>
                 <Text style={styles.carouselTitle}>{item.title}</Text>
-            </View>
+            </TouchableOpacity>
         );
-
     }
 
     return (

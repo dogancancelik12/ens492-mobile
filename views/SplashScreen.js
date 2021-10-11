@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import SurbiHeader from "../components/SurbiHeader";
+import {COLORS} from "../constants/Colors";
 
 function SplashScreen() {
 
@@ -15,10 +15,21 @@ function SplashScreen() {
 
     return (
         <View>
-            <SurbiHeader isCartVisible={false}/>
-            <Text> SplashScreen </Text>
+            <View style={styles.container}>
+                <Text> Sürbi </Text>
+            </View>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        width: "100%",
+        height: "100%",
+        backgroundColor: COLORS.colorPrimary,
+        alignItems: "center",
+        justifyContent: "center"
+    }
+});
 
 export default SplashScreen;
