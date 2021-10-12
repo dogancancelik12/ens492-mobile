@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {useNavigation} from '@react-navigation/native';
 
@@ -9,10 +9,12 @@ function Login() {
 
     return (
         <View style={styles.container}>
-            <TextInput style={{borderWidth: 1, padding: 10, width: '90%', borderRadius: 10}}
-                       placeholder='E-mail'/>
-            <TextInput style={{borderWidth: 1, padding: 10, width: '90%', borderRadius: 10, marginTop: 20}}
-                       placeholder='Password'/>
+            <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
+                <TextInput style={styles.textInput}
+                           placeholder='E-mail'/>
+                <TextInput style={styles.textInput}
+                           placeholder='Password'/>
+            </View>
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('App')}>
                 <Text style={{color: 'white'}}>Login</Text>
@@ -30,7 +32,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
     },
     button: {
         alignItems: 'center',
@@ -38,9 +39,16 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         marginTop: 20,
-        width: 100,
+        width: 150,
+    },
+    textInput: {
+        borderColor: '#657cb1',
+        borderWidth: 1,
+        padding: 12,
+        width: '90%',
+        borderRadius: 16,
+        marginTop: 20
     }
 });
 
 export default Login;
-
