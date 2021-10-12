@@ -8,25 +8,20 @@ function SignUp() {
 
     return (
         <View style={styles.container}>
-            <View style={{width: Dimensions.get("screen").width, alignItems:"center", marginTop: '30%'}} >
-                <TextInput style={{borderColor: '#657cb1',borderWidth: 1, padding: 12, width: '90%', borderRadius: 16,}}
-                           placeholder='Name'/>
-                <TextInput style={{borderColor: '#657cb1',borderWidth: 1, padding: 12, width: '90%', borderRadius: 16, marginTop: 20}}
-                           placeholder='Surname'/>
-                <TextInput style={{borderColor: '#657cb1',borderWidth: 1, padding: 12, width: '90%', borderRadius: 16, marginTop:20}}
-                           placeholder='E-mail'/>
-                <TextInput style={{borderColor: '#657cb1',borderWidth: 1, padding: 12, width: '90%', borderRadius: 16, marginTop: 20}}
-                           placeholder='Password'/>
-                <TextInput style={{borderColor: '#657cb1',borderWidth: 1, padding: 12, width: '90%', borderRadius: 16, marginTop: 20}}
-                           placeholder='Confirm Password'/>
+            <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '30%'}}>
+                <TextInput style={styles.textInput} placeholder='Name'/>
+                <TextInput style={styles.textInput} placeholder='Surname'/>
+                <TextInput style={styles.textInput} placeholder='E-mail'/>
+                <TextInput style={styles.textInput} placeholder='Password'/>
+                <TextInput style={styles.textInput} placeholder='Confirm Password'/>
             </View>
-            <TouchableOpacity style={styles.textInput}
+            <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('App')}>
                 <Text style={{color: 'white'}}>Sign Up</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                              onPress={() => navigation.navigate('Login')}>
-                <Text style={{color: '#657cb1',marginTop: 40 }}>Already have an account ?</Text>
+                onPress={() => navigation.navigate('Login')}>
+                <Text style={{color: '#657cb1', marginTop: 20}}>Already have an account ?</Text>
             </TouchableOpacity>
 
         </View>
@@ -36,21 +31,24 @@ function SignUp() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'blue',
+        backgroundColor: 'white',
         alignItems: 'center',
-        //justifyContent: 'center',
-       // marginTop: 200,
     },
-    textInput: {
+    button: {
         alignItems: 'center',
         backgroundColor: '#657cb1',
         padding: 10,
         borderRadius: 10,
         marginTop: 40,
-        width: 100,
+        width: 150,
+    },
+    textInput: {
+        borderColor: '#657cb1',
+        borderWidth: 1,
+        padding: 12,
+        width: '90%',
+        borderRadius: 16,
+        marginTop: 20
     }
-
-   // background: {
-    //}
 });
 export default SignUp;
