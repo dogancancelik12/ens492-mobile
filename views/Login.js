@@ -13,11 +13,11 @@ function Login() {jjj
                        placeholder='E-mail'/>
             <TextInput style={{borderWidth: 1, padding: 10, width: '90%', borderRadius: 10, marginTop: 20}}
                        placeholder='Password'/>
-            <TouchableOpacity style={styles.textInput}
+            <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('App')}>
                 <Text style={{color: 'white'}}>Login</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.textInput}
+            <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('SignUp')}>
                 <Text style={{color: 'white'}}>Sign Up</Text>
             </TouchableOpacity>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    textInput: {
+    button: {
         alignItems: 'center',
         backgroundColor: '#657cb1',
         padding: 10,

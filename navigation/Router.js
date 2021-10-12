@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Login from "../views/Login";
 import Home from "../views/Home";
@@ -9,54 +9,71 @@ import Products from "../views/Products";
 import MapScreen from "../views/MapScreen";
 import Profile from "../views/Profile";
 import SignUp from "../views/SignUp";
-import { TouchableOpacity } from "react-native";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import SplashScreen from "../views/SplashScreen";
+import ProductDetail from "../views/ProductDetail";
+import Cart from "../views/Cart";
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function OnBoardingStack () {
-    return(
+function OnBoardingStack() {
+    return (
         <NavigationContainer>
             <Stack.Navigator headerShown='false'>
-                {/*<Stack.Screen
+                <Stack.Screen
                     name="SplashScreen"
-                    //component={ SignUp }
-                />*/}
+                    component={SplashScreen}
+                    options={{
+                        headerShown: false
+                    }}
+                />
 
                 <Stack.Screen
                     name="Login"
-                    component={ Login }
+                    component={Login}
+                    options={{
+                        headerLeft: null
+                    }}
                 />
 
                 <Stack.Screen
                     name="SignUp"
-                    component={ SignUp }
+                    component={SignUp}
                 />
 
                 <Stack.Screen
                     name="App"
-                    component={ AppStack }
+                    component={AppStack}
                     options={{
                         headerLeft: null,
                         gestureEnabled: false,
                         headerShown: false
                     }}
                 />
+
+                <Stack.Screen
+                    name="Cart"
+                    component={Cart}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     );
 }
 
 const AppStack = () => {
-    return(
+    return (
         <Tab.Navigator>
             <Tab.Screen
                 name="Home"
-                component={ Home }
+                component={Home}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="home" color={color} size={size} />
+                    tabBarIcon: ({color, size}) => (
+                        <MaterialCommunityIcons name="home" color={color} size={size}/>
                     ),
                     headerShown: false
                 }}
@@ -64,10 +81,10 @@ const AppStack = () => {
 
             <Tab.Screen
                 name="Products"
-                component={ Products }
+                component={ProductsStack}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="scooter" color={color} size={size} />
+                    tabBarIcon: ({color, size}) => (
+                        <MaterialCommunityIcons name="scooter" color={color} size={size}/>
                     ),
                     headerShown: false
                 }}
@@ -75,10 +92,10 @@ const AppStack = () => {
 
             <Tab.Screen
                 name="Map"
-                component={ MapScreen }
+                component={MapScreen}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="map-marker" color={color} size={size} />
+                    tabBarIcon: ({color, size}) => (
+                        <MaterialCommunityIcons name="map-marker" color={color} size={size}/>
                     ),
                     headerShown: false
                 }}
@@ -86,16 +103,38 @@ const AppStack = () => {
 
             <Tab.Screen
                 name="Profile"
-                component={ Profile }
+                component={Profile}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="account" color={color} size={size} />
+                    tabBarIcon: ({color, size}) => (
+                        <MaterialCommunityIcons name="account" color={color} size={size}/>
                     ),
                     headerShown: false
                 }}
             />
         </Tab.Navigator>
     )
+}
+
+const ProductsStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Products_"
+                component={Products}
+                options={{
+                    headerShown: false
+                }}
+            />
+
+            <Stack.Screen
+                name="ProductDetail"
+                component={ProductDetail}
+                options={{
+                    headerShown: false
+                }}
+            />
+        </Stack.Navigator>
+    );
 }
 
 export default OnBoardingStack;

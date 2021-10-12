@@ -1,13 +1,84 @@
-import React from 'react';
-import {StatusBar, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {homeCarouselItems} from "../constants/MockData";
+import HomeProducts from "../components/HomeProducts";
+import {COLORS} from "../constants/Colors";
 
 function Home() {
+
+    const [activeIndex, setActiveIndex] = useState(0)
+    const [carouselItems, setCarouselItem] = useState(homeCarouselItems)
+
+    function renderCarouselItem({item}) {
+        return (
+            <View style={styles.carouselItem}>
+                <Image style={styles.carouselImage} source={{uri: item.image}}/>
+                <Text style={styles.carouselTitle}>{item.title}</Text>
+                <Text style={styles.carouselDescription}>{item.text}</Text>
+            </View>
+        )
+    }
+
     return (
-        <View >
+        <View>
             <SurbiHeader title={"Home"}/>
+            <Carousel
+                loop={true}
+                autoplay={true}
+                layout={"default"}
+                data={carouselItems}
+                sliderWidth={Dimensions.get("screen").width}
+                itemWidth={Dimensions.get("screen").width - 100}
+                renderItem={renderCarouselItem}
+                onSnapToItem={index => setActiveIndex(index)}/>
+            <Pagination
+                dotsLength={carouselItems.length}
+                activeDotIndex={activeIndex}
+                dotStyle={styles.paginationDot}
+                inactiveDotOpacity={0.4}
+                inactiveDotScale={0.6}/>
+            <HomeProducts title={"Scooters"}/>
+            <HomeProducts title={"Bicycles"}/>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    carouselItem: {
+        backgroundColor: '#e0e3ec',
+        borderRadius: 5,
+        height: 200,
+        marginTop: 30,
+        alignItems: "center",
+    },
+    paginationDot: {
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        marginHorizontal: 6,
+        backgroundColor: COLORS.colorPrimary
+    },
+    carouselImage: {
+        height: 140,
+        width: "100%",
+        resizeMode: "stretch",
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+    },
+    carouselTitle: {
+        fontSize: 18,
+        marginTop: 5,
+        marginLeft: 15,
+        alignSelf: "flex-start",
+    },
+    carouselDescription: {
+        fontSize: 14,
+        marginTop: 5,
+        marginLeft: 15,
+        alignSelf: "flex-start"
+    }
+});
 
 export default Home;

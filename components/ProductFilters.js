@@ -2,12 +2,12 @@ import React from 'react';
 import {View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 
-function Profile() {
+function ProductFilters() {
     return (
         <View>
-            <SurbiHeader title={"Profile"}/>
+            <SurbiHeader title={"Product Filters"}/>
         </View>
     );
 }
 
-export default Profile;
+export default ProductFilters;
