@@ -10,10 +10,8 @@ function Login() {
     return (
         <View style={styles.container}>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
-                <TextInput style={styles.textInput}
-                           placeholder='E-mail'/>
-                <TextInput style={styles.textInput}
-                           placeholder='Password'/>
+                <TextInput style={styles.textInput} placeholder='E-mail'/>
+                <TextInput style={styles.textInput} placeholder='Password' secureTextEntry={true}/>
             </View>
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('App')}>

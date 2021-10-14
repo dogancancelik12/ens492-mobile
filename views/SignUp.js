@@ -12,8 +12,8 @@ function SignUp() {
                 <TextInput style={styles.textInput} placeholder='Name'/>
                 <TextInput style={styles.textInput} placeholder='Surname'/>
                 <TextInput style={styles.textInput} placeholder='E-mail'/>
-                <TextInput style={styles.textInput} placeholder='Password'/>
-                <TextInput style={styles.textInput} placeholder='Confirm Password'/>
+                <TextInput style={styles.textInput} placeholder='Password' secureTextEntry={true}/>
+                <TextInput style={styles.textInput} placeholder='Confirm Password' secureTextEntry={true}/>
             </View>
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('App')}>
@@ -23,7 +23,6 @@ function SignUp() {
                 onPress={() => navigation.navigate('Login')}>
                 <Text style={{color: '#657cb1', marginTop: 20}}>Already have an account ?</Text>
             </TouchableOpacity>
-
         </View>
     );
 }
