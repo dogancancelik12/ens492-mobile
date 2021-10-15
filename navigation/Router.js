@@ -12,6 +12,7 @@ import SignUp from "../views/SignUp";
 import SplashScreen from "../views/SplashScreen";
 import ProductDetail from "../views/ProductDetail";
 import Cart from "../views/Cart";
+import Checkout from "../views/Checkout";
 
 
 const Stack = createStackNavigator();
@@ -55,6 +56,14 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="Cart"
                     component={Cart}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="Checkout"
+                    component={Checkout}
                     options={{
                         headerShown: false
                     }}

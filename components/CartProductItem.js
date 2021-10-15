@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import SurbiPopUp from "./SurbiPopUp";
 
 function CartProductItem({item}) {
+
+    const [isPopUpVisible, setIsPopUpVisible] = useState(false)
+
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -14,11 +18,18 @@ function CartProductItem({item}) {
                 <Text style={styles.description}>{item.text}</Text>
             </View>
             <Text style={styles.price}>{item.price}</Text>
-            <TouchableOpacity style={{position: "absolute", top: 10, right: 10}}>
+            <TouchableOpacity style={{position: "absolute", top: 10, right: 10}}
+                              onPress={() => setIsPopUpVisible(true)}>
                 <FontAwesome5 name={"times-circle"}
                               size={18}/>
             </TouchableOpacity>
-
+            {isPopUpVisible &&
+            <SurbiPopUp negativeButtonAction={() => setIsPopUpVisible(false)}
+                        positiveButtonAction={() => setIsPopUpVisible(false)}
+                        title={"Do you want to remove this product from your cart ?"}
+                        positiveButtonText={"Yes"}
+                        negativeButtonText={"No"}/>
+            }
         </View>
     );
 }
@@ -30,7 +41,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
         marginTop: 20,
-        height: "15%",
+        height: "10%",
         width: "95%",
     },
     imageContainer: {
