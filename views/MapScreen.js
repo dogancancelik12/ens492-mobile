@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import * as Location from 'expo-location'
 import SurbiLoader from "../components/SurbiLoader";
+import {scootersLocation} from "../constants/MockData";
 
 
 function Map() {
@@ -15,11 +16,20 @@ function Map() {
         setLongitude(currentLocation.coords.longitude)
     }
 
+    const ScooterLocations = scootersLocation.map((scooter, index) =>
+        <Marker key={index}
+                coordinate={{
+                    latitude: scooter.lat,
+                    longitude: scooter.long
+                }}
+                title={scooter.title}
+                image={require('../constants/scooter.png')}
+        />
+    )
+
     useEffect(() => {
         getCurrentLocation(
-            {
-                enableHighAccuracy: true
-            }
+            {enableHighAccuracy: true}
         ).then()
     }, []);
 
@@ -39,7 +49,9 @@ function Map() {
                     showsUserLocation={true}
                     followsUserLocation={true}
                     showsMyLocationButton={true}
-                /> :
+                >
+                    {ScooterLocations}
+                </MapView> :
                 <SurbiLoader/>
             }
         </>

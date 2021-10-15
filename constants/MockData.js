@@ -134,3 +134,27 @@ export const cartProducts = [
         price: "20$"
     },
 ]
+
+export const scootersLocation = [
+    {
+        id: 1,
+        title: "Scooter 1",
+        text: "Text 1",
+        lat: 41.11483798209827,
+        long: 29.061150093389897
+    },
+    {
+        id: 2,
+        title: "Scooter 2",
+        text: "Text 1",
+        lat: 41.11453718209827,
+        long: 29.061150093389899
+    },
+    {
+        id: 3,
+        title: "Scooter 3",
+        text: "Text 1",
+        lat: 41.11553718209827,
+        long: 29.061150093387889
+    },
+]
