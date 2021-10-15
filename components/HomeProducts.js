@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from "react-native";
+import {COLORS} from "../constants/Colors";
 
 function HomeProducts({title}) {
     return (
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         flexDirection: "row",
         justifyContent: "space-evenly",
-        backgroundColor: "#e5e7ec",
+        backgroundColor: COLORS.colorPrimaryLight,
         height: 100,
         alignItems: "center"
     },

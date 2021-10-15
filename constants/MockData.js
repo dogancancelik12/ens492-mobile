@@ -109,3 +109,28 @@ export const productsCamping = [
         image: "https://picsum.photos/200/300"
     },
 ]
+
+export const cartProducts = [
+    {
+        id: 1,
+        title: "Bicycle 1",
+        text: "Text 1",
+        image: "https://picsum.photos/200/300",
+        price: "100$"
+
+    },
+    {
+        id: 2,
+        title: "Scooter 2",
+        text: "Text 2",
+        image: "https://picsum.photos/200/300",
+        price: "50$"
+    },
+    {
+        id: 3,
+        title: "Camping 3",
+        text: "Text 3",
+        image: "https://picsum.photos/200/300",
+        price: "20$"
+    },
+]

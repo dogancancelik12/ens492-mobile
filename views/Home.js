@@ -47,7 +47,7 @@ function Home() {
 
 const styles = StyleSheet.create({
     carouselItem: {
-        backgroundColor: '#e0e3ec',
+        backgroundColor: COLORS.colorPrimaryLight,
         borderRadius: 5,
         height: 200,
         marginTop: 30,
