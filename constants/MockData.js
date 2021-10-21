@@ -158,3 +158,21 @@ export const scootersLocation = [
         long: 29.061150093387889
     },
 ]
+
+export const userAddresses = [
+    {
+        id: 1,
+        title: "Tolga Ev",
+        text: "İstinye Mah. Sarıyer"
+    },
+    {
+        id: 2,
+        title: "Yeniköy Ev",
+        text: "Yeniköy Mah. Sarıyer"
+    },
+    {
+        id: 3,
+        title: "Sarıyer Ev",
+        text: "Yeniköy Mah. Sarıyer"
+    },
+]

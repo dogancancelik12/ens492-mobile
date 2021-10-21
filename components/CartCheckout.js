@@ -1,11 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
-import {useNavigation} from "@react-navigation/native";
 
-function CartCheckout() {
-
-    const navigation = useNavigation();
+function CartCheckout({buttonText, buttonAction}) {
 
     return (
         <View style={styles.container}>
@@ -21,8 +18,8 @@ function CartCheckout() {
                 <Text style={styles.staticText}>Total</Text>
                 <Text style={styles.priceText}>180$</Text>
             </View>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Checkout')}>
-                <Text>CHECK OUT</Text>
+            <TouchableOpacity style={styles.button} onPress={buttonAction}>
+                <Text>{buttonText}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -38,6 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.colorPrimaryLight,
         height: "25%",
         width: "85%",
+        alignSelf: "center"
     },
     staticText: {
         marginLeft: 30,
