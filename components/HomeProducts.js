@@ -1,22 +1,28 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {COLORS} from "../constants/Colors";
 
 function HomeProducts({title}) {
     return (
         <View>
             <Text style={{padding: 15, fontSize: 18}}>{title}</Text>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
-                <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
-                <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.imageContainer}>
+                    <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.imageContainer}>
+                    <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.imageContainer}>
+                    <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
+                </TouchableOpacity>
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    imageContainer: {
+    container: {
         marginLeft: 15,
         marginRight: 15,
         borderRadius: 15,
@@ -27,10 +33,14 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     image: {
-        height: "80%",
-        width: "25%",
+        height: "100%",
+        width: "100%",
         resizeMode: "cover",
         borderRadius: 5
+    },
+    imageContainer: {
+        height: "80%",
+        width: "25%"
     }
 });
 

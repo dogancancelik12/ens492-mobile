@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Dimensions, View, TouchableOpacity} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import SurbiHeader from "../components/SurbiHeader";
@@ -7,6 +7,7 @@ import ProductsGridView from "../components/ProductsGridView";
 import RenderSearchBar from "../components/SearchBar";
 import {productsBicycles, productsCamping, productsScooters} from "../constants/MockData";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import FilterBottomSheet from "../components/FilterBottomSheet";
 
 const RenderScooters = () => (
     <ProductsGridView products={productsScooters}/>
@@ -28,6 +29,7 @@ const renderScene = SceneMap({
 
 function Products() {
 
+    const [isFilterBottomSheetVisible, setIsFilterBottomSheetVisible] = useState(false)
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
         {key: 'scooters', title: 'Scooters'},
@@ -46,13 +48,12 @@ function Products() {
                 labelStyle={{fontSize: 12, fontWeight: "500"}}
             />
             <View style={styles.filter_search}>
-                <TouchableOpacity style={styles.filterButton}>
+                <TouchableOpacity style={styles.filterButton} onPress={() => setIsFilterBottomSheetVisible(true)}>
                     <FontAwesome5 name={"filter"} size={22}/>
                 </TouchableOpacity>
                 <RenderSearchBar/>
             </View>
         </>
-
     );
 
     return (
@@ -65,6 +66,9 @@ function Products() {
                 onIndexChange={setIndex}
                 initialLayout={Dimensions.get('window').width}
             />
+            {isFilterBottomSheetVisible &&
+            <FilterBottomSheet onCloseAction={() => setIsFilterBottomSheetVisible(false)}/>
+            }
         </>
 
     );
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: "center",
         justifyContent: "center",
-    }
+    },
 });
 
 export default Products;

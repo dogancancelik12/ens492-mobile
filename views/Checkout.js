@@ -72,7 +72,6 @@ function Checkout() {
                 }}>
                 <AddAddress onPressDismiss={() => refRBSheet.current.close()}/>
             </RBSheet>
-
         </View>
     );
 }
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     },
     addressListContainer: {
         width: "100%",
-        alignSelf: "center"
+        alignSelf: "center",
     },
     container: {
         flexDirection: "row",

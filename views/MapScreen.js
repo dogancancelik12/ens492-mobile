@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import * as Location from 'expo-location'
 import SurbiLoader from "../components/SurbiLoader";
 import {scootersLocation} from "../constants/MockData";
+import MapCallout from "../components/MapCallout";
 
 
 function Map() {
@@ -17,14 +18,19 @@ function Map() {
     }
 
     const ScooterLocations = scootersLocation.map((scooter, index) =>
-        <Marker key={index}
-                coordinate={{
-                    latitude: scooter.lat,
-                    longitude: scooter.long
-                }}
-                title={scooter.title}
-                image={require('../constants/scooter.png')}
-        />
+        <Marker
+            key={index}
+            coordinate={{
+                latitude: scooter.lat,
+                longitude: scooter.long
+            }}
+            title={scooter.title}
+            image={require('../constants/scooter.png')}
+        >
+            <Callout style={{width: 200, height: 150, borderRadius: 10}}>
+                <MapCallout/>
+            </Callout>
+        </Marker>
     )
 
     useEffect(() => {

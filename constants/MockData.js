@@ -157,6 +157,13 @@ export const scootersLocation = [
         lat: 41.11553718209827,
         long: 29.061150093387889
     },
+    {
+        id: 4,
+        title: "Scooter 4",
+        text: "Text 1",
+        lat: 37.785834,
+        long: -122.406417
+    },
 ]
 
 export const userAddresses = [
