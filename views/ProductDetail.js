@@ -2,9 +2,11 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 import {AirbnbRating} from 'react-native-ratings';
+import {useNavigation} from '@react-navigation/native';
 
 function ProductDetail(props) {
 
+    const navigation = useNavigation();
     const {productName} = props.route.params;
 
     return (
@@ -24,10 +26,12 @@ function ProductDetail(props) {
                           size={20}
             />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                                  onPress={() => navigation.navigate('Cart')}>
                     <Text>RENT</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                                  onPress={() => navigation.navigate('Cart')}>
                     <Text>BUY</Text>
                 </TouchableOpacity>
             </View>
