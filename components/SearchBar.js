@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, TextInput, View} from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-function RenderSearchBar() {
+function RenderSearchBar({searchedText}) {
+
+    const [value, setValue] = useState('');
+
+    useEffect(()=>{
+        searchedText(value)
+    },[value])
+
     return (
         <View style={styles.searchBar}>
             <TextInput
+                value={value}
+                onChangeText={(text) => setValue(text)}
                 placeholder={`Search`}
-                style={{marginLeft: 5}}/>
+                style={{marginLeft: 5,width:'80%'}}/>
             <FontAwesome5 style={{alignSelf: "center", right: 10}} name={"search"}/>
         </View>
     );

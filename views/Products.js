@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Dimensions, View, TouchableOpacity} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import SurbiHeader from "../components/SurbiHeader";
@@ -9,33 +9,62 @@ import {productsBicycles, productsCamping, productsScooters} from "../constants/
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FilterBottomSheet from "../components/FilterBottomSheet";
 
-const RenderScooters = () => (
-    <ProductsGridView products={productsScooters}/>
-);
-
-const RenderBicycles = () => (
-    <ProductsGridView products={productsBicycles}/>
-);
-
-const RenderCamping = () => (
-    <ProductsGridView products={productsCamping}/>
-);
-
-const renderScene = SceneMap({
-    scooters: RenderScooters,
-    bicycles: RenderBicycles,
-    camping: RenderCamping,
-});
-
 function Products() {
 
     const [isFilterBottomSheetVisible, setIsFilterBottomSheetVisible] = useState(false)
-    const [index, setIndex] = React.useState(0);
+    const [index, setIndex] = useState(0);
+    const [value, setValue] = useState('');
+    const [scooters, setScooters] = useState(productsScooters);
+    const [bicycles, setBicycles] = useState(productsBicycles);
+    const [camping, setCamping] = useState(productsCamping);
     const [routes] = React.useState([
         {key: 'scooters', title: 'Scooters'},
         {key: 'bicycles', title: 'Bicycles'},
         {key: 'camping', title: 'Camping'},
     ]);
+
+    useEffect(() => {
+        let filteredScooters = [];
+        let filteredBicycles = [];
+        let filteredCamping = [];
+        for (let productScooter of productsScooters) {
+            if (productScooter.title.indexOf(value) !== -1) {
+                filteredScooters.push(productScooter)
+            }
+        }
+        for (let productBicycle of productsBicycles) {
+            if (productBicycle.title.indexOf(value) !== -1) {
+                filteredBicycles.push(productBicycle)
+            }
+        }
+        for (let productCamping of productsCamping) {
+            if (productCamping.title.indexOf(value) !== -1) {
+                filteredCamping.push(productCamping)
+            }
+        }
+        setScooters(filteredScooters);
+        setBicycles(filteredBicycles);
+        setCamping(filteredCamping);
+    }, [value])
+
+
+    const RenderScooters = () => (
+        <ProductsGridView products={scooters}/>
+    );
+
+    const RenderBicycles = () => (
+        <ProductsGridView products={bicycles}/>
+    );
+
+    const RenderCamping = () => (
+        <ProductsGridView products={camping}/>
+    );
+
+    const renderScene = SceneMap({
+        scooters: RenderScooters,
+        bicycles: RenderBicycles,
+        camping: RenderCamping,
+    });
 
     const renderTabBar = props => (
         <>
@@ -51,7 +80,7 @@ function Products() {
                 <TouchableOpacity style={styles.filterButton} onPress={() => setIsFilterBottomSheetVisible(true)}>
                     <FontAwesome5 name={"filter"} size={22}/>
                 </TouchableOpacity>
-                <RenderSearchBar/>
+                <RenderSearchBar searchedText={(text) => setValue(text)}/>
             </View>
         </>
     );

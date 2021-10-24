@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
+import LottieView from 'lottie-react-native';
 
 function ProductsGridView({products}) {
 
@@ -22,6 +23,20 @@ function ProductsGridView({products}) {
         );
     }
 
+    if (products && products.length === 0) {
+        return <View style={{alignItems: "center", marginTop: 30}}>
+            <LottieView
+                style={{height: 150}}
+                source={require('../constants/thisPlaceIsEmpty.json')}
+                autoPlay
+                loop
+            />
+            <Text style={{width: 200, textAlign: 'center', marginTop: 10}}>
+                Sorry, we couldn't find any products matching
+                your search criteria.
+            </Text>
+        </View>
+    }
     return (
         <View style={{alignItems: "center"}}>
             <FlatList
