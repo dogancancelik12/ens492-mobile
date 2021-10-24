@@ -3,9 +3,7 @@ import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-n
 import { Avatar,Icon } from 'react-native-elements';
 import SurbiHeader from "../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 
 function Profile(information){
@@ -30,47 +28,37 @@ return (
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Orders')}>
             <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
-            <Icon name='shopping-bag'
-                  color='white'
-            style={{marginRight:5}}/>
-            <Text style={{color: 'white',fontSize:15}}>My Orders</Text>
+                <FontAwesome5 name={"shopping-bag"} size={17} color={'white'}/>
+            <Text style={{color: 'white',fontSize:15,marginLeft:5}}>My Orders</Text>
             </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Wallet')}>
             <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
-                <Icon name='account-balance-wallet'
-                      color='white'
-                      style={{marginRight:5}}/>
-                <Text style={{color: 'white',fontSize:15}}>My Wallet</Text>
+                <FontAwesome5 name={"wallet"} size={17} color={'white'}/>
+                <Text style={{color: 'white',fontSize:15,marginLeft:5}}>My Wallet</Text>
             </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Addresses')}>
             <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
-                <Icon name='list'
-                      color='white'
-                      style={{marginRight:5}}/>
-                <Text style={{color: 'white',fontSize:15}}>My Addresses</Text>
+                <FontAwesome5 name={"address-card"} size={17} color={'white'}/>
+                <Text style={{color: 'white',fontSize:15,marginLeft:5}}>My Addresses</Text>
             </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Settings')}>
             <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
-                <Icon name='settings'
-                      color='white'
-                      style={{marginRight:5}}/>
-                <Text style={{color: 'white',fontSize:15}}>Settings</Text>
+                <FontAwesome5 name={"cog"} size={17} color={'white'}/>
+                <Text style={{color: 'white',fontSize:15,marginLeft:5}}>Settings</Text>
             </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Login')}>
             <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
-                <Icon name='logout'
-                      color='white'
-                      style={{marginRight:5}}/>
-                <Text style={{color: 'white',fontSize:15}}>Sign Out</Text>
+                <FontAwesome5 name={"sign-out-alt"} size={17} color={'white'}/>
+                <Text style={{color: 'white',fontSize:15,marginLeft:5}}>Sign Out</Text>
             </View>
         </TouchableOpacity>
     </View>
