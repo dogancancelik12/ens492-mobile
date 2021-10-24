@@ -183,3 +183,54 @@ export const userAddresses = [
         text: "Yeniköy Mah. Sarıyer"
     },
 ]
+
+export const previousOrders = [
+    {
+        id: 1,
+        status: "DELIVERED",
+        title: "Scooter 1",
+        price: "100$",
+        date: "DELIVERED ON 24 OCT",
+        image: "https://picsum.photos/200/300"
+    },
+    {
+        id: 2,
+        status: "DELIVERED",
+        title: "Scooter 2",
+        price: "100$",
+        date: "DELIVERED ON 20 OCT",
+        image: "https://picsum.photos/200/300"
+    },
+    {
+        id: 3,
+        status: "DELIVERED",
+        title: "Scooter 3",
+        price: "100$",
+        date: "DELIVERED ON 12 SEP",
+        image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 4,
+        status: "DELIVERED",
+        title: "Scooter 4",
+        price: "100$",
+        date: "DELIVERED ON 9 JUL",
+        image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 5,
+        status: "DELIVERED",
+        title: "Scooter 4",
+        price: "100$",
+        date: "DELIVERED ON 9 JUL",
+        image: "https://picsum.photos/200/300",
+    },
+    {
+        id: 6,
+        status: "DELIVERED",
+        title: "Scooter 4",
+        price: "100$",
+        date: "DELIVERED ON 9 JUL",
+        image: "https://picsum.photos/200/300",
+    },
+]

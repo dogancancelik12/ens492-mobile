@@ -1,22 +1,37 @@
 import React from 'react';
-import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { Avatar } from 'react-native-elements';
-import SurbiHeader from "../components/SurbiHeader";
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {previousOrders} from "../constants/MockData";
 import {useNavigation} from "@react-navigation/native";
+import SurbiHeader from "../components/SurbiHeader";
+import OrdersItem from "../components/OrdersItem";
 
 function Orders() {
+
+    const navigation = useNavigation();
+
+    const ordersList = previousOrders.map(order =>
+        <OrdersItem key={order.id} item={order}/>
+    )
+
     return (
-        <View style={styles.container_style}>
-            <Text style={{color: '#657cb1', marginTop:10}}>My orders</Text>
+        <View style={{alignItems: "center", height: "100%", width: "100%"}}>
+            <SurbiHeader
+                title={"Orders"}
+                isNavigationVisible={true}
+                isCartVisible={false}
+            />
+            <ScrollView style={styles.scrollView}>
+            {ordersList}
+            </ScrollView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container_style: {
-        marginBottom:10,
-        marginTop:100,
-    },
+scrollView: {
+    height: "50%",
+        width: "170%",
+},
 });
 
 export default Orders;
