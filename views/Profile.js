@@ -1,8 +1,11 @@
 import React from 'react';
 import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { Avatar } from 'react-native-elements';
+import { Avatar,Icon } from 'react-native-elements';
 import SurbiHeader from "../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 
 function Profile(information){
@@ -23,25 +26,52 @@ return (
             <Text style={{color: '#657cb1',marginTop:5}}>buse-sumer@hotmail.com</Text>
             <Text style={{color: '#657cb1',marginTop:8}}>(539) 550 06 30</Text>
         </View>
+
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Orders')}>
-            <Text style={{color: 'white'}}>My Orders</Text>
+            <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
+            <Icon name='shopping-bag'
+                  color='white'
+            style={{marginRight:5}}/>
+            <Text style={{color: 'white',fontSize:15}}>My Orders</Text>
+            </View>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Wallet')}>
-            <Text style={{color: 'white'}}>My Wallet</Text>
+            <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
+                <Icon name='account-balance-wallet'
+                      color='white'
+                      style={{marginRight:5}}/>
+                <Text style={{color: 'white',fontSize:15}}>My Wallet</Text>
+            </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.item_style}
-                          onPress={() => navigation.navigate('Adresses')}>
-            <Text style={{color: 'white'}}>My Adresses</Text>
+                          onPress={() => navigation.navigate('Addresses')}>
+            <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
+                <Icon name='list'
+                      color='white'
+                      style={{marginRight:5}}/>
+                <Text style={{color: 'white',fontSize:15}}>My Addresses</Text>
+            </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Settings')}>
-            <Text style={{color: 'white'}}>Settings</Text>
+            <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
+                <Icon name='settings'
+                      color='white'
+                      style={{marginRight:5}}/>
+                <Text style={{color: 'white',fontSize:15}}>Settings</Text>
+            </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.item_style}
                           onPress={() => navigation.navigate('Login')}>
-            <Text style={{color: 'white'}}>Sign Out</Text>
+            <View style={{flexDirection:'row',display:'flex',alignItems:'center'}}>
+                <Icon name='logout'
+                      color='white'
+                      style={{marginRight:5}}/>
+                <Text style={{color: 'white',fontSize:15}}>Sign Out</Text>
+            </View>
         </TouchableOpacity>
     </View>
 );

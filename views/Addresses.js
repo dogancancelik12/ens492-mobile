@@ -4,7 +4,7 @@ import { Avatar } from 'react-native-elements';
 import SurbiHeader from "../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
 
-function Adresses() {
+function Addresses() {
     return (
         <View style={styles.container_style}>
             <Text style={{color: '#657cb1', marginTop:10}}>My Adresses</Text>
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Adresses;
+export default Addresses;

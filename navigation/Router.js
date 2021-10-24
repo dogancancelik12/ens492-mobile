@@ -15,7 +15,7 @@ import Cart from "../views/Cart";
 import Checkout from "../views/Checkout";
 import Orders from "../views/Orders";
 import Wallet from "../views/Wallet";
-import Adresses from "../views/Adresses";
+import Addresses from "../views/Addresses";
 import Settings from "../views/Settings";
 
 
@@ -91,7 +91,7 @@ function OnBoardingStack() {
 
                 <Stack.Screen
                     name="Adresses"
-                    component={Adresses}
+                    component={Addresses}
                     options={{
                         headerShown: false
                     }}
