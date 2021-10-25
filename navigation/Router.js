@@ -13,6 +13,10 @@ import SplashScreen from "../views/SplashScreen";
 import ProductDetail from "../views/ProductDetail";
 import Cart from "../views/Cart";
 import Checkout from "../views/Checkout";
+import Orders from "../views/Orders";
+import Wallet from "../views/Wallet";
+import Addresses from "../views/Addresses";
+import Settings from "../views/Settings";
 
 
 const Stack = createStackNavigator();
@@ -64,6 +68,38 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="Checkout"
                     component={Checkout}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="Orders"
+                    component={Orders}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="Wallet"
+                    component={Wallet}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="Adresses"
+                    component={Addresses}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="Settings"
+                    component={Settings}
                     options={{
                         headerShown: false
                     }}

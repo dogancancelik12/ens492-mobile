@@ -1,19 +1,37 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {COLORS} from "../constants/Colors";
+import {useNavigation} from "@react-navigation/native";
 
 function HomeProducts({title}) {
+    const navigation = useNavigation();
     return (
         <View>
             <Text style={{padding: 15, fontSize: 18}}>{title}</Text>
             <View style={styles.container}>
-                <TouchableOpacity style={styles.imageContainer}>
+                <TouchableOpacity style={styles.imageContainer}
+                                  onPress={() => {
+                                      navigation.navigate("ProductDetail",{
+                                          productName: title.title
+                                      });
+                                  }}
+                >
                     <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageContainer}>
+                <TouchableOpacity style={styles.imageContainer}
+                                  onPress={() => {
+                                      navigation.navigate("ProductDetail",{
+                                          productName: title.title
+                                      });
+                                  }}>
                     <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageContainer}>
+                <TouchableOpacity style={styles.imageContainer}
+                                  onPress={() => {
+                                      navigation.navigate("ProductDetail",{
+                                          productName: title.title
+                                      });
+                                  }}>
                     <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 </TouchableOpacity>
             </View>
