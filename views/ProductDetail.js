@@ -27,7 +27,7 @@ function ProductDetail(props) {
             />
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button}
-                                  onPress={() => navigation.navigate('Cart')}>
+                                  onPress={() => navigation.navigate('RentScreen')}>
                     <Text>RENT</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}

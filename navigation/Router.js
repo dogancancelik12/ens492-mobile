@@ -17,6 +17,7 @@ import Orders from "../views/Orders";
 import Wallet from "../views/Wallet";
 import Addresses from "../views/Addresses";
 import Settings from "../views/Settings";
+import RentScreen from "../views/RentScreen";
 
 
 const Stack = createStackNavigator();
@@ -100,6 +101,14 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="Settings"
                     component={Settings}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="RentScreen"
+                    component={RentScreen}
                     options={{
                         headerShown: false
                     }}
