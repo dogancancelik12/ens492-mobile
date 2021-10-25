@@ -7,12 +7,14 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {homeCarouselItems} from '../constants/MockData';
 import {COLORS} from '../constants/Colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import AddCreditCard from "./AddCreditCard";
 
 function Wallet() {
 
     const [activeIndex, setActiveIndex] = useState(0)
     const [carouselItems, setCarouselItem] = useState(homeCarouselItems)
     const navigation = useNavigation();
+
 
 
     function renderCarouselItem({item}) {
@@ -24,6 +26,7 @@ function Wallet() {
     }
 
     return (
+
         <View>
             <SurbiHeader isCartVisible={false} isNavigationVisible={true} title={'My Wallet'}/>
             <Carousel
@@ -89,7 +92,7 @@ function Wallet() {
                     flexDirection: 'row',
                     display: 'flex',
                     padding: 10,
-                    backgroundColor: COLORS.colorPrimary,
+                    backgroundColor: '#657cb1',
                     borderRadius: 50,
                     width: '50%',
                     justifyContent: 'center'
