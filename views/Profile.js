@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         borderRadius:50,
     },
     container_style: {
+
     },
     avatar_style: {
         alignItems: 'center',
