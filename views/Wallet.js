@@ -1,21 +1,73 @@
-import React from 'react';
-import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { Avatar } from 'react-native-elements';
+import React, {useState} from 'react';
+import {Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Avatar} from 'react-native-elements';
 import SurbiHeader from "../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {homeCarouselItems} from '../constants/MockData';
+import {COLORS} from '../constants/Colors';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 function Wallet() {
+
+    const [activeIndex, setActiveIndex] = useState(0)
+    const [carouselItems, setCarouselItem] = useState(homeCarouselItems)
+
+    function renderCarouselItem({item}) {
+        return (
+            <View style={styles.carouselItem}>
+                <Image style={styles.carouselImage} source={{uri: item.image}}/>
+            </View>
+        )
+    }
+
     return (
-        <View style={styles.container_style}>
-            <Text style={{color: '#657cb1', marginTop:10}}>My Wallet</Text>
+        <View>
+            <SurbiHeader isCartVisible={false} isNavigationVisible={true} title={'My Wallet'}/>
+            <Carousel
+                loop={true}
+                autoplay={true}
+                layout={"default"}
+                data={carouselItems}
+                sliderWidth={Dimensions.get("screen").width}
+                itemWidth={Dimensions.get("screen").width}
+                renderItem={renderCarouselItem}
+                onSnapToItem={index => setActiveIndex(index)}/>
+            <Pagination
+                dotsLength={carouselItems.length}
+                activeDotIndex={activeIndex}
+                dotStyle={styles.paginationDot}
+                inactiveDotOpacity={0.4}
+                inactiveDotScale={0.6}/>
+            <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'center', borderBottomWidth:1, borderBottomColor: COLORS.colorPrimary}}>
+                <FontAwesome5 style={{marginRight: 17}}
+                    name={"wallet"} size={50} color={COLORS.colorPrimary}/>
+                <View>
+                    <Text style={{fontSize: 16}}>Amount</Text>
+                    <Text style={{fontSize: 30}}>$200</Text>
+                </View>
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container_style: {
-        marginBottom:10,
-        marginTop:100,
+    carouselItem: {
+        borderRadius: 5,
+        alignItems: "center",
+    },
+    paginationDot: {
+        width: 10,
+        height: 10,
+        borderRadius: 6,
+        marginHorizontal: 2,
+        backgroundColor: COLORS.colorPrimary
+    },
+    carouselImage: {
+        height: 80,
+        width: "100%",
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
     },
 });
 
