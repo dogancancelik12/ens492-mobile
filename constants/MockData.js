@@ -30,27 +30,36 @@ export const productsScooters = [
     {
         title: "Scooter 1",
         text: "Text 1",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 100
     },
     {
         title: "Scooter 2",
         text: "Text 2",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 200,
+        rating:2
     },
     {
         title: "Scooter 3",
         text: "Text 3",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 300,
+        rating:3
     },
     {
         title: "Scooter 4",
         text: "Text 4",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 500,
+        rating:1
     },
     {
         title: "Scooter 5",
         text: "Text 5",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 500,
+        rating:5
     },
 ]
 
@@ -58,22 +67,30 @@ export const productsBicycles = [
     {
         title: "Bicycle 1",
         text: "Text 1",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 100,
+        rating:5
     },
     {
         title: "Bicycle 2",
         text: "Text 2",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 100,
+        rating:5
     },
     {
         title: "Bicycle 3",
         text: "Text 3",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 300,
+        rating:1
     },
     {
         title: "Bicycle 4",
         text: "Text 4",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 400,
+        rating:3
     },
 ]
 
@@ -81,32 +98,44 @@ export const productsCamping = [
     {
         title: "Camping 1",
         text: "Text 1",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 100,
+        rating:5
     },
     {
         title: "Camping 2",
         text: "Text 2",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 100,
+        rating:5
     },
     {
         title: "Camping 3",
         text: "Text 3",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 100,
+        rating:5
     },
     {
         title: "Camping 4",
         text: "Text 4",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 100,
+        rating:3
     },
     {
         title: "Camping 5",
         text: "Text 5",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 400,
+        rating:1
     },
     {
         title: "Camping 6",
         text: "Text 6",
-        image: "https://picsum.photos/200/300"
+        image: "https://picsum.photos/200/300",
+        price: 500,
+        rating:1
     },
 ]
 

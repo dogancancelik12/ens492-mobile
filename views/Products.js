@@ -47,6 +47,45 @@ function Products() {
         setCamping(filteredCamping);
     }, [value])
 
+    const filterFunction = (val) => {
+        console.log('GİRDİ', val)
+        let filteredScooters = []
+        let filteredBicycles = []
+        let filteredCamping = []
+
+        if (val && val.length > 0 && val[0].type === 'price') {
+            filteredScooters = scooters.filter(scooter => {
+                return scooter.price > val[0].value
+            })
+            filteredBicycles = bicycles.filter(bicycle => {
+                return bicycle.price > val[0].value
+            })
+            filteredCamping = camping.filter(camping => {
+                return camping.price > val[0].value
+            })
+            setScooters(filteredScooters)
+            setBicycles(filteredBicycles)
+            setCamping(filteredCamping)
+        } else if (val && val.length > 0 && val[0].type === 'rating') {
+            filteredScooters = scooters.filter(scooter => {
+                return scooter.rating > val[0].value
+            })
+            filteredBicycles = bicycles.filter(bicycle => {
+                return bicycle.rating > val[0].value
+            })
+            filteredCamping = camping.filter(camping => {
+                return camping.rating > val[0].value
+            })
+            setScooters(filteredScooters)
+            setBicycles(filteredBicycles)
+            setCamping(filteredCamping)
+        } else {
+            setScooters(productsScooters)
+            setBicycles(productsBicycles)
+            setCamping(productsCamping)
+        }
+    };
+
 
     const RenderScooters = () => (
         <ProductsGridView products={scooters}/>
@@ -96,7 +135,8 @@ function Products() {
                 initialLayout={Dimensions.get('window').width}
             />
             {isFilterBottomSheetVisible &&
-            <FilterBottomSheet onCloseAction={() => setIsFilterBottomSheetVisible(false)}/>
+            <FilterBottomSheet filteredValue={(val) => filterFunction(val)}
+                               onCloseAction={() => setIsFilterBottomSheetVisible(false)}/>
             }
         </>
 
