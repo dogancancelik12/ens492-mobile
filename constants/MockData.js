@@ -263,3 +263,26 @@ export const previousOrders = [
         image: "https://picsum.photos/200/300",
     },
 ]
+export const adresses = [
+    {
+        id: 1,
+        address: "Address 1",
+        title: "Kartal",
+    },
+    {
+        id: 2,
+        address: "Address 2",
+        title: "Dudullu",
+    },
+    {
+        id: 3,
+        address: "Address 3",
+        title: "İstinye",
+    },
+    {
+        id: 4,
+        address: "Address 4",
+        title: "Kosuyolu",
+    },
+
+]
