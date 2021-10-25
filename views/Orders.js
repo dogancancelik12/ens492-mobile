@@ -21,17 +21,17 @@ function Orders() {
                 isCartVisible={false}
             />
             <ScrollView style={styles.scrollView}>
-            {ordersList}
+                {ordersList}
             </ScrollView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-scrollView: {
-    height: "50%",
+    scrollView: {
+        height: "50%",
         width: "170%",
-},
+    },
 });
 
 export default Orders;
