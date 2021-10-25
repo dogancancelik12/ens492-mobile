@@ -17,6 +17,7 @@ import Orders from "../views/Orders";
 import Wallet from "../views/Wallet";
 import Addresses from "../views/Addresses";
 import Settings from "../views/Settings";
+import AddCreditCard from "../views/AddCreditCard";
 
 
 const Stack = createStackNavigator();
@@ -90,7 +91,7 @@ function OnBoardingStack() {
                 />
 
                 <Stack.Screen
-                    name="Adresses"
+                    name="Addresses"
                     component={Addresses}
                     options={{
                         headerShown: false
@@ -100,6 +101,13 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="Settings"
                     component={Settings}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name="AddCreditCard"
+                    component={AddCreditCard}
                     options={{
                         headerShown: false
                     }}
