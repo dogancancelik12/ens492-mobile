@@ -16,9 +16,14 @@ function AddCreditCard() {
     return (
             <View style={styles.container}>
                 <SurbiHeader isCartVisible={false} isNavigationVisible={true} title={'Add Card'}/>
-
-                <FontAwesome5 style={{marginTop: 40}}
-                              name={"credit-card"} size={80} color={COLORS.colorPrimary}/>
+                <View style={{flexDirection: 'row', display: 'flex'}}>
+                    <FontAwesome5 style={{marginTop: 40,  marginRight: 20}}
+                                  name={"cc-mastercard"} size={70} color='#657cb1'/>
+                    <FontAwesome5 style={{marginTop: 40, marginRight: 20}}
+                                  name={"cc-visa"} size={70} color='#657cb1'/>
+                    <FontAwesome5 style={{marginTop: 40}}
+                                  name={"cc-amex"} size={70} color='#657cb1'/>
+                </View>
                 <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '15%'}}>
                     <TextInput style={styles.textInput} placeholder='Card Name'/>
                     <TextInput style={styles.textInput} placeholder='Card Number'/>
