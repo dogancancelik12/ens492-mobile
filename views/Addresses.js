@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {adresses} from "../constants/MockData";
 import {useNavigation} from "@react-navigation/native";
 import SurbiHeader from "../components/SurbiHeader";
 import AddressItems from "../components/AddressItems";
+import AddAddress from "../components/AddAddress";
+import RBSheet from "react-native-raw-bottom-sheet";
 
 function Adresses() {
 
     const navigation = useNavigation();
-
+    const refRBSheet = useRef();
     const addressList = adresses.map(address =>
         <AddressItems key={address.id} item={address}/>
     )
@@ -24,9 +26,21 @@ function Adresses() {
                 {addressList}
             </ScrollView>
             <TouchableOpacity style={styles.button}
-                              onPress={() => navigation.navigate('AddAddress')}>
+                              onPress={() => refRBSheet.current.open()}>
                 <Text style={{color: 'white', fontSize: 18}}>Add</Text>
             </TouchableOpacity>
+
+            <RBSheet
+                ref={refRBSheet}
+                height={300}
+                customStyles={{
+                    container: {
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }
+                }}>
+                <AddAddress onPressDismiss={() => refRBSheet.current.close()}/>
+            </RBSheet>
         </View>
     );
 }
