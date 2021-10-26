@@ -11,7 +11,7 @@ function AddAddress({onPressDismiss, onPressAddAddress}) {
                               size={18}/>
             </TouchableOpacity>
             <View style={{flexDirection: "row", marginTop: 40}}>
-                <Text style={{padding: 10}}>Address Title:</Text>
+                <Text style={{padding: 10}}>Title:</Text>
                 <TextInput
                     style={styles.addAddressTitle}
                     placeholder={"Address Title"}/>
@@ -25,7 +25,7 @@ function AddAddress({onPressDismiss, onPressAddAddress}) {
             <TouchableOpacity
                 onPress={onPressAddAddress}
                 style={styles.button}>
-                <Text>
+                <Text style={{color:'white'}}>
                     Add Address
                 </Text>
             </TouchableOpacity>
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     },
     addAddressTitle: {
         backgroundColor: COLORS.colorPrimaryLight,
-        width: "70%",
+        width: "78%",
+        marginLeft:25,
         borderRadius: 10,
         padding: 10
     },
