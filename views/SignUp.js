@@ -1,19 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
-import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 function SignUp() {
-    const navigation = useNavigation();
 
+    const navigation = useNavigation();
+    const [name, setName] = useState(null)
+    const [surname, setSurname] = useState(null)
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+    const [confirmPassword, setConfirmPassword] = useState(null)
 
     return (
         <View style={styles.container}>
-            <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '30%'}}>
-                <TextInput style={styles.textInput} placeholder='Name'/>
-                <TextInput style={styles.textInput} placeholder='Surname'/>
-                <TextInput style={styles.textInput} placeholder='E-mail'/>
-                <TextInput style={styles.textInput} placeholder='Password' secureTextEntry={true}/>
-                <TextInput style={styles.textInput} placeholder='Confirm Password' secureTextEntry={true}/>
+            <Image style={{width: "90%", height: "30%", resizeMode: "contain", marginTop: 30}}
+                   source={require("../constants/surbiLogo.png")}/>
+            <View style={{width: Dimensions.get("screen").width, alignItems: "center"}}>
+                <TextInput autoCorrect={false}
+                           style={styles.textInput}
+                           placeholder='Name'
+                           onChangeText={(name) => setName(name)}/>
+                <TextInput autoCorrect={false}
+                           style={styles.textInput}
+                           placeholder='Surname'
+                           onChangeText={(surname) => setSurname(surname)}/>
+                <TextInput autoCorrect={false}
+                           style={styles.textInput}
+                           placeholder='E-mail'
+                           onChangeText={(email) => setEmail(email)}/>
+                <TextInput autoCorrect={false}
+                           style={styles.textInput}
+                           placeholder='Password'
+                           secureTextEntry={true}
+                           onChangeText={(password) => setPassword(password)}/>
+                <TextInput autoCorrect={false}
+                           style={styles.textInput}
+                           placeholder='Confirm Password' secureTextEntry={true}
+                           onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>
             </View>
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('App')}>
