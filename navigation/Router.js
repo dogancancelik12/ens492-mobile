@@ -38,13 +38,16 @@ function OnBoardingStack() {
                     name="Login"
                     component={Login}
                     options={{
-                        headerLeft: null
+                        headerShown: false
                     }}
                 />
 
                 <Stack.Screen
                     name="SignUp"
                     component={SignUp}
+                    options={{
+                        headerShown: false
+                    }}
                 />
 
                 <Stack.Screen
