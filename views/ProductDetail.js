@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 import {AirbnbRating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
+import RentBottomSheet from "../components/RentBottomSheet";
 
 function ProductDetail(props) {
 
+    const [isRentBottomSheetVisible, setIsRentBottomSheetVisible] = useState(false)
     const navigation = useNavigation();
     const {productName} = props.route.params;
 
@@ -27,7 +29,7 @@ function ProductDetail(props) {
             />
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button}
-                                  onPress={() => navigation.navigate('Cart')}>
+                                  onPress={() => setIsRentBottomSheetVisible(true)}>
                     <Text>RENT</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}
@@ -35,7 +37,9 @@ function ProductDetail(props) {
                     <Text>BUY</Text>
                 </TouchableOpacity>
             </View>
-
+            {isRentBottomSheetVisible &&
+            <RentBottomSheet onCloseAction={() => setIsRentBottomSheetVisible(false)}/>
+            }
 
         </View>
     );
