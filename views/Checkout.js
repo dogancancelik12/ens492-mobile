@@ -64,6 +64,7 @@ function Checkout() {
             <RBSheet
                 ref={refRBSheet}
                 height={300}
+                closeOnDragDown={true}
                 customStyles={{
                     container: {
                         justifyContent: "center",
