@@ -1,14 +1,14 @@
 import React, {useRef, useState} from 'react';
 import {Alert, FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import SurbiHeader from "../components/SurbiHeader";
+import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
-import {COLORS} from "../constants/Colors";
-import {userAddresses} from "../constants/MockData";
+import {COLORS} from "../../constants/Colors";
+import {userAddresses} from "../../constants/MockData";
 import {CheckBox} from 'react-native-elements'
-import CartCheckout from "../components/CartCheckout";
+import CartCheckout from "../../components/CartCheckout";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import RBSheet from "react-native-raw-bottom-sheet";
-import AddAddress from "../components/AddAddress";
+import AddAddress from "../../components/AddAddress";
 
 function Checkout() {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import SurbiHeader from "../components/SurbiHeader";
+import SurbiHeader from "../../components/SurbiHeader";
 
 function UserInformation() {
     const navigation = useNavigation();

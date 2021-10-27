@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import {COLORS} from "../constants/Colors";
-import SurbiLoader from "../components/SurbiLoader";
+import {COLORS} from "../../constants/Colors";
+import SurbiLoader from "../../components/SurbiLoader";
 
 function SplashScreen() {
 

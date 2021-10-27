@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Avatar} from 'react-native-elements';
-import SurbiHeader from "../components/SurbiHeader";
+import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {homeCarouselItems} from '../constants/MockData';
-import {COLORS} from '../constants/Colors';
+import {homeCarouselItems} from '../../constants/MockData';
+import {COLORS} from '../../constants/Colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AddCreditCard from "./AddCreditCard";
 

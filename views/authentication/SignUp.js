@@ -14,7 +14,7 @@ function SignUp() {
     return (
         <View style={styles.container}>
             <Image style={{width: "90%", height: "30%", resizeMode: "contain", marginTop: 30}}
-                   source={require("../constants/surbiLogo.png")}/>
+                   source={require("../../constants/surbiLogo.png")}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center"}}>
                 <TextInput autoCorrect={false}
                            style={styles.textInput}

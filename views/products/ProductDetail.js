@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import SurbiHeader from "../components/SurbiHeader";
+import SurbiHeader from "../../components/SurbiHeader";
 import {AirbnbRating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
-import RentBottomSheet from "../components/RentBottomSheet";
+import RentBottomSheet from "../../components/RentBottomSheet";
 
 function ProductDetail(props) {
 

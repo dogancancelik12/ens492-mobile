@@ -1,7 +1,7 @@
 import {Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React, {useState} from "react";
 import {useNavigation} from '@react-navigation/native';
-import {COLORS} from "../constants/Colors";
+import {COLORS} from "../../constants/Colors";
 
 
 function Login() {
@@ -14,7 +14,7 @@ function Login() {
     return (
         <View style={styles.container}>
             <Image style={{width: "90%", height: "30%", resizeMode: "contain", marginTop: 30}}
-                   source={require("../constants/surbiLogo.png")}/>
+                   source={require("../../constants/surbiLogo.png")}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center"}}>
                 <TextInput
                     autoCorrect={false}

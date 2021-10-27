@@ -1,11 +1,11 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {previousOrders} from "../constants/MockData";
+import {previousOrders} from "../../constants/MockData";
 import {useNavigation} from "@react-navigation/native";
-import SurbiHeader from "../components/SurbiHeader";
-import OrdersItem from "../components/OrdersItem";
+import SurbiHeader from "../../components/SurbiHeader";
+import OrdersItem from "../../components/OrdersItem";
 
-function Orders() {
+function PreviousOrders() {
 
     const navigation = useNavigation();
 
@@ -16,7 +16,7 @@ function Orders() {
     return (
         <View style={{alignItems: "center", height: "100%", width: "100%"}}>
             <SurbiHeader
-                title={"Orders"}
+                title={"PreviousOrders"}
                 isNavigationVisible={true}
                 isCartVisible={false}
             />
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Orders;
+export default PreviousOrders;

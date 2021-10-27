@@ -1,8 +1,8 @@
 import React from 'react';
 import {Alert, Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-import SurbiHeader from "../components/SurbiHeader";
+import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
-import {COLORS} from "../constants/Colors";
+import {COLORS} from "../../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 

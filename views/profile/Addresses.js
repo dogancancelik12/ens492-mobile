@@ -1,10 +1,10 @@
 import React, {useRef} from 'react';
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {adresses} from "../constants/MockData";
+import {adresses} from "../../constants/MockData";
 import {useNavigation} from "@react-navigation/native";
-import SurbiHeader from "../components/SurbiHeader";
-import AddressItems from "../components/AddressItems";
-import AddAddress from "../components/AddAddress";
+import SurbiHeader from "../../components/SurbiHeader";
+import AddressItems from "../../components/AddressItems";
+import AddAddress from "../../components/AddAddress";
 import RBSheet from "react-native-raw-bottom-sheet";
 
 function Adresses() {

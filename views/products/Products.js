@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Dimensions, View, TouchableOpacity} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import SurbiHeader from "../components/SurbiHeader";
-import {COLORS} from "../constants/Colors";
-import ProductsGridView from "../components/ProductsGridView";
-import RenderSearchBar from "../components/SearchBar";
-import {productsBicycles, productsCamping, productsScooters} from "../constants/MockData";
+import SurbiHeader from "../../components/SurbiHeader";
+import {COLORS} from "../../constants/Colors";
+import ProductsGridView from "../../components/ProductsGridView";
+import RenderSearchBar from "../../components/SearchBar";
+import {productsBicycles, productsCamping, productsScooters} from "../../constants/MockData";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import FilterBottomSheet from "../components/FilterBottomSheet";
+import FilterBottomSheet from "../../components/FilterBottomSheet";
 
 function Products() {
 

@@ -3,23 +3,23 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from "../views/Login";
+import Login from "../views/authentication/Login";
 import Home from "../views/Home";
-import Products from "../views/Products";
+import Products from "../views/products/Products";
 import MapScreen from "../views/MapScreen";
-import Profile from "../views/Profile";
-import SignUp from "../views/SignUp";
-import SplashScreen from "../views/SplashScreen";
-import ProductDetail from "../views/ProductDetail";
-import Cart from "../views/Cart";
-import Checkout from "../views/Checkout";
-import Orders from "../views/Orders";
-import Wallet from "../views/Wallet";
-import Addresses from "../views/Addresses";
-import Settings from "../views/Settings";
-import AddCreditCard from "../views/AddCreditCard";
-import UserInformation from "../views/UserInformation";
-import ChangePassword from "../views/ChangePassword";
+import Profile from "../views/profile/Profile";
+import SignUp from "../views/authentication/SignUp";
+import SplashScreen from "../views/authentication/SplashScreen";
+import ProductDetail from "../views/products/ProductDetail";
+import Cart from "../views/products/Cart";
+import Checkout from "../views/products/Checkout";
+import PreviousOrders from "../views/profile/PreviousOrders";
+import Wallet from "../views/profile/Wallet";
+import Addresses from "../views/profile/Addresses";
+import Settings from "../views/profile/Settings";
+import AddCreditCard from "../views/profile/AddCreditCard";
+import UserInformation from "../views/profile/UserInformation";
+import ChangePassword from "../views/profile/ChangePassword";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,7 +80,7 @@ function OnBoardingStack() {
 
                 <Stack.Screen
                     name="Orders"
-                    component={Orders}
+                    component={PreviousOrders}
                     options={{
                         headerShown: false
                     }}
