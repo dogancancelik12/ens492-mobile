@@ -4,9 +4,9 @@ import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiHeader from "../components/SurbiHeader";
 
-function UserInformation(){
+function UserInformation() {
     const navigation = useNavigation();
-    return(
+    return (
         <View style={styles.container}>
             <SurbiHeader title={"My Informations"}
                          isNavigationVisible={true}/>
@@ -24,7 +24,7 @@ function UserInformation(){
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('ChangePassword')}>
                 <FontAwesome5 name={"lock"} size={17} color={'#657cb1'}/>
-                <Text style={{color: '#657cb1', marginLeft:5}}>Change Password</Text>
+                <Text style={{color: '#657cb1', marginLeft: 5}}>Change Password</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.saveButton}
@@ -42,29 +42,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button: {
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
-        borderColor:'#657cb1',
+        borderColor: '#657cb1',
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
         marginTop: 20,
         width: '70%',
-        height:40,
+        height: 40,
         flexDirection: 'row',
-        display:'flex',
+        display: 'flex',
     },
     saveButton: {
-        backgroundColor:'#657cb1',
+        backgroundColor: '#657cb1',
         alignItems: 'center',
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
         width: '70%',
-        height:40,
+        height: 40,
         position: 'absolute',
-        bottom:0,
-        marginBottom:50,
+        bottom: 0,
+        marginBottom: 50,
     },
     editTextInput: {
         borderColor: '#657cb1',
