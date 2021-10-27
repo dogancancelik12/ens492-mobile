@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import SurbiHeader from "../components/SurbiHeader";
+import PassMeter from "react-native-passmeter";
+
+const MAX_LEN = 15,
+    MIN_LEN = 8,
+    PASS_LABELS = ["Too Short", "Weak", "Normal", "Strong", "Secure"];
 
 function ChangePassword(){
+    const [password, setPassword] = useState("");
     const navigation = useNavigation();
 
     return(
@@ -12,9 +18,24 @@ function ChangePassword(){
                          isNavigationVisible={true}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
                 <TextInput style={styles.textInput}
+                           secureTextEntry={true}
                            placeholder='Old Password'/>
-                <TextInput style={styles.textInput} placeholder='New Password'/>
-                <TextInput style={styles.textInput} placeholder='New Password Again'/>
+                <TextInput style={styles.textInput}
+                           secureTextEntry={true}
+                           placeholder='New Password'/>
+
+                <PassMeter
+                    showLabels
+                    password={password}
+                    maxLength={MAX_LEN}
+                    minLength={MIN_LEN}
+                    labels={PASS_LABELS}
+                />
+
+                <TextInput style={styles.textInput}
+                           secureTextEntry={true}
+                           placeholder='New Password Again'/>
+
                 <View style={{alignItems:'flex-start', marginTop:45,  borderBottomColor:'#657cb1',
                     borderBottomWidth:1,borderTopColor:'#657cb1',borderTopWidth:1}}>
                 <Text style={styles.itemStyle}>* It must be at least 8 characters.</Text>
@@ -55,6 +76,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginTop: 20,
         alignItems:'flex-start',
+        marginBottom:10,
     },
     itemStyle: {
         padding:6,

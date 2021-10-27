@@ -19,6 +19,12 @@ function UserInformation(){
                            placeholder='Sumer'/>
                 <TextInput editable={false} selectTextOnFocus={false}
                            style={styles.textInput} placeholder='buse-sumer@hotmail.com'/>
+                <TextInput style={styles.editTextInput}
+                           placeholderTextColor={'black'}
+                           placeholder='(539) 550 06 30'/>
+                <TextInput style={styles.editTextInput}
+                           placeholderTextColor={'black'}
+                           placeholder='11/04/1999'/>
             </View>
 
             <TouchableOpacity style={styles.button}
@@ -57,7 +63,6 @@ const styles = StyleSheet.create({
     saveButton: {
         backgroundColor:'#657cb1',
         alignItems: 'center',
-        borderWidth: 1,
         padding: 10,
         borderRadius: 15,
         width: '70%',
