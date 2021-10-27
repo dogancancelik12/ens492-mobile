@@ -1,7 +1,7 @@
 import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {useNavigation} from '@react-navigation/native';
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 function Login() {
 
@@ -10,6 +10,7 @@ function Login() {
     return (
         <View style={styles.container}>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
+
                 <TextInput style={styles.textInput}
                            placeholder='E-mail'/>
                 <TextInput style={styles.textInput}

@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigation} from "@react-navigation/native";
 import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 function SignUp() {
     const navigation = useNavigation();
@@ -12,6 +13,8 @@ function SignUp() {
                 <TextInput style={styles.textInput} placeholder='Name'/>
                 <TextInput style={styles.textInput} placeholder='Surname'/>
                 <TextInput style={styles.textInput} placeholder='E-mail'/>
+                <TextInput style={styles.textInput} placeholder='Phone Number'/>
+                <TextInput style={styles.textInput} placeholder='Birth Date'/>
                 <TextInput style={styles.textInput} placeholder='Password'/>
                 <TextInput style={styles.textInput} placeholder='Confirm Password'/>
             </View>
