@@ -9,24 +9,19 @@ function AddressItems({item}) {
     const navigation = useNavigation();
 
     return (
-
-            <View>
-                <TouchableOpacity style={{height: 150}}>
-
-                    <View style={styles.container}>
-
-                        <FontAwesome5 name={"home"}
-                                      style={{marginRight: 15, left: 16, alignSelf: 'center'}}
-                                      size={25}/>
-                        <View>
-                            <Text style={styles.title}>{item.title}</Text>
-                            <Text style={styles.address}>{item.address}</Text>
-                        </View>
+        <View>
+            <TouchableOpacity style={{height: 150}}>
+                <View style={styles.container}>
+                    <FontAwesome5 name={"home"}
+                                  style={{marginRight: 15, left: 16, alignSelf: 'center'}}
+                                  size={25}/>
+                    <View>
+                        <Text style={styles.title}>{item.title}</Text>
+                        <Text style={styles.address}>{item.address}</Text>
                     </View>
-
-                </TouchableOpacity>
-            </View>
-
+                </View>
+            </TouchableOpacity>
+        </View>
 
 
     );
