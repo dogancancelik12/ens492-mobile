@@ -4,6 +4,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import DatePicker from 'react-native-neat-date-picker'
 import {useNavigation} from "@react-navigation/native";
 import moment from "moment";
+import localization from 'moment/locale/tr'
 
 function RentBottomSheet({onCloseAction}) {
 
@@ -50,7 +51,7 @@ function RentBottomSheet({onCloseAction}) {
                 {startDate !== null &&
                 <Text onPress={() => setIsDatePickerVisible(true)}
                       style={{padding: 10, marginTop: 15, color: "blue", fontSize: 18}}>
-                    {moment(startDate).format('l')} - {moment(endDate).format('l')}
+                    {moment(startDate).locale("tr", localization).format('l')} - {moment(endDate).locale("tr", localization).format('l')}
                 </Text>
                 }
             </View>
