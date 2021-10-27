@@ -8,11 +8,11 @@ const MAX_LEN = 15,
     MIN_LEN = 8,
     PASS_LABELS = ["Too Short", "Weak", "Normal", "Strong", "Secure"];
 
-function ChangePassword(){
+function ChangePassword() {
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
 
-    return(
+    return (
         <View style={styles.container}>
             <SurbiHeader title={"Change Password"}
                          isNavigationVisible={true}/>
@@ -21,6 +21,7 @@ function ChangePassword(){
                            secureTextEntry={true}
                            placeholder='Old Password'/>
                 <TextInput style={styles.textInput}
+                           onChangeText={pass => setPassword(pass)}
                            secureTextEntry={true}
                            placeholder='New Password'/>
 
@@ -36,10 +37,13 @@ function ChangePassword(){
                            secureTextEntry={true}
                            placeholder='New Password Again'/>
 
-                <View style={{alignItems:'flex-start', marginTop:45,  borderBottomColor:'#657cb1',
-                    borderBottomWidth:1,borderTopColor:'#657cb1',borderTopWidth:1}}>
-                <Text style={styles.itemStyle}>* It must be at least 8 characters.</Text>
-                <Text style={styles.itemStyle}>* It must contain 1 uppercase letter, 1 lowercase letter, 1 symbol and 1 number.</Text>
+                <View style={{
+                    alignItems: 'flex-start', marginTop: 45, borderBottomColor: '#657cb1',
+                    borderBottomWidth: 1, borderTopColor: '#657cb1', borderTopWidth: 1
+                }}>
+                    <Text style={styles.itemStyle}>* It must be at least 8 characters.</Text>
+                    <Text style={styles.itemStyle}>* It must contain 1 uppercase letter, 1 lowercase letter, 1 symbol
+                        and 1 number.</Text>
                 </View>
             </View>
 
@@ -50,6 +54,7 @@ function ChangePassword(){
         </View>
     );
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -57,16 +62,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     saveButton: {
-        backgroundColor:'#657cb1',
+        backgroundColor: '#657cb1',
         alignItems: 'center',
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
         width: '70%',
-        height:40,
+        height: 40,
         position: 'absolute',
-        bottom:0,
-        marginBottom:50,
+        bottom: 0,
+        marginBottom: 50,
     },
     textInput: {
         borderColor: '#657cb1',
@@ -75,14 +80,14 @@ const styles = StyleSheet.create({
         width: '90%',
         borderRadius: 16,
         marginTop: 20,
-        alignItems:'flex-start',
-        marginBottom:10,
+        alignItems: 'flex-start',
+        marginBottom: 10,
     },
     itemStyle: {
-        padding:6,
-        marginLeft:3,
-        marginRight:1,
-        color:'#657cb1',
+        padding: 6,
+        marginLeft: 3,
+        marginRight: 1,
+        color: '#657cb1',
         fontSize: 13,
     },
 });
