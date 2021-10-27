@@ -18,7 +18,8 @@ import Wallet from "../views/Wallet";
 import Addresses from "../views/Addresses";
 import Settings from "../views/Settings";
 import AddCreditCard from "../views/AddCreditCard";
-
+import UserInformation from "../views/UserInformation";
+import ChangePassword from "../views/ChangePassword";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,13 +40,16 @@ function OnBoardingStack() {
                     name="Login"
                     component={Login}
                     options={{
-                        headerLeft: null
+                        headerShown: false
                     }}
                 />
 
                 <Stack.Screen
                     name="SignUp"
                     component={SignUp}
+                    options={{
+                        headerShown: false
+                    }}
                 />
 
                 <Stack.Screen
@@ -108,6 +112,22 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="AddCreditCard"
                     component={AddCreditCard}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="UserInformation"
+                    component={UserInformation}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="ChangePassword"
+                    component={ChangePassword}
                     options={{
                         headerShown: false
                     }}

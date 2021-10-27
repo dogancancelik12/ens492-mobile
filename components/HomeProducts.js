@@ -14,8 +14,7 @@ function HomeProducts({title}) {
                                       navigation.navigate("ProductDetail",{
                                           productName: title.title
                                       });
-                                  }}
-                >
+                                  }}>
                     <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.imageContainer}
