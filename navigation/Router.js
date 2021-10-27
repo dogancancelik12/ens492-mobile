@@ -17,7 +17,8 @@ import Orders from "../views/Orders";
 import Wallet from "../views/Wallet";
 import Addresses from "../views/Addresses";
 import Settings from "../views/Settings";
-
+import UserInformation from "../views/UserInformation";
+import ChangePassword from "../views/ChangePassword";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -103,6 +104,22 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="Settings"
                     component={Settings}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="UserInformation"
+                    component={UserInformation}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="ChangePassword"
+                    component={ChangePassword}
                     options={{
                         headerShown: false
                     }}

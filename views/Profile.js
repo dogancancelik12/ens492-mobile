@@ -3,12 +3,15 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import SurbiHeader from "../components/SurbiHeader";
 
 
 function Profile(information) {
     const navigation = useNavigation();
     return (
         <View style={styles.containerStyle}>
+            <SurbiHeader title={"Profile"}
+                         isNavigationVisible={true}/>
             <View style={styles.avatarStyle}>
                 <Avatar
                     size="large"
@@ -20,6 +23,14 @@ function Profile(information) {
                 <Text style={{color: '#657cb1', marginTop: 5}}>buse-sumer@hotmail.com</Text>
                 <Text style={{color: '#657cb1', marginTop: 8}}>(539) 550 06 30</Text>
             </View>
+
+            <TouchableOpacity style={styles.itemStyle}
+                              onPress={() => navigation.navigate('UserInformation')}>
+                <View style={{flexDirection: 'row', display: 'flex', alignItems: 'center'}}>
+                    <FontAwesome5 name={"user-alt"} size={17} color={'white'}/>
+                    <Text style={{color: 'white', fontSize: 15, marginLeft: 5}}>My Informations</Text>
+                </View>
+            </TouchableOpacity>
 
             <TouchableOpacity style={styles.itemStyle}
                               onPress={() => navigation.navigate('Orders')}>
@@ -78,11 +89,11 @@ const styles = StyleSheet.create({
     },
     containerStyle: {
         marginBottom: 10,
-        marginTop: 100,
     },
     avatarStyle: {
         alignItems: 'center',
-        marginBottom: 60,
+        marginBottom: 40,
+        marginTop:20,
     },
 });
 
