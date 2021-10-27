@@ -101,7 +101,7 @@ function Wallet() {
                     <FontAwesome5 style={{marginRight: 17}}
                                   name={"plus-square"} size={30} color='white'/>
                     <View style={{justifyContent: 'center'}}>
-                        <Text style={{fontSize: 16, color: 'white'}}> Add Card</Text>
+                        <Text style={{fontSize: 16, color: 'white'}}>Add Card</Text>
                     </View>
                 </View>
             </TouchableOpacity>
