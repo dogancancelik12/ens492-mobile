@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
 import {Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {COLORS} from "../../constants/Colors";
 
 function SignUp() {
 
@@ -44,7 +45,7 @@ function SignUp() {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}>
-                <Text style={{color: '#657cb1', marginTop: 20}}>Already have an account ?</Text>
+                <Text style={{color: COLORS.colorPrimaryLight, marginTop: 20}}>Already have an account ?</Text>
             </TouchableOpacity>
         </View>
     );
@@ -58,14 +59,14 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimary,
         padding: 10,
         borderRadius: 10,
         marginTop: 40,
         width: 150,
     },
     textInput: {
-        borderColor: '#657cb1',
+        borderColor: COLORS.colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',

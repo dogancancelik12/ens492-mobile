@@ -32,7 +32,7 @@ function Login() {
                               onPress={() => navigation.navigate('App')}>
                 <Text style={{color: 'white'}}>Login</Text>
             </TouchableOpacity>
-            <Text onPress={() => navigation.navigate('SignUp')} style={{marginTop: 20, color: '#657cb1'}}>
+            <Text onPress={() => navigation.navigate('SignUp')} style={{marginTop: 20, color: COLORS.colorPrimaryLight}}>
                 Don't have an account ?
             </Text>
         </View>
@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimary,
         padding: 10,
         borderRadius: 10,
         marginTop: 20,
         width: 150,
     },
     textInput: {
-        borderColor: '#657cb1',
+        borderColor: COLORS.colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',

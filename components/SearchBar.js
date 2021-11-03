@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, TextInput, View} from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import {COLORS} from "../constants/Colors";
 
 function RenderSearchBar({searchedText}) {
 
@@ -17,7 +18,7 @@ function RenderSearchBar({searchedText}) {
                 onChangeText={(text) => setValue(text)}
                 placeholder={`Search`}
                 style={{marginLeft: 5,width:'80%'}}/>
-            <FontAwesome5 style={{alignSelf: "center", right: 10}} name={"search"}/>
+            <FontAwesome5 style={{alignSelf: "center", right: 10}} name={"search"} color={COLORS.colorPrimaryLight}/>
         </View>
     );
 }
@@ -25,7 +26,7 @@ function RenderSearchBar({searchedText}) {
 const styles = StyleSheet.create({
     searchBar: {
         width: "80%",
-        backgroundColor: "#e7e7ea",
+        backgroundColor: COLORS.colorWhiteDark,
         alignSelf: "center",
         borderRadius: 5,
         height: 30,

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         flexDirection: "row",
         justifyContent: "space-evenly",
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: COLORS.colorWhiteDark,
         height: 100,
         alignItems: "center"
     },

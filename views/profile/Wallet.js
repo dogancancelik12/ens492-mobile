@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Avatar} from 'react-native-elements';
+import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -14,7 +13,6 @@ function Wallet() {
     const [activeIndex, setActiveIndex] = useState(0)
     const [carouselItems, setCarouselItem] = useState(homeCarouselItems)
     const navigation = useNavigation();
-
 
 
     function renderCarouselItem({item}) {
@@ -87,21 +85,22 @@ function Wallet() {
                     <Text style={{fontSize: 18}}>5168********89</Text>
                 </View>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate('AddCreditCard')} style={{alignItems: 'center', marginTop: '80%'}}>
+            <TouchableOpacity onPress={() => navigation.navigate('AddCreditCard')}
+                              style={{alignItems: 'center', marginTop: '80%'}}>
                 <View style={{
                     flexDirection: 'row',
                     display: 'flex',
                     padding: 10,
-                    backgroundColor: '#657cb1',
+                    backgroundColor: COLORS.colorPrimaryLight,
                     borderRadius: 50,
                     width: '50%',
                     justifyContent: 'center'
 
                 }}>
                     <FontAwesome5 style={{marginRight: 17}}
-                                  name={"plus-square"} size={30} color='white'/>
+                                  name={"plus-square"} size={23} color='white'/>
                     <View style={{justifyContent: 'center'}}>
-                        <Text style={{fontSize: 16, color: 'white'}}> Add Card</Text>
+                        <Text style={{fontSize: 16, color: 'white'}}> ADD CARD</Text>
                     </View>
                 </View>
             </TouchableOpacity>

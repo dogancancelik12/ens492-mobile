@@ -109,7 +109,7 @@ function Products() {
         <>
             <TabBar
                 {...props}
-                activeColor={"black"}
+                activeColor={COLORS.colorSecondary}
                 inactiveColor={COLORS.colorPrimary}
                 style={styles.tabBar}
                 indicatorStyle={styles.indicator}
@@ -117,7 +117,7 @@ function Products() {
             />
             <View style={styles.filter_search}>
                 <TouchableOpacity style={styles.filterButton} onPress={() => setIsFilterBottomSheetVisible(true)}>
-                    <FontAwesome5 name={"filter"} size={22}/>
+                    <FontAwesome5 name={"filter"} size={22} color={COLORS.colorPrimaryLight}/>
                 </TouchableOpacity>
                 <RenderSearchBar searchedText={(text) => setValue(text)}/>
             </View>
@@ -145,7 +145,7 @@ function Products() {
 
 const styles = StyleSheet.create({
     tabBar: {
-        backgroundColor: 'white',
+        backgroundColor: COLORS.colorWhiteDark,
         width: "80%",
         height: 45,
         alignSelf: "center",
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     indicator: {
-        backgroundColor: "white",
+        backgroundColor: COLORS.colorWhiteDark,
         width: 55,
         height: 2,
         borderRadius: 10,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     },
     filterButton: {
         marginTop: 10,
-        backgroundColor: "#e7e7ea",
+        backgroundColor: COLORS.colorWhiteDark,
         borderRadius: 20,
         width: 40,
         height: 40,

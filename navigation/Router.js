@@ -20,6 +20,7 @@ import Settings from "../views/profile/Settings";
 import AddCreditCard from "../views/profile/AddCreditCard";
 import UserInformation from "../views/profile/UserInformation";
 import ChangePassword from "../views/profile/ChangePassword";
+import {COLORS} from "../constants/Colors";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -140,7 +141,7 @@ function OnBoardingStack() {
 
 const AppStack = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={{tabBarActiveTintColor: COLORS.colorSecondary}}>
             <Tab.Screen
                 name="Home"
                 component={Home}

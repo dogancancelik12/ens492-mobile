@@ -19,7 +19,7 @@ function CartCheckout({buttonText, buttonAction}) {
                 <Text style={styles.priceText}>180$</Text>
             </View>
             <TouchableOpacity style={styles.button} onPress={buttonAction}>
-                <Text>{buttonText}</Text>
+                <Text style={{color: COLORS.colorWhite}}>{buttonText}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         shadowOpacity: 0.2,
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: COLORS.colorWhiteDark,
         height: "25%",
         width: "85%",
         alignSelf: "center"
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         marginTop: 40,

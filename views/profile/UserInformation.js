@@ -3,6 +3,7 @@ import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'r
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiHeader from "../../components/SurbiHeader";
+import {COLORS} from "../../constants/Colors";
 
 function UserInformation() {
     const navigation = useNavigation();
@@ -23,8 +24,8 @@ function UserInformation() {
 
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('ChangePassword')}>
-                <FontAwesome5 name={"lock"} size={17} color={'#657cb1'}/>
-                <Text style={{color: '#657cb1', marginLeft: 5}}>Change Password</Text>
+                <FontAwesome5 name={"lock"} size={17} color={COLORS.colorPrimaryLight}/>
+                <Text style={{color: COLORS.colorPrimaryLight, marginLeft: 5}}>Change Password</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.saveButton}
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: '#657cb1',
+        borderColor: COLORS.colorPrimaryLight,
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
@@ -55,9 +56,8 @@ const styles = StyleSheet.create({
         display: 'flex',
     },
     saveButton: {
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimaryLight,
         alignItems: 'center',
-        borderWidth: 1,
         padding: 10,
         borderRadius: 15,
         width: '70%',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         marginBottom: 50,
     },
     editTextInput: {
-        borderColor: '#657cb1',
+        borderColor: COLORS.colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     textInput: {
-        borderColor: '#657cb1',
+        borderColor: COLORS.colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',
