@@ -26,6 +26,7 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false})
                     <FontAwesome5
                         name={"chevron-left"}
                         size={20}
+                        color={COLORS.colorWhite}
                     />
                 </TouchableOpacity>}
                 <Text style={{fontSize: 24, color: "white"}}> {title} </Text>
@@ -37,6 +38,7 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false})
                     <FontAwesome5
                         name={"shopping-cart"}
                         size={18}
+                        color={COLORS.colorWhite}
                     />
                 </TouchableOpacity>}
             </View>

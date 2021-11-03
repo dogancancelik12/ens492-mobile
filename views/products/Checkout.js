@@ -25,13 +25,17 @@ function Checkout() {
         return (
             <View style={styles.addressContainer}>
                 <View style={styles.container}>
-                    <Text>{item.title}</Text>
-                    <CheckBox size={20}
-                              checked={selectedAddressId === item.id}
-                              onPress={() => setSelectedAddressId(item.id)}
+                    <View>
+                        <Text style={{marginLeft: 15, color: COLORS.colorPrimary}}>{item.title}</Text>
+                        <Text style={{marginLeft: 15, marginTop: 3}}>{item.text}</Text>
+                    </View>
+                    <CheckBox
+                        checkedColor={COLORS.colorPrimaryLight}
+                        size={30}
+                        checked={selectedAddressId === item.id}
+                        onPress={() => setSelectedAddressId(item.id)}
                     />
                 </View>
-                <Text>{item.text}</Text>
             </View>
         )
     }
@@ -46,13 +50,11 @@ function Checkout() {
             <View style={{flexDirection: "row", alignItems: "center"}}>
                 <Text style={styles.addressTitle}>Select Address</Text>
                 <TouchableOpacity onPress={() => refRBSheet.current.open()}>
-                    <FontAwesome5 name={"plus-circle"} size={18}/>
+                    <FontAwesome5 name={"plus-circle"} size={18} color={COLORS.colorPrimaryLight}/>
                 </TouchableOpacity>
             </View>
             <FlatList
-                showsHorizontalScrollIndicator={false}
                 style={styles.addressListContainer}
-                horizontal={true}
                 data={userAddresses}
                 renderItem={renderAddress}
                 keyExtractor={(item, index) => index.toString()}
@@ -95,25 +97,23 @@ const styles = StyleSheet.create({
         fontWeight: "400"
     },
     addressContainer: {
-        backgroundColor: COLORS.colorPrimaryLight,
-        height: "20%",
-        width: 200,
-        margin: 10,
+        backgroundColor: COLORS.colorWhiteDark,
+        height: 80,
+        width: "95%",
         borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 5
-    },
-    addressListContainer: {
-        width: "100%",
         alignSelf: "center",
+        marginBottom: 10,
+        justifyContent: "center",
     },
     container: {
         flexDirection: "row",
         alignItems: "center",
-        position: "absolute",
-        top: 0,
-        justifyContent: "space-evenly"
+        justifyContent: "space-between"
+    },
+    addressListContainer: {
+        width: "100%",
+        height: "40%",
+        flexGrow: 0
     }
 });
 

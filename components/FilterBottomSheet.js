@@ -32,7 +32,7 @@ function FilterBottomSheet({onCloseAction, filteredValue}) {
                 container: {
                     justifyContent: "center",
                     alignItems: "center",
-                    backgroundColor: COLORS.colorPrimaryLight
+
                 }
             }}>
             <View style={styles.centeredView}>
@@ -51,7 +51,7 @@ function FilterBottomSheet({onCloseAction, filteredValue}) {
                     closeAfterSelecting={true}
                     categorySelectable={false}
                     mode="BADGE"
-                    badgeColors="#a3aac4"   //badgeDotColors={["red", "blue", "orange"]}  bu şekilde array yapıp
+                    badgeColors={COLORS.colorPrimaryLight}   //badgeDotColors={["red", "blue", "orange"]}  bu şekilde array yapıp
                     // farklı başlıklar farklı renklerde olabilir.
                     badgeDotColors='white'
                     badgeTextStyle={{
@@ -59,7 +59,7 @@ function FilterBottomSheet({onCloseAction, filteredValue}) {
                         fontWeight: '600'
                     }}
                     selectedItemContainerStyle={{
-                        backgroundColor: "lightgrey"
+                        backgroundColor: COLORS.colorWhiteDark
                     }}
                     selectedItemLabelStyle={{
                         fontWeight: "bold"

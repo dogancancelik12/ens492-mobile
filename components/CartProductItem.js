@@ -10,9 +10,7 @@ function CartProductItem({item}) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: item.image}}/>
-            </View>
+            <Image style={styles.image} source={{uri: item.image}}/>
             <View>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.description}>{item.text}</Text>
@@ -21,7 +19,9 @@ function CartProductItem({item}) {
             <TouchableOpacity style={{position: "absolute", top: 10, right: 10}}
                               onPress={() => setIsPopUpVisible(true)}>
                 <FontAwesome5 name={"times-circle"}
-                              size={18}/>
+                              size={18}
+                              color={COLORS.colorPrimaryLight}
+                />
             </TouchableOpacity>
             {isPopUpVisible &&
             <SurbiPopUp negativeButtonAction={() => setIsPopUpVisible(false)}
@@ -37,31 +37,24 @@ function CartProductItem({item}) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: COLORS.colorWhiteDark,
         borderRadius: 10,
         alignItems: "center",
         marginTop: 20,
         height: "10%",
         width: "95%",
     },
-    imageContainer: {
-        width: 80,
+    image: {
+        width: 100,
         height: "100%",
-        backgroundColor: COLORS.colorPrimary,
+        resizeMode: "cover",
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    image: {
-        height: 60,
-        width: 60,
-        resizeMode: "cover",
-        borderRadius: 5,
     },
     title: {
         marginLeft: 20,
-        fontSize: 18
+        fontSize: 18,
+        color: COLORS.colorPrimary
     },
     description: {
         marginLeft: 20,

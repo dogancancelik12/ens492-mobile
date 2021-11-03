@@ -4,6 +4,7 @@ import SurbiHeader from "../../components/SurbiHeader";
 import {AirbnbRating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
 import RentBottomSheet from "../../components/RentBottomSheet";
+import {COLORS} from "../../constants/Colors";
 
 function ProductDetail(props) {
 
@@ -30,11 +31,11 @@ function ProductDetail(props) {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button}
                                   onPress={() => setIsRentBottomSheetVisible(true)}>
-                    <Text>RENT</Text>
+                    <Text style={{color: COLORS.colorWhite}}>RENT</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}
                                   onPress={() => navigation.navigate('Cart')}>
-                    <Text>BUY</Text>
+                    <Text style={{color: COLORS.colorWhite}}>BUY</Text>
                 </TouchableOpacity>
             </View>
             {isRentBottomSheetVisible &&
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         width: "40%",

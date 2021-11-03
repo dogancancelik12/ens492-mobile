@@ -1,12 +1,9 @@
-import React, {useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import {useNavigation} from "@react-navigation/native";
 
 function AddressItems({item}) {
-
-    const navigation = useNavigation();
 
     return (
         <View>
@@ -14,7 +11,9 @@ function AddressItems({item}) {
                 <View style={styles.container}>
                     <FontAwesome5 name={"home"}
                                   style={{marginRight: 15, left: 16, alignSelf: 'center'}}
-                                  size={25}/>
+                                  size={25}
+                                  color={COLORS.colorPrimaryLight}
+                    />
                     <View>
                         <Text style={styles.title}>{item.title}</Text>
                         <Text style={styles.address}>{item.address}</Text>
@@ -30,7 +29,7 @@ function AddressItems({item}) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: COLORS.colorWhiteDark,
         borderRadius: 10,
         alignItems: "center",
         marginTop: 20,

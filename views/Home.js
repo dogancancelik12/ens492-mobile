@@ -47,7 +47,7 @@ function Home() {
 
 const styles = StyleSheet.create({
     carouselItem: {
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: COLORS.colorWhiteDark,
         borderRadius: 5,
         height: 200,
         marginTop: 30,
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginLeft: 15,
         alignSelf: "flex-start",
+        color: COLORS.colorPrimary
     },
     carouselDescription: {
         fontSize: 14,

@@ -27,7 +27,7 @@ function Map() {
             title={scooter.title}
             image={require('../constants/scooter.png')}
         >
-            <Callout style={{width: 200, height: 150, borderRadius: 10}}>
+            <Callout tooltip={true} style={{width: 250, height: 150, borderRadius: 10}}>
                 <MapCallout/>
             </Callout>
         </Marker>

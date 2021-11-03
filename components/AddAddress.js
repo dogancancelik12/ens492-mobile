@@ -1,15 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {COLORS} from "../constants/Colors";
 
 function AddAddress({onPressDismiss, onPressAddAddress}) {
     return (
-        <View style={{width: "100%", height: "100%"}}>
-            <TouchableOpacity style={{position: "absolute", top: 10, right: 10}} onPress={onPressDismiss}>
-                <FontAwesome5 name={"times-circle"}
-                              size={18}/>
-            </TouchableOpacity>
+        <View style={{width: "100%", height: "95%"}}>
             <View style={{flexDirection: "row", marginTop: 40}}>
                 <Text style={{padding: 10}}>Title:</Text>
                 <TextInput
@@ -26,7 +21,7 @@ function AddAddress({onPressDismiss, onPressAddAddress}) {
                 onPress={onPressAddAddress}
                 style={styles.button}>
                 <Text style={{color:'white'}}>
-                    Add Address
+                    ADD ADDRESS
                 </Text>
             </TouchableOpacity>
         </View>
@@ -36,7 +31,7 @@ function AddAddress({onPressDismiss, onPressAddAddress}) {
 const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         marginTop: 40,
@@ -44,14 +39,14 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     addAddressTitle: {
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: COLORS.colorWhiteDark,
         width: "78%",
         marginLeft:25,
         borderRadius: 10,
         padding: 10
     },
     addAddress: {
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: COLORS.colorWhiteDark,
         width: "78%",
         borderRadius: 10,
         padding: 10

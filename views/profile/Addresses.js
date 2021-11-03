@@ -1,15 +1,14 @@
 import React, {useRef} from 'react';
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {adresses} from "../../constants/MockData";
-import {useNavigation} from "@react-navigation/native";
 import SurbiHeader from "../../components/SurbiHeader";
 import AddressItems from "../../components/AddressItems";
 import AddAddress from "../../components/AddAddress";
 import RBSheet from "react-native-raw-bottom-sheet";
+import {COLORS} from "../../constants/Colors";
 
 function Adresses() {
 
-    const navigation = useNavigation();
     const refRBSheet = useRef();
     const addressList = adresses.map(address =>
         <AddressItems key={address.id} item={address}/>
@@ -27,10 +26,11 @@ function Adresses() {
             </ScrollView>
             <TouchableOpacity style={styles.button}
                               onPress={() => refRBSheet.current.open()}>
-                <Text style={{color: 'white', fontSize: 18}}>Add</Text>
+                <Text style={{color: 'white', fontSize: 18}}>ADD</Text>
             </TouchableOpacity>
 
             <RBSheet
+                closeOnDragDown={true}
                 ref={refRBSheet}
                 height={300}
                 customStyles={{
@@ -52,10 +52,10 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimaryLight,
         padding: 10,
         borderRadius: 50,
-        marginBottom: 30,
+        marginBottom: 50,
         width: 150,
         height: 40,
     },

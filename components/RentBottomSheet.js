@@ -5,6 +5,7 @@ import DatePicker from 'react-native-neat-date-picker'
 import {useNavigation} from "@react-navigation/native";
 import moment from "moment";
 import localization from 'moment/locale/tr'
+import {COLORS} from "../constants/Colors";
 
 function RentBottomSheet({onCloseAction}) {
 
@@ -45,12 +46,12 @@ function RentBottomSheet({onCloseAction}) {
                 {startDate === null &&
                 <TouchableOpacity style={styles.button}
                                   onPress={() => setIsDatePickerVisible(true)}>
-                    <Text>Select Date</Text>
+                    <Text style={{color: COLORS.colorWhite}}>Select Date</Text>
                 </TouchableOpacity>
                 }
                 {startDate !== null &&
                 <Text onPress={() => setIsDatePickerVisible(true)}
-                      style={{padding: 10, marginTop: 15, color: "blue", fontSize: 18}}>
+                      style={{padding: 10, marginTop: 15, color: COLORS.colorPrimaryLight, fontSize: 18}}>
                     {moment(startDate).locale("tr", localization).format('l')} - {moment(endDate).locale("tr", localization).format('l')}
                 </Text>
                 }
@@ -63,11 +64,17 @@ function RentBottomSheet({onCloseAction}) {
             </View>
             <TouchableOpacity onPress={() => handleConfirmRent()}
                               style={[styles.button, {marginTop: 40}]}>
-                <Text>
+                <Text style={{color: COLORS.colorWhite}}>
                     CONFIRM RENT
                 </Text>
             </TouchableOpacity>
             <DatePicker
+                colorOptions={{
+                    headerColor: COLORS.colorPrimary,
+                    weekDaysColor: COLORS.colorPrimaryLight,
+                    confirmButtonColor: COLORS.colorPrimary,
+                    selectedDateBackgroundColor: COLORS.colorSecondary
+                }}
                 isVisible={isDatePickerVisible}
                 mode={'range'}
                 onCancel={() => setIsDatePickerVisible(false)}
@@ -80,7 +87,7 @@ function RentBottomSheet({onCloseAction}) {
 const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         width: "50%",

@@ -4,24 +4,25 @@ import {Avatar} from 'react-native-elements';
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiHeader from "../../components/SurbiHeader";
+import {COLORS} from "../../constants/Colors";
 
 
-function Profile(information) {
+function Profile() {
     const navigation = useNavigation();
     return (
         <View style={styles.containerStyle}>
             <SurbiHeader title={"Profile"}
                          isNavigationVisible={true}/>
             <View style={styles.avatarStyle}>
-                <Avatar
+                <Avatar containerStyle={{backgroundColor: COLORS.colorSecondary}}
                     size="large"
                     title='BS'
                     rounded
-                    source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',}}
+                    //source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',}}
                 />
-                <Text style={{color: '#657cb1', marginTop: 10}}>Buse Sumer</Text>
-                <Text style={{color: '#657cb1', marginTop: 5}}>buse-sumer@hotmail.com</Text>
-                <Text style={{color: '#657cb1', marginTop: 8}}>(539) 550 06 30</Text>
+                <Text style={{color: COLORS.colorPrimary, marginTop: 10, fontSize: 16}}>Buse Sumer</Text>
+                <Text style={{color: COLORS.colorPrimary, marginTop: 5, fontSize: 16}}>buse-sumer@hotmail.com</Text>
+                <Text style={{color: COLORS.colorPrimary, marginTop: 8, fontSize: 16}}>(539) 550 06 30</Text>
             </View>
 
             <TouchableOpacity style={styles.itemStyle}
@@ -79,7 +80,7 @@ function Profile(information) {
 
 const styles = StyleSheet.create({
     itemStyle: {
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimary,
         padding: 20,
         marginVertical: 9,
         marginHorizontal: 16,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     avatarStyle: {
         alignItems: 'center',
         marginBottom: 40,
-        marginTop:20,
+        marginTop: 20,
     },
 });
 

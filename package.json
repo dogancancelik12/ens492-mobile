@@ -13,6 +13,7 @@
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/stack": "^6.0.9",
     "@types/react-native-snap-carousel": "^3.8.4",
+    "date-fns": "^2.25.0",
     "expo": "^42.0.4",
     "expo-location": "^13.0.4",
     "expo-status-bar": "~1.0.4",
