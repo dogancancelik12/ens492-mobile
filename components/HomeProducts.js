@@ -7,7 +7,7 @@ function HomeProducts({title}) {
     const navigation = useNavigation();
     return (
         <View>
-            <Text style={{padding: 15, fontSize: 18}}>{title}</Text>
+            <Text style={{fontSize: 18, marginLeft: 15, marginBottom: 15, marginTop: 10}}>{title}</Text>
             <View style={styles.container}>
                 <TouchableOpacity style={styles.imageContainer}
                                   onPress={() => {

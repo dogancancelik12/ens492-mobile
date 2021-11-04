@@ -1,13 +1,10 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {previousOrders} from "../../constants/MockData";
-import {useNavigation} from "@react-navigation/native";
 import SurbiHeader from "../../components/SurbiHeader";
 import OrdersItem from "../../components/OrdersItem";
 
 function PreviousOrders() {
-
-    const navigation = useNavigation();
 
     const ordersList = previousOrders.map(order =>
         <OrdersItem key={order.id} item={order}/>
@@ -16,7 +13,7 @@ function PreviousOrders() {
     return (
         <View style={{alignItems: "center", height: "100%", width: "100%"}}>
             <SurbiHeader
-                title={"PreviousOrders"}
+                title={"Previous Orders"}
                 isNavigationVisible={true}
                 isCartVisible={false}
             />

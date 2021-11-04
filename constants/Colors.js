@@ -4,5 +4,6 @@ export const COLORS = {
     colorPrimaryDark: "#224552",
     colorSecondary: "#E39774",
     colorWhite: "#FFFFFF",
-    colorWhiteDark: "#e1e0e0"
+    colorWhiteDark: "#e1e0e0",
+    colorGrey: "#989393"
 }
