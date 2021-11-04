@@ -4,10 +4,13 @@ import * as Location from 'expo-location'
 import SurbiLoader from "../components/SurbiLoader";
 import {scootersLocation} from "../constants/MockData";
 import MapCallout from "../components/MapCallout";
+import {Dimensions} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 
 
 function Map() {
 
+    const navigation = useNavigation();
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
 
@@ -27,7 +30,8 @@ function Map() {
             title={scooter.title}
             image={require('../constants/scooter.png')}
         >
-            <Callout tooltip={true} style={{width: 250, height: 150, borderRadius: 10}}>
+            <Callout onPress={() => navigation.navigate('BarcodeScanner')} tooltip={true}
+                     style={{width: Dimensions.get("screen").width * 0.9, height: 200, borderRadius: 10}}>
                 <MapCallout/>
             </Callout>
         </Marker>

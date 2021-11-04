@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
 import {Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {COLORS} from "../../constants/Colors";
+import {BarPasswordStrengthDisplay} from 'react-native-password-strength-meter';
 
 function SignUp() {
 
@@ -9,8 +10,8 @@ function SignUp() {
     const [name, setName] = useState(null)
     const [surname, setSurname] = useState(null)
     const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
-    const [confirmPassword, setConfirmPassword] = useState(null)
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
     return (
         <View style={styles.container}>
@@ -34,10 +35,20 @@ function SignUp() {
                            placeholder='Password'
                            secureTextEntry={true}
                            onChangeText={(password) => setPassword(password)}/>
+                {password !== "" &&
+                <BarPasswordStrengthDisplay minLength={1}
+                                            width={Dimensions.get("screen").width * 0.85}
+                                            password={password}/>
+                }
                 <TextInput autoCorrect={false}
                            style={styles.textInput}
                            placeholder='Confirm Password' secureTextEntry={true}
                            onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>
+                {confirmPassword !== "" &&
+                <BarPasswordStrengthDisplay minLength={1}
+                                            width={Dimensions.get("screen").width * 0.85}
+                                            password={confirmPassword}/>
+                }
             </View>
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('App')}>
