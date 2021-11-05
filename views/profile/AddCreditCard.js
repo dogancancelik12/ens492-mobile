@@ -18,11 +18,11 @@ function AddCreditCard() {
                 <SurbiHeader isCartVisible={false} isNavigationVisible={true} title={'Add Card'}/>
                 <View style={{flexDirection: 'row', display: 'flex'}}>
                     <FontAwesome5 style={{marginTop: 40,  marginRight: 20}}
-                                  name={"cc-mastercard"} size={70} color='#657cb1'/>
+                                  name={"cc-mastercard"} size={70} color={COLORS.colorPrimaryLight}/>
                     <FontAwesome5 style={{marginTop: 40, marginRight: 20}}
-                                  name={"cc-visa"} size={70} color='#657cb1'/>
+                                  name={"cc-visa"} size={70} color={COLORS.colorPrimaryLight}/>
                     <FontAwesome5 style={{marginTop: 40}}
-                                  name={"cc-amex"} size={70} color='#657cb1'/>
+                                  name={"cc-amex"} size={70} color={COLORS.colorPrimaryLight}/>
                 </View>
                 <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '15%'}}>
                     <TextInput style={styles.textInput} placeholder='Card Name'/>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: '#657cb1',
+        backgroundColor: COLORS.colorPrimaryLight,
         padding: 10,
         borderRadius: 50,
         marginTop: 20,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         height: 40,
     },
     textInput: {
-        borderColor: '#657cb1',
+        borderColor: COLORS.colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',

@@ -13,10 +13,10 @@ function UserInformation() {
                          isNavigationVisible={true}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
                 <TextInput style={styles.editTextInput}
-                           placeholderTextColor={'black'}
+                           placeholderTextColor={COLORS.colorPrimaryDark}
                            placeholder='Buse'/>
                 <TextInput style={styles.editTextInput}
-                           placeholderTextColor={'black'}
+                           placeholderTextColor={COLORS.colorPrimaryDark}
                            placeholder='Sumer'/>
                 <TextInput editable={false} selectTextOnFocus={false}
                            style={styles.textInput} placeholder='buse-sumer@hotmail.com'/>
@@ -24,8 +24,8 @@ function UserInformation() {
 
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('ChangePassword')}>
-                <FontAwesome5 name={"lock"} size={17} color={COLORS.colorPrimaryLight}/>
-                <Text style={{color: COLORS.colorPrimaryLight, marginLeft: 5}}>Change Password</Text>
+                <FontAwesome5 name={"lock"} size={17} color={COLORS.colorSecondary}/>
+                <Text style={{color: COLORS.colorSecondary, marginLeft: 5}}>Change Password</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.saveButton}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: COLORS.colorPrimaryLight,
+        borderColor: COLORS.colorSecondary,
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
