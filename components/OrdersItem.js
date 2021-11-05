@@ -1,18 +1,21 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
+import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 function OrdersItem({item}) {
+    const navigation = useNavigation();
 
     return (
-        <TouchableOpacity>
+        <TouchableOpacity
+            onPress={() => {
+                navigation.navigate("OrderDetail")}}>
             <View style={styles.container}>
                 <Image style={styles.image} source={{uri: item.image}}/>
                 <View>
                     <Text style={styles.status}>{item.status}</Text>
                     <Text style={styles.date}>{item.date}</Text>
-                    <Text style={styles.title}>{item.title}</Text>
                     <Text style={styles.price}>{item.price}</Text>
                 </View>
                 <FontAwesome5 name={"arrow-right"}

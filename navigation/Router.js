@@ -21,6 +21,7 @@ import AddCreditCard from "../views/profile/AddCreditCard";
 import UserInformation from "../views/profile/UserInformation";
 import ChangePassword from "../views/profile/ChangePassword";
 import {COLORS} from "../constants/Colors";
+import OrderDetail from "../views/profile/OrderDetail";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -129,6 +130,14 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="ChangePassword"
                     component={ChangePassword}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="OrderDetail"
+                    component={OrderDetail}
                     options={{
                         headerShown: false
                     }}

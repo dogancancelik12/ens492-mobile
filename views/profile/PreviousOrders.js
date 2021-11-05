@@ -16,7 +16,7 @@ function PreviousOrders() {
     return (
         <View style={{alignItems: "center", height: "100%", width: "100%"}}>
             <SurbiHeader
-                title={"PreviousOrders"}
+                title={"Previous Orders"}
                 isNavigationVisible={true}
                 isCartVisible={false}
             />
