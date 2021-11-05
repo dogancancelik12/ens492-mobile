@@ -28,7 +28,6 @@ function Adresses() {
                               onPress={() => refRBSheet.current.open()}>
                 <Text style={{color: 'white', fontSize: 18}}>ADD</Text>
             </TouchableOpacity>
-
             <RBSheet
                 closeOnDragDown={true}
                 ref={refRBSheet}
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.colorPrimaryLight,
         padding: 10,
         borderRadius: 50,
-        marginBottom: 50,
+        marginBottom: 40,
         width: 150,
         height: 40,
     },
