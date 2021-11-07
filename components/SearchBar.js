@@ -14,6 +14,7 @@ function RenderSearchBar({searchedText}) {
     return (
         <View style={styles.searchBar}>
             <TextInput
+                autoCapitalize={"none"}
                 value={value}
                 onChangeText={(text) => setValue(text)}
                 placeholder={`Search`}

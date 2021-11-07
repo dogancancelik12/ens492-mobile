@@ -14,7 +14,12 @@ function Map() {
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
 
+    useEffect(() => {
+        getCurrentLocation({enableHighAccuracy: true})
+    }, []);
+
     async function getCurrentLocation() {
+        //let { status } = await Location.requestForegroundPermissionsAsync();  izin problemi yaşanırsa bu kod izin istiyor, 1 kere runlamak yeterli
         const currentLocation = await Location.getCurrentPositionAsync({})
         setLatitude(currentLocation.coords.latitude)
         setLongitude(currentLocation.coords.longitude)
@@ -36,12 +41,6 @@ function Map() {
             </Callout>
         </Marker>
     )
-
-    useEffect(() => {
-        getCurrentLocation(
-            {enableHighAccuracy: true}
-        ).then()
-    }, []);
 
     return (
         <>

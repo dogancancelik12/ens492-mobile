@@ -2,7 +2,7 @@ export const homeCarouselItems = [
     {
         title: "Lorem ipsum dolor sit ame",
         text: "Text 1",
-        image: "https://picsum.photos/200/300"
+        image:"https://picsum.photos/200/300"
     },
     {
         title: "Consectetur adipiscing elit",

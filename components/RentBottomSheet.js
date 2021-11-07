@@ -7,7 +7,7 @@ import moment from "moment";
 import localization from 'moment/locale/tr'
 import {COLORS} from "../constants/Colors";
 
-function RentBottomSheet({onCloseAction}) {
+function RentBottomSheet({onCloseAction,costPerDay}) {
 
     const navigation = useNavigation();
     const refRBSheet = useRef();
@@ -57,7 +57,7 @@ function RentBottomSheet({onCloseAction}) {
                 }
             </View>
             <View style={{flexDirection: "row"}}>
-                <Text style={{padding: 10, marginTop: 5, fontSize: 16}}>Cost per day: 15$/day</Text>
+                <Text style={{padding: 10, marginTop: 5, fontSize: 16}}>Cost per day: {costPerDay}$/day</Text>
             </View>
             <View style={{flexDirection: "row"}}>
                 <Text style={{padding: 10, marginTop: 5, fontSize: 16}}>Total Cost: 60$/day</Text>

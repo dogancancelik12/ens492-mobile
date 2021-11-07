@@ -8,15 +8,17 @@ import RenderSearchBar from "../../components/SearchBar";
 import {productsBicycles, productsCamping, productsScooters} from "../../constants/MockData";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FilterBottomSheet from "../../components/FilterBottomSheet";
+import {restService} from '../../service/restService';
+import {get} from 'react-native-web/dist/vendor/react-native/TurboModule/TurboModuleRegistry';
 
 function Products() {
 
     const [isFilterBottomSheetVisible, setIsFilterBottomSheetVisible] = useState(false)
     const [index, setIndex] = useState(0);
     const [value, setValue] = useState('');
-    const [scooters, setScooters] = useState(productsScooters);
-    const [bicycles, setBicycles] = useState(productsBicycles);
-    const [camping, setCamping] = useState(productsCamping);
+    const [scooters, setScooters] = useState([]);
+    const [bicycles, setBicycles] = useState([]);
+    const [camping, setCamping] = useState([]);
     const [routes] = React.useState([
         {key: 'scooters', title: 'Scooters'},
         {key: 'bicycles', title: 'Bicycles'},
@@ -27,28 +29,44 @@ function Products() {
         let filteredScooters = [];
         let filteredBicycles = [];
         let filteredCamping = [];
-        for (let productScooter of productsScooters) {
-            if (productScooter.title.indexOf(value) !== -1) {
+        for (let productScooter of scooters) {
+            if (productScooter.name.indexOf(value) !== -1) {
                 filteredScooters.push(productScooter)
             }
         }
-        for (let productBicycle of productsBicycles) {
-            if (productBicycle.title.indexOf(value) !== -1) {
+        for (let productBicycle of bicycles) {
+            if (productBicycle.name.indexOf(value) !== -1) {
                 filteredBicycles.push(productBicycle)
             }
         }
-        for (let productCamping of productsCamping) {
-            if (productCamping.title.indexOf(value) !== -1) {
+        for (let productCamping of camping) {
+            if (productCamping.name.indexOf(value) !== -1) {
                 filteredCamping.push(productCamping)
             }
         }
-        setScooters(filteredScooters);
-        setBicycles(filteredBicycles);
-        setCamping(filteredCamping);
+        if (value.length < 1) {
+            getHomepageProducts()
+        } else {
+            setScooters(filteredScooters);
+            setBicycles(filteredBicycles);
+            setCamping(filteredCamping);
+        }
     }, [value])
 
+    useEffect(() => {
+        getHomepageProducts()
+    }, [index])
+
+    const getHomepageProducts = () => {
+        restService.get('products/getAll')
+            .then(response => {
+                setScooters(response.data.scootersList)
+                setBicycles(response.data.bicyclesList)
+                setCamping(response.data.campingList)
+            })
+    }
+
     const filterFunction = (val) => {
-        console.log('GİRDİ', val)
         let filteredScooters = []
         let filteredBicycles = []
         let filteredCamping = []
@@ -80,9 +98,7 @@ function Products() {
             setBicycles(filteredBicycles)
             setCamping(filteredCamping)
         } else {
-            setScooters(productsScooters)
-            setBicycles(productsBicycles)
-            setCamping(productsCamping)
+            getHomepageProducts()
         }
     };
 

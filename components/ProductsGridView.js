@@ -14,12 +14,12 @@ function ProductsGridView({products}) {
                 style={styles.carouselItem}
                 onPress={() => {
                     navigation.navigate("ProductDetail", {
-                        productName: item.title
+                        productId: item.id
                     });
                 }}
             >
                 <Image style={styles.carouselImage} source={{uri: item.image}}/>
-                <Text style={styles.carouselTitle}>{item.title}</Text>
+                <Text style={styles.carouselTitle}>{item.name}</Text>
                 <Text style={styles.carouselPrice}>{item.price}$</Text>
             </TouchableOpacity>
         );

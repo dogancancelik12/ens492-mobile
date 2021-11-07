@@ -1,34 +1,51 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {homeCarouselItems} from "../constants/MockData";
 import HomeProducts from "../components/HomeProducts";
 import {COLORS} from "../constants/Colors";
-import axios from 'axios';
-import * as SecureStore from 'expo-secure-store';
 import {restService} from '../service/restService';
 
-function Home() {
+function Home(props) {
 
     const [activeIndex, setActiveIndex] = useState(0)
-    const [carouselItems, setCarouselItem] = useState(homeCarouselItems)
+    const [carouselItems, setCarouselItem] = useState([])
+    const [scooters, setScooters] = useState([])
+    const [bicycles, setBicycles] = useState([])
+    const [camping, setCamping] = useState([])
 
     useEffect(() => {
         getPromotions();
     }, [])
 
+    useEffect(()=>{
+        const unsubscribe = props.navigation.addListener('focus', () => {
+            getHomepageProducts();
+        });
+        return unsubscribe;
+    },[])
+
     const getPromotions = () => {
         restService.get('promotions/getAll')
-            .then(response=>{
-                //console.log('DATA',response)
+            .then(response => {
+                setCarouselItem(response.data)
+            })
+    }
+
+    const getHomepageProducts = () => {
+        restService.get('products/getTop3Products')
+            .then(response => {
+                setScooters(response.data.scootersList)
+                setBicycles(response.data.bicyclesList)
+                setCamping(response.data.campingList)
             })
     }
 
     function renderCarouselItem({item}) {
         return (
             <View style={styles.carouselItem}>
-                <Image style={styles.carouselImage} source={{uri: item.image}}/>
+                <Image style={styles.carouselImage} source={{uri: item.imagePath}}/>
                 <Text style={styles.carouselTitle}>{item.title}</Text>
                 <Text style={styles.carouselDescription}>{item.text}</Text>
             </View>
@@ -36,7 +53,7 @@ function Home() {
     }
 
     return (
-        <View>
+        <ScrollView>
             <SurbiHeader title={"Home"}/>
             <Carousel
                 loop={true}
@@ -53,9 +70,12 @@ function Home() {
                 dotStyle={styles.paginationDot}
                 inactiveDotOpacity={0.4}
                 inactiveDotScale={0.6}/>
-            <HomeProducts title={"Scooters"}/>
-            <HomeProducts title={"Bicycles"}/>
-        </View>
+            <HomeProducts products={scooters} title={"Scooters"}/>
+            <HomeProducts products={bicycles} title={"Bicycles"}/>
+            <View style={{marginBottom: 50}}>
+                <HomeProducts products={camping} title={"Camping"}/>
+            </View>
+        </ScrollView>
     );
 }
 
@@ -64,7 +84,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.colorWhiteDark,
         borderRadius: 5,
         height: 200,
-        marginTop: 30,
+        marginTop: 20,
         alignItems: "center",
     },
     paginationDot: {

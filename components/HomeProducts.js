@@ -1,38 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {COLORS} from "../constants/Colors";
 import {useNavigation} from "@react-navigation/native";
 
-function HomeProducts({title}) {
+function HomeProducts({title, products}) {
     const navigation = useNavigation();
+
     return (
         <View>
             <Text style={{fontSize: 18, marginLeft: 15, marginBottom: 15, marginTop: 10}}>{title}</Text>
             <View style={styles.container}>
-                <TouchableOpacity style={styles.imageContainer}
-                                  onPress={() => {
-                                      navigation.navigate("ProductDetail",{
-                                          productName: title.title
-                                      });
-                                  }}>
-                    <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.imageContainer}
-                                  onPress={() => {
-                                      navigation.navigate("ProductDetail",{
-                                          productName: title.title
-                                      });
-                                  }}>
-                    <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.imageContainer}
-                                  onPress={() => {
-                                      navigation.navigate("ProductDetail",{
-                                          productName: title.title
-                                      });
-                                  }}>
-                    <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
-                </TouchableOpacity>
+                {products.map(product => {
+                    return <TouchableOpacity style={styles.imageContainer}
+                                             onPress={() => {
+                                                 navigation.navigate("ProductDetail", {
+                                                     productId: product.id
+                                                 });
+                                             }}>
+                        <Image style={styles.image} source={{uri: product.image}}/>
+                    </TouchableOpacity>
+                })}
             </View>
         </View>
     );

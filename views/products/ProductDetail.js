@@ -1,31 +1,44 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import {AirbnbRating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
 import RentBottomSheet from "../../components/RentBottomSheet";
 import {COLORS} from "../../constants/Colors";
+import {restService} from '../../service/restService';
 
 function ProductDetail(props) {
 
     const [isRentBottomSheetVisible, setIsRentBottomSheetVisible] = useState(false)
+    const [product, setProduct] = useState({})
     const navigation = useNavigation();
-    const {productName} = props.route.params;
+    const {productId} = props.route.params;
+
+    useEffect(() => {
+        getProductDetail()
+    }, [productId])
+
+    const getProductDetail = () => {
+        restService.get(`products/productId/${productId}`)
+            .then(response => {
+                setProduct(response.data)
+            })
+    }
 
     return (
         <View style={{width: "100%", height: "100%"}}>
-            <SurbiHeader title={productName}
+            <SurbiHeader title={product.name}
                          isNavigationVisible={true}
             />
-            <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
+            <Image style={styles.image} source={{uri: product.image}}/>
             <View style={styles.descriptionContainer}>
-                <Text>Description</Text>
+                <Text>{product.description}</Text>
             </View>
             <AirbnbRating starContainerStyle={{marginTop: 20}}
                           isDisabled={true}
                           showRating={false}
                           count={5}
-                          defaultRating={3}
+                          defaultRating={product.rating}
                           size={20}
             />
             <View style={styles.buttonContainer}>
@@ -39,7 +52,7 @@ function ProductDetail(props) {
                 </TouchableOpacity>
             </View>
             {isRentBottomSheetVisible &&
-            <RentBottomSheet onCloseAction={() => setIsRentBottomSheetVisible(false)}/>
+            <RentBottomSheet costPerDay={product.pricePerDay} onCloseAction={() => setIsRentBottomSheetVisible(false)}/>
             }
 
         </View>
