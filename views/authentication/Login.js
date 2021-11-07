@@ -1,7 +1,9 @@
-import {Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React, {useState} from "react";
 import {useNavigation} from '@react-navigation/native';
 import {COLORS} from "../../constants/Colors";
+import {restService} from '../../service/restService';
+import * as SecureStore from 'expo-secure-store';
 
 
 function Login() {
@@ -10,6 +12,38 @@ function Login() {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
 
+    const login = () => {
+        const loginData = {
+            email: email,
+            password: password
+        }
+        restService.post('login', loginData)
+            .then(response => {
+                if (response.success) {
+                    console.log('TOKEN', response.data)
+                    SecureStore.setItemAsync('userToken', response.data).then(r => {
+                        navigation.navigate('App')
+                    })
+                } else {
+                    if (response.errorKey === "noUser") {
+                        Alert.alert('Warning', response.message, [
+                            {
+                                text: 'OK'
+                            },
+                            {
+                                text: 'Sign Up',
+                                onPress: () => navigation.navigate('SignUp')
+                            }
+                        ])
+                    } else {
+                        Alert.alert('Warning', response.message, [{
+                            text: 'OK',
+                        }])
+                    }
+
+                }
+            })
+    }
 
     return (
         <View style={styles.container}>
@@ -29,10 +63,11 @@ function Login() {
                     onChangeText={(password) => setPassword(password)}/>
             </View>
             <TouchableOpacity style={styles.button}
-                              onPress={() => navigation.navigate('App')}>
+                              onPress={() => login()}>
                 <Text style={{color: 'white'}}>Login</Text>
             </TouchableOpacity>
-            <Text onPress={() => navigation.navigate('SignUp')} style={{marginTop: 20, color: COLORS.colorPrimaryLight}}>
+            <Text onPress={() => navigation.navigate('SignUp')}
+                  style={{marginTop: 20, color: COLORS.colorPrimaryLight}}>
                 Don't have an account ?
             </Text>
         </View>

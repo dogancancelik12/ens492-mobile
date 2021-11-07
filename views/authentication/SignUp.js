@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
-import {Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {COLORS} from "../../constants/Colors";
 import {BarPasswordStrengthDisplay} from 'react-native-password-strength-meter';
+import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
+import {restService} from '../../service/restService';
 
 function SignUp() {
 
@@ -12,6 +15,31 @@ function SignUp() {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+
+    const signUp = () => {
+        const sigUpData = {
+            name: name,
+            surname: surname,
+            profilePhoto: '',
+            phoneNumber: '00',
+            password: password,
+            email: email
+        }
+        restService.post('signUp', sigUpData)
+            .then(response => {
+                if (response.success) {
+                    console.log('TOKEN', response.data)
+                    SecureStore.setItemAsync('userToken', response.data).then(r => {
+                        navigation.navigate('App')
+                    })
+                } else {
+                    Alert.alert('Warning', response.message, [{
+                        text: 'Login',
+                        onPress: () => navigation.navigate('Login')
+                    }])
+                }
+            })
+    }
 
     return (
         <View style={styles.container}>
@@ -51,7 +79,7 @@ function SignUp() {
                 }
             </View>
             <TouchableOpacity style={styles.button}
-                              onPress={() => navigation.navigate('App')}>
+                              onPress={() => signUp()}>
                 <Text style={{color: 'white'}}>Sign Up</Text>
             </TouchableOpacity>
             <TouchableOpacity

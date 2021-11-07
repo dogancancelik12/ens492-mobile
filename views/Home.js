@@ -1,15 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {homeCarouselItems} from "../constants/MockData";
 import HomeProducts from "../components/HomeProducts";
 import {COLORS} from "../constants/Colors";
+import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
+import {restService} from '../service/restService';
 
 function Home() {
 
     const [activeIndex, setActiveIndex] = useState(0)
     const [carouselItems, setCarouselItem] = useState(homeCarouselItems)
+
+    useEffect(() => {
+        getPromotions();
+    }, [])
+
+    const getPromotions = () => {
+        restService.get('promotions/getAll')
+            .then(response=>{
+                //console.log('DATA',response)
+            })
+    }
 
     function renderCarouselItem({item}) {
         return (
