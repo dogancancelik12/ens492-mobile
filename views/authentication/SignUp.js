@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
 import {Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {COLORS} from "../../constants/Colors";
@@ -6,6 +6,7 @@ import {BarPasswordStrengthDisplay} from 'react-native-password-strength-meter';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import {restService} from '../../service/restService';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 function SignUp() {
 
@@ -15,6 +16,25 @@ function SignUp() {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [errorIsVisible, setErrorIsVisible] = useState(false)
+
+    useEffect(() => {
+        if (confirmPassword.length > 2) {
+            for (let i = 0; i < password.length; i++) {
+                if (confirmPassword.length > password.length) {
+                    setErrorIsVisible(true);
+                } else {
+                    if (password[i] !== confirmPassword[i]) {
+                        setErrorIsVisible(true);
+                    } else {
+                        setErrorIsVisible(false)
+                    }
+                }
+            }
+        } else {
+            setErrorIsVisible(false)
+        }
+    }, [password, confirmPassword])
 
     const signUp = () => {
         const sigUpData = {
@@ -46,36 +66,57 @@ function SignUp() {
             <Image style={{width: "90%", height: "30%", resizeMode: "contain", marginTop: 30}}
                    source={require("../../constants/surbiLogo.png")}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center"}}>
-                <TextInput autoCorrect={false}
-                           style={styles.textInput}
-                           placeholder='Name'
-                           onChangeText={(name) => setName(name)}/>
-                <TextInput autoCorrect={false}
-                           style={styles.textInput}
-                           placeholder='Surname'
-                           onChangeText={(surname) => setSurname(surname)}/>
-                <TextInput autoCorrect={false}
-                           style={styles.textInput}
-                           placeholder='E-mail'
-                           onChangeText={(email) => setEmail(email)}/>
-                <TextInput autoCorrect={false}
-                           style={styles.textInput}
-                           placeholder='Password'
-                           secureTextEntry={true}
-                           onChangeText={(password) => setPassword(password)}/>
+                <View style={styles.viewIcon}>
+                    <FontAwesome5 solid={true} style={{padding: 5}} name={'user'}/>
+                    <TextInput autoCorrect={false}
+                               style={styles.textInput}
+                               placeholder='Name'
+                               onChangeText={(name) => setName(name)}/>
+                </View>
+                <View style={styles.viewIcon}>
+                    <FontAwesome5 solid={true} style={{padding: 5}} name={'user'}/>
+                    <TextInput autoCorrect={false}
+                               style={styles.textInput}
+                               placeholder='Surname'
+                               onChangeText={(surname) => setSurname(surname)}/>
+                </View>
+                <View style={styles.viewIcon}>
+                    <FontAwesome5 solid={true} style={{padding: 5}} name={'envelope'}/>
+                    <TextInput autoCorrect={false}
+                               style={styles.textInput}
+                               placeholder='E-mail'
+                               onChangeText={(email) => setEmail(email)}/>
+                </View>
+                <View style={styles.viewIcon}>
+                    <FontAwesome5 style={{padding: 5}} name={'lock'}/>
+                    <TextInput autoCorrect={false}
+                               style={styles.textInput}
+                               placeholder='Password'
+                               secureTextEntry={true}
+                               onChangeText={(password) => setPassword(password)}/>
+                </View>
                 {password !== "" &&
                 <BarPasswordStrengthDisplay minLength={1}
                                             width={Dimensions.get("screen").width * 0.85}
                                             password={password}/>
                 }
-                <TextInput autoCorrect={false}
-                           style={styles.textInput}
-                           placeholder='Confirm Password' secureTextEntry={true}
-                           onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>
-                {confirmPassword !== "" &&
-                <BarPasswordStrengthDisplay minLength={1}
-                                            width={Dimensions.get("screen").width * 0.85}
-                                            password={confirmPassword}/>
+                <View style={styles.viewIcon}>
+                    <FontAwesome5 style={{padding: 5}} name={'lock'}/>
+                    <TextInput autoCorrect={false}
+                               style={styles.textInput}
+                               placeholder='Confirm Password' secureTextEntry={true}
+                               onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>
+                </View>
+                {errorIsVisible &&
+                <View style={{
+                    flexDirection: 'row',
+                    display: 'flex',
+                    marginTop: 5,
+                    width: Dimensions.get("screen").width * 0.85
+                }}>
+                    <FontAwesome5 color={'red'} style={{padding: 2}} name={'exclamation'}/>
+                    <Text style={{color: 'red'}}>Passwords didn't match. Try again!</Text>
+                </View>
                 }
             </View>
             <TouchableOpacity style={styles.button}
@@ -105,11 +146,17 @@ const styles = StyleSheet.create({
         width: 150,
     },
     textInput: {
+        padding: 5,
+        width: '90%',
+    },
+    viewIcon: {
+        borderRadius: 16,
         borderColor: COLORS.colorPrimary,
         borderWidth: 1,
-        padding: 12,
-        width: '90%',
-        borderRadius: 16,
+        flexDirection: 'row',
+        display: 'flex',
+        alignItems: 'center',
+        padding: 5,
         marginTop: 20
     }
 });

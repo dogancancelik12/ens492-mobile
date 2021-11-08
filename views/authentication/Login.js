@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {COLORS} from "../../constants/Colors";
 import {restService} from '../../service/restService';
 import * as SecureStore from 'expo-secure-store';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
 function Login() {
@@ -50,17 +51,25 @@ function Login() {
             <Image style={{width: "90%", height: "30%", resizeMode: "contain", marginTop: 30}}
                    source={require("../../constants/surbiLogo.png")}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center"}}>
-                <TextInput
-                    autoCorrect={false}
-                    style={styles.textInput}
-                    placeholder='E-mail'
-                    onChangeText={(email) => setEmail(email)}/>
-                <TextInput
-                    autoCorrect={false}
-                    style={styles.textInput}
-                    placeholder='Password'
-                    secureTextEntry={true}
-                    onChangeText={(password) => setPassword(password)}/>
+                <View style={styles.viewIcon}>
+                    <FontAwesome5 solid={true} style={{padding: 5}} name={'envelope'}/>
+                    <TextInput
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        style={styles.textInput}
+                        placeholder='E-mail'
+                        onChangeText={(email) => setEmail(email)}/>
+                </View>
+                <View style={styles.viewIcon}>
+                    <FontAwesome5 style={{padding: 5}} name={'lock'}/>
+                    <TextInput
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        style={styles.textInput}
+                        placeholder='Password'
+                        secureTextEntry={true}
+                        onChangeText={(password) => setPassword(password)}/>
+                </View>
             </View>
             <TouchableOpacity style={styles.button}
                               onPress={() => login()}>
@@ -89,11 +98,17 @@ const styles = StyleSheet.create({
         width: 150,
     },
     textInput: {
+        padding: 5,
+        width: '90%',
+    },
+    viewIcon: {
+        borderRadius: 16,
         borderColor: COLORS.colorPrimary,
         borderWidth: 1,
-        padding: 12,
-        width: '90%',
-        borderRadius: 16,
+        flexDirection: 'row',
+        display: 'flex',
+        alignItems: 'center',
+        padding: 5,
         marginTop: 20
     }
 });
