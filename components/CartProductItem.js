@@ -3,10 +3,25 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiPopUp from "./SurbiPopUp";
+import {restService} from "../service/restService";
 
-function CartProductItem({product}) {
+function CartProductItem({product, getMyCartProp}) {
 
     const [isPopUpVisible, setIsPopUpVisible] = useState(false)
+
+    const deleteFromCart = (productId) => {
+        restService.post(`products/deleteFromCart/${productId}`)
+            .then(response => {
+                getMyCart()
+            })
+    }
+
+    const getMyCart = () => {
+        restService.get('products/getMyCart')
+            .then(response => {
+                getMyCartProp(response.data.cartProductsDTOList);
+            })
+    }
 
     return (
         <View style={styles.container}>
@@ -25,7 +40,10 @@ function CartProductItem({product}) {
             </TouchableOpacity>
             {isPopUpVisible &&
             <SurbiPopUp negativeButtonAction={() => setIsPopUpVisible(false)}
-                        positiveButtonAction={() => setIsPopUpVisible(false)}
+                        positiveButtonAction={() => {
+                            setIsPopUpVisible(false);
+                            deleteFromCart(product.id)
+                        }}
                         title={"Do you want to remove this product from your cart ?"}
                         positiveButtonText={"Yes"}
                         negativeButtonText={"No"}/>

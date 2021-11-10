@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import CartProductItem from "../../components/CartProductItem";
-import {cartProducts} from "../../constants/MockData";
 import CartCheckout from "../../components/CartCheckout";
 import {useNavigation} from "@react-navigation/native";
 import {restService} from '../../service/restService';
@@ -16,6 +15,13 @@ function Cart() {
         getMyCart();
     }, [])
 
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            getMyCart();
+        });
+        return unsubscribe;
+    }, [])
+
     const getMyCart = () => {
         restService.get('products/getMyCart')
             .then(response => {
@@ -24,7 +30,8 @@ function Cart() {
     }
 
     const cartProductList = products.map(item => {
-        return <CartProductItem key={item.name} product={item.product}/>
+        return <CartProductItem key={item.name} product={item.product}
+                                getMyCartProp={(product) => setProducts(product)}/>
     })
 
     return (
