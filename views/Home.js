@@ -59,7 +59,7 @@ function Home(props) {
                 loop={true}
                 autoplay={true}
                 layout={"default"}
-                data={carouselItems}
+                data={carouselItems }
                 sliderWidth={Dimensions.get("screen").width}
                 itemWidth={Dimensions.get("screen").width - 100}
                 renderItem={renderCarouselItem}

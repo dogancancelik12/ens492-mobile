@@ -1,12 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {COLORS} from "../constants/Colors";
 import {useNavigation} from "@react-navigation/native";
+import {restService} from '../service/restService';
 
-function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false}) {
+function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false, quantityProp}) {
 
     const navigation = useNavigation();
+    const [quantity, setQuantity] = useState(quantityProp);
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            getCartQuantity();
+        });
+        return unsubscribe;
+    }, [])
+
+    useEffect(() => {
+        getCartQuantity();
+    }, [quantityProp])
+
+    const getCartQuantity = () => {
+        restService.get('products/getMyCart')
+            .then(response => {
+                setQuantity(response.data.totalQuantity)
+            })
+    }
 
     return (
         <View style={{width: "100%", backgroundColor: COLORS.colorPrimary, height: 80}}>
@@ -32,10 +52,22 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false})
                 <Text style={{fontSize: 24, color: "white"}}> {title} </Text>
                 {isCartVisible &&
                 <TouchableOpacity
-                    style={{position: "absolute", right: 20}}
-                    onPress={() => navigation.navigate("Cart")}
-                >
+                    style={{position: "absolute", right: 20, alignItems: 'center'}}
+                    onPress={() => navigation.navigate("Cart")}>
+                    {quantity > 0 &&
+                    <View style={{
+                        zIndex: 10,
+                        marginBottom: -6,
+                        marginLeft: -10,
+                        width: 20,
+                        backgroundColor: COLORS.colorSecondary,
+                        borderRadius: 20,
+                        alignItems: 'center'
+                    }}>
+                        <Text>{quantity}</Text>
+                    </View>}
                     <FontAwesome5
+                        style={{zIndex: 1}}
                         name={"shopping-cart"}
                         size={18}
                         color={COLORS.colorWhite}

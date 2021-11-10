@@ -4,18 +4,18 @@ import {COLORS} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiPopUp from "./SurbiPopUp";
 
-function CartProductItem({item}) {
+function CartProductItem({product}) {
 
     const [isPopUpVisible, setIsPopUpVisible] = useState(false)
 
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={{uri: item.image}}/>
+            <Image style={styles.image} source={{uri: product.image}}/>
             <View>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.text}</Text>
+                <Text style={styles.title}>{product.name}</Text>
+                <Text style={styles.description}>{product.description}</Text>
             </View>
-            <Text style={styles.price}>{item.price}</Text>
+            <Text style={styles.price}>{product.price}$</Text>
             <TouchableOpacity style={{position: "absolute", top: 10, right: 10}}
                               onPress={() => setIsPopUpVisible(true)}>
                 <FontAwesome5 name={"times-circle"}

@@ -12,7 +12,7 @@ function Profile() {
     return (
         <View style={styles.containerStyle}>
             <SurbiHeader title={"Profile"}
-                         isNavigationVisible={true}/>
+                         isNavigationVisible={false}/>
             <ScrollView style={{height: "90%"}}>
                 <View style={styles.avatarStyle}>
                     <Avatar containerStyle={{backgroundColor: COLORS.colorSecondary}}

@@ -11,6 +11,7 @@ function ProductDetail(props) {
 
     const [isRentBottomSheetVisible, setIsRentBottomSheetVisible] = useState(false)
     const [product, setProduct] = useState({})
+    const [quantity, setQuantity] = useState(null)
     const navigation = useNavigation();
     const {productId} = props.route.params;
 
@@ -25,10 +26,18 @@ function ProductDetail(props) {
             })
     }
 
+    const addToCart = () => {
+        restService.get(`products/addToCart/${productId}`)
+            .then(response => {
+                setQuantity(response.data)
+            })
+    }
+
     return (
         <View style={{width: "100%", height: "100%"}}>
             <SurbiHeader title={product.name}
                          isNavigationVisible={true}
+                         quantityProp={quantity}
             />
             <Image style={styles.image} source={{uri: product.image}}/>
             <View style={styles.descriptionContainer}>
@@ -47,7 +56,7 @@ function ProductDetail(props) {
                     <Text style={{color: COLORS.colorWhite}}>RENT</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}
-                                  onPress={() => navigation.navigate('Cart')}>
+                                  onPress={() => addToCart()}>
                     <Text style={{color: COLORS.colorWhite}}>BUY</Text>
                 </TouchableOpacity>
             </View>
