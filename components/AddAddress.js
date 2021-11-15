@@ -1,26 +1,49 @@
-import React from 'react';
-import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
+import {restService} from "../service/restService";
 
-function AddAddress({onPressDismiss, onPressAddAddress}) {
+function AddAddress({onDismiss, getAddresses}) {
+
+    const [addressTitle, setAddressTitle] = useState(null)
+    const [addressDescription, setAddressDescription] = useState(null)
+    const newAddressBody = {
+        addressTitle: addressTitle,
+        addressDescription: addressDescription
+    }
+
+    const addAddress = (newAddress) => {
+        restService.post('addresses/addAddress', newAddress)
+            .then(response => {
+                    if (response) {
+                        onDismiss()
+                        Alert.alert('Address added successfully')
+                        getAddresses()
+                    }
+                }
+            )
+    }
+
     return (
         <View style={{width: "100%", height: "95%"}}>
             <View style={{flexDirection: "row", marginTop: 40}}>
                 <Text style={{padding: 10}}>Title:</Text>
                 <TextInput
+                    onChangeText={(addressTitle) => setAddressTitle(addressTitle)}
                     style={styles.addAddressTitle}
                     placeholder={"Address Title"}/>
             </View>
             <View style={{flexDirection: "row", marginTop: 20}}>
                 <Text style={{padding: 10}}>Address:</Text>
                 <TextInput
+                    onChangeText={(addressDescription) => setAddressDescription(addressDescription)}
                     style={styles.addAddress}
                     placeholder={"Address"}/>
             </View>
             <TouchableOpacity
-                onPress={onPressAddAddress}
+                onPress={() => addAddress(newAddressBody)}
                 style={styles.button}>
-                <Text style={{color:'white'}}>
+                <Text style={{color: 'white'}}>
                     ADD ADDRESS
                 </Text>
             </TouchableOpacity>
@@ -41,7 +64,7 @@ const styles = StyleSheet.create({
     addAddressTitle: {
         backgroundColor: COLORS.colorWhiteDark,
         width: "78%",
-        marginLeft:25,
+        marginLeft: 25,
         borderRadius: 10,
         padding: 10
     },

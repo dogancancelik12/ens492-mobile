@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {COLORS} from "../constants/Colors";
 import {useNavigation} from "@react-navigation/native";
@@ -11,7 +11,8 @@ function HomeProducts({title, products}) {
             <Text style={{fontSize: 18, marginLeft: 15, marginBottom: 15, marginTop: 10}}>{title}</Text>
             <View style={styles.container}>
                 {products.map(product => {
-                    return <TouchableOpacity style={styles.imageContainer}
+                    return <TouchableOpacity key={product.id}
+                                             style={styles.imageContainer}
                                              onPress={() => {
                                                  navigation.navigate("ProductDetail", {
                                                      productId: product.id
