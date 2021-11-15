@@ -55,7 +55,7 @@ function Products() {
 
     useEffect(() => {
         getHomepageProducts()
-    }, [index])
+    }, [])
 
     const getHomepageProducts = () => {
         restService.get('products/getAll')
