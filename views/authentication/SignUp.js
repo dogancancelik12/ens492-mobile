@@ -37,6 +37,10 @@ function SignUp() {
     }, [password, confirmPassword])
 
     const signUp = () => {
+        if (errorIsVisible) {
+            Alert.alert('Warning', 'Passwords did not match!')
+            return
+        }
         const sigUpData = {
             name: name,
             surname: surname,
