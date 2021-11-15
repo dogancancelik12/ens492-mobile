@@ -7,18 +7,17 @@ function RenderSearchBar({searchedText}) {
 
     const [value, setValue] = useState('');
 
-    useEffect(()=>{
+    useEffect(() => {
         searchedText(value)
-    },[value])
+    }, [value])
 
     return (
         <View style={styles.searchBar}>
             <TextInput
-                autoCapitalize={"none"}
                 value={value}
                 onChangeText={(text) => setValue(text)}
                 placeholder={`Search`}
-                style={{marginLeft: 5,width:'80%'}}/>
+                style={{marginLeft: 5, width: '80%'}}/>
             <FontAwesome5 style={{alignSelf: "center", right: 10}} name={"search"} color={COLORS.colorPrimaryLight}/>
         </View>
     );
