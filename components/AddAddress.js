@@ -15,10 +15,12 @@ function AddAddress({onDismiss, getAddresses}) {
     const addAddress = (newAddress) => {
         restService.post('addresses/addAddress', newAddress)
             .then(response => {
-                    if (response) {
+                    if (response.success) {
                         onDismiss()
                         Alert.alert('Address added successfully')
                         getAddresses()
+                    }else {
+                        Alert.alert(response.message)
                     }
                 }
             )
