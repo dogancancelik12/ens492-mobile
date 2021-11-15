@@ -19,7 +19,7 @@ function AddAddress({onDismiss, getAddresses}) {
                         onDismiss()
                         Alert.alert('Address added successfully')
                         getAddresses()
-                    }else {
+                    } else {
                         Alert.alert(response.message)
                     }
                 }
