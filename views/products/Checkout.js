@@ -1,24 +1,36 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Alert, FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
 import {COLORS} from "../../constants/Colors";
-import {userAddresses} from "../../constants/MockData";
 import {CheckBox} from 'react-native-elements'
 import CartCheckout from "../../components/CartCheckout";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import RBSheet from "react-native-raw-bottom-sheet";
 import AddAddress from "../../components/AddAddress";
+import {restService} from "../../service/restService";
 
 function Checkout() {
 
     const navigation = useNavigation();
     const [selectedAddressId, setSelectedAddressId] = useState(null)
+    const [addresses, setAddresses] = useState(null)
     const refRBSheet = useRef();
+
+    useEffect(() => {
+        getMyAddresses();
+    }, [])
 
     function handleSuccessfulPayment() {
         navigation.navigate('Home');
         Alert.alert("Successful")
+    }
+
+    const getMyAddresses = () => {
+        restService.get('addresses/getMyAddresses')
+            .then(response => {
+                setAddresses(response.data);
+            })
     }
 
     function renderAddress({item}) {
@@ -26,8 +38,8 @@ function Checkout() {
             <View style={styles.addressContainer}>
                 <View style={styles.container}>
                     <View>
-                        <Text style={{marginLeft: 15, color: COLORS.colorPrimary}}>{item.title}</Text>
-                        <Text style={{marginLeft: 15, marginTop: 3}}>{item.text}</Text>
+                        <Text style={{marginLeft: 15, color: COLORS.colorPrimary}}>{item.addressTitle}</Text>
+                        <Text style={{marginLeft: 15, marginTop: 3}}>{item.addressDescription}</Text>
                     </View>
                     <CheckBox
                         checkedColor={COLORS.colorPrimaryLight}
@@ -55,7 +67,7 @@ function Checkout() {
             </View>
             <FlatList
                 style={styles.addressListContainer}
-                data={userAddresses}
+                data={addresses}
                 renderItem={renderAddress}
                 keyExtractor={(item, index) => index.toString()}
             />
@@ -73,7 +85,8 @@ function Checkout() {
                         alignItems: "center"
                     }
                 }}>
-                <AddAddress onPressDismiss={() => refRBSheet.current.close()}/>
+                <AddAddress getAddresses={() => getMyAddresses()}
+                            onDismiss={() => refRBSheet.current.close()}/>
             </RBSheet>
         </View>
     );

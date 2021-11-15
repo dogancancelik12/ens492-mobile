@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {Dimensions, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {homeCarouselItems} from "../constants/MockData";
 import HomeProducts from "../components/HomeProducts";
 import {COLORS} from "../constants/Colors";
 import {restService} from '../service/restService';
@@ -19,12 +18,12 @@ function Home(props) {
         getPromotions();
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
             getHomepageProducts();
         });
         return unsubscribe;
-    },[])
+    }, [])
 
     const getPromotions = () => {
         restService.get('promotions/getAll')
@@ -59,7 +58,7 @@ function Home(props) {
                 loop={true}
                 autoplay={true}
                 layout={"default"}
-                data={carouselItems }
+                data={carouselItems}
                 sliderWidth={Dimensions.get("screen").width}
                 itemWidth={Dimensions.get("screen").width - 100}
                 renderItem={renderCarouselItem}

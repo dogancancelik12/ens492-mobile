@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-function AddressItems({item}) {
+function AddressItems({address}) {
 
     return (
         <View>
@@ -15,14 +15,12 @@ function AddressItems({item}) {
                                   color={COLORS.colorPrimaryLight}
                     />
                     <View>
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Text style={styles.address}>{item.address}</Text>
+                        <Text style={styles.title}>{address.addressTitle}</Text>
+                        <Text style={styles.address}>{address.addressDescription}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
         </View>
-
-
     );
 }
 
