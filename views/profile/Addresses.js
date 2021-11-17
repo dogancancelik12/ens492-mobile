@@ -19,7 +19,6 @@ function Adresses() {
     const getMyAddresses = () => {
         restService.get('addresses/getMyAddresses')
             .then(response => {
-                console.log(response.data)
                 setAddresses(response.data);
             })
     }

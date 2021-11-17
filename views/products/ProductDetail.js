@@ -11,7 +11,7 @@ function ProductDetail(props) {
 
     const [isRentBottomSheetVisible, setIsRentBottomSheetVisible] = useState(false)
     const [product, setProduct] = useState({})
-    const [quantity, setQuantity] = useState(null)
+    const [quantity, setQuantity] = useState(0)
     const navigation = useNavigation();
     const {productId} = props.route.params;
 
@@ -29,6 +29,7 @@ function ProductDetail(props) {
     const addToCart = () => {
         restService.get(`products/addToCart/${productId}`)
             .then(response => {
+                console.log("aaaaaa",response)
                 setQuantity(response.data)
             })
     }

@@ -24,7 +24,7 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false, 
     const getCartQuantity = () => {
         restService.get('products/getMyCart')
             .then(response => {
-                setQuantity(response.data.totalQuantity)
+                setQuantity(response.data.quantity)
             })
     }
 

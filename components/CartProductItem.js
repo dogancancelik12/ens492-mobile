@@ -19,7 +19,7 @@ function CartProductItem({product, getMyCartProp}) {
     const getMyCart = () => {
         restService.get('products/getMyCart')
             .then(response => {
-                getMyCartProp(response.data.cartProductsDTOList);
+                getMyCartProp(response.data.cartItemsList);
             })
     }
 
