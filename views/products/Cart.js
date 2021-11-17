@@ -25,12 +25,12 @@ function Cart() {
     const getMyCart = () => {
         restService.get('products/getMyCart')
             .then(response => {
-                setProducts(response.data.cartProductsDTOList);
+                setProducts(response.data.cartItemsList);
             })
     }
 
     const cartProductList = products.map(item => {
-        return <CartProductItem key={item.name} product={item.product}
+        return <CartProductItem key={item.name} product={item}
                                 getMyCartProp={(product) => setProducts(product)}/>
     })
 

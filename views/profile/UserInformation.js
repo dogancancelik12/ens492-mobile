@@ -1,12 +1,34 @@
-import React from 'react';
-import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {Alert, Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiHeader from "../../components/SurbiHeader";
 import {COLORS} from "../../constants/Colors";
+import {restService} from "../../service/restService";
 
-function UserInformation() {
+function UserInformation(props) {
     const navigation = useNavigation();
+    const {user} = props.route.params;
+    const [name, setName] = useState(user.name);
+    const [surname, setSurname] = useState(user.surname);
+    const newUserInfo = {
+        name: name,
+        surname: surname
+    }
+
+    const changeUserInfo = () => {
+        restService.post('user/changeUserInfo', newUserInfo)
+            .then(response => {
+                    if (response.success) {
+                        Alert.alert(response.message)
+                        navigation.navigate('Profile')
+                    } else {
+                        Alert.alert(response.message)
+                    }
+                }
+            )
+    }
+
     return (
         <View style={styles.container}>
             <SurbiHeader title={"My Informations"}
@@ -14,10 +36,12 @@ function UserInformation() {
             <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
                 <TextInput style={styles.editTextInput}
                            placeholderTextColor={'black'}
-                           placeholder='Buse'/>
+                           onChangeText={(name) => setName(name)}
+                           value={name}/>
                 <TextInput style={styles.editTextInput}
                            placeholderTextColor={'black'}
-                           placeholder='Sumer'/>
+                           onChangeText={(surname) => setSurname(surname)}
+                           value={surname}/>
                 <TextInput editable={false} selectTextOnFocus={false}
                            style={styles.textInput} placeholder='buse-sumer@hotmail.com'/>
             </View>
@@ -29,7 +53,7 @@ function UserInformation() {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.saveButton}
-                              onPress={() => navigation.navigate('Profile')}>
+                              onPress={() => changeUserInfo()}>
                 <Text style={{color: 'white'}}>SAVE</Text>
             </TouchableOpacity>
         </View>

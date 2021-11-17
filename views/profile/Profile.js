@@ -1,35 +1,56 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiHeader from "../../components/SurbiHeader";
 import {COLORS} from "../../constants/Colors";
+import {restService} from "../../service/restService";
 
 
 function Profile() {
+
     const navigation = useNavigation();
+    const [user, setUser] = useState(null);
+
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            getUserInfo();
+        });
+        return unsubscribe;
+    }, [])
+
+    const getUserInfo = () => {
+        restService.get('user/getUserInfo')
+            .then(response => {
+                console.log(response.data);
+                setUser(response.data);
+            })
+    }
+
     return (
         <View style={styles.containerStyle}>
             <SurbiHeader title={"Profile"}
                          isNavigationVisible={false}/>
             <ScrollView style={{height: "90%"}}>
+                {user &&
                 <View style={styles.avatarStyle}>
                     <Avatar containerStyle={{backgroundColor: COLORS.colorSecondary}}
                             size="large"
-                            title='BS'
+                            title={user.name[0] + user.surname[0]}
                             rounded
                     />
-                    <Text style={{color: COLORS.colorPrimary, marginTop: 10, fontSize: 16}}>Buse Sumer</Text>
-                    <Text style={{color: COLORS.colorPrimary, marginTop: 5, fontSize: 16}}>buse-sumer@hotmail.com</Text>
-                    <Text style={{color: COLORS.colorPrimary, marginTop: 8, fontSize: 16}}>(539) 550 06 30</Text>
+                    <Text style={{color: COLORS.colorPrimary, marginTop: 10, fontSize: 16}}>{user.name} {user.surname}</Text>
+                    <Text style={{color: COLORS.colorPrimary, marginTop: 5, fontSize: 16}}>{user.email}</Text>
+                    <Text style={{color: COLORS.colorPrimary, marginTop: 8, fontSize: 16}}>{user.phoneNumber}</Text>
                 </View>
-
+                }
                 <TouchableOpacity style={styles.itemStyle}
-                                  onPress={() => navigation.navigate('UserInformation')}>
+                                  onPress={() => navigation.navigate('UserInformation', {user: user})}>
                     <View style={{flexDirection: 'row', display: 'flex', alignItems: 'center'}}>
                         <FontAwesome5 name={"user-alt"} size={17} color={'white'}/>
-                        <Text style={{color: 'white', fontSize: 15, marginLeft: 5}}>My Informations</Text>
+                        <Text style={{color: 'white', fontSize: 15, marginLeft: 5}}>My Information</Text>
                     </View>
                 </TouchableOpacity>
 
@@ -76,7 +97,6 @@ function Profile() {
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     itemStyle: {

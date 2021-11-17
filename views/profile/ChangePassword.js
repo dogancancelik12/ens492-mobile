@@ -1,17 +1,35 @@
 import React, {useState} from 'react';
-import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Alert, Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import SurbiHeader from "../../components/SurbiHeader";
 import {COLORS} from "../../constants/Colors";
 import {BarPasswordStrengthDisplay} from "react-native-password-strength-meter";
+import {restService} from "../../service/restService";
 
 function ChangePassword() {
 
     const navigation = useNavigation();
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
-    const [newConfirmPassword, setNewConfirmPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const newPasswordInfo = {
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+        confirmPassword: confirmPassword
+    }
 
+    const changePassword = () => {
+        restService.post('user/changeUserPassword', newPasswordInfo)
+            .then(response => {
+                    if (response.success) {
+                        Alert.alert(response.message)
+                        navigation.navigate('Profile')
+                    } else {
+                        Alert.alert(response.message)
+                    }
+                }
+            )
+    }
 
     return (
         <View style={styles.container}>
@@ -31,11 +49,11 @@ function ChangePassword() {
                 }
                 <TextInput style={styles.textInput}
                            placeholder='Confirm New Password'
-                           onChangeText={(newConfirmPassword) => setNewConfirmPassword(newConfirmPassword)}/>
-                {newConfirmPassword !== "" &&
+                           onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>
+                {confirmPassword !== "" &&
                 <BarPasswordStrengthDisplay minLength={1}
                                             width={Dimensions.get("screen").width * 0.85}
-                                            password={newConfirmPassword}/>
+                                            password={confirmPassword}/>
                 }
                 <View style={styles.descriptionContainer}>
                     <Text style={styles.itemStyle}>* It must be at least 8 characters.</Text>
@@ -44,7 +62,7 @@ function ChangePassword() {
                 </View>
             </View>
             <TouchableOpacity style={styles.saveButton}
-                              onPress={() => navigation.navigate('UserInformation')}>
+                              onPress={() => changePassword()}>
                 <Text style={{color: 'white'}}>SAVE</Text>
             </TouchableOpacity>
         </View>
