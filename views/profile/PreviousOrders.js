@@ -1,24 +1,71 @@
-import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {previousOrders} from "../../constants/MockData";
+import React, {useEffect, useState} from 'react';
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import OrdersItem from "../../components/OrdersItem";
+import {restService} from "../../service/restService";
+import {COLORS} from "../../constants/Colors";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 function PreviousOrders() {
 
-    const ordersList = previousOrders.map(order =>
+    const [shippedOrders, setShippedOrders] = useState([]);
+    const [completedOrders, setCompletedOrders] = useState([]);
+    const [isShippedOrdersVisible, setIsShippedOrdersVisible] = useState(false);
+    const [isCompletedOrdersVisible, setIsCompletedOrdersVisible] = useState(false);
+
+    useEffect(() => {
+        getMyPreviousOrders();
+    }, [])
+
+    const getMyPreviousOrders = () => {
+        restService.get('products/getMyPreviousOrders')
+            .then(response => {
+                setShippedOrders(response.data.shippedOrders);
+                setCompletedOrders(response.data.completedOrders);
+            })
+    }
+
+    const shippedOrdersList = shippedOrders.map(order =>
         <OrdersItem key={order.id} item={order}/>
     )
 
+    const completedOrdersList = completedOrders.map(order =>
+        <OrdersItem key={order.id} item={order}/>
+    )
+
+
     return (
-        <View style={{alignItems: "center", height: "100%", width: "100%"}}>
+        <View style={{height: "100%", width: "100%"}}>
             <SurbiHeader
                 title={"Previous Orders"}
                 isNavigationVisible={true}
                 isCartVisible={false}
             />
-            <ScrollView style={styles.scrollView}>
-                {ordersList}
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+                <TouchableOpacity style={styles.button}
+                                  onPress={() => {
+                                      setIsShippedOrdersVisible(!isShippedOrdersVisible)
+                                  }}>
+                    <Text style={{color: "white"}}>CURRENT ORDERS</Text>
+                    <FontAwesome5 name={isShippedOrdersVisible ? "chevron-down" : "chevron-up"}
+                                  size={20}
+                                  color={"white"}/>
+                </TouchableOpacity>
+                {isShippedOrdersVisible &&
+                shippedOrdersList
+                }
+                <TouchableOpacity style={styles.button}
+                                  onPress={() => {
+                                      setIsCompletedOrdersVisible(!isCompletedOrdersVisible)
+                                  }}>
+                    <Text style={{color: "white"}}>COMPLETED ORDERS</Text>
+                    <FontAwesome5 name={isCompletedOrdersVisible ? "chevron-down" : "chevron-up"}
+                                  size={20}
+                                  color={"white"}/>
+                </TouchableOpacity>
+                {isCompletedOrdersVisible &&
+                completedOrdersList
+                }
             </ScrollView>
         </View>
     );
@@ -26,8 +73,19 @@ function PreviousOrders() {
 
 const styles = StyleSheet.create({
     scrollView: {
-        height: "50%",
-        width: "170%",
+        width: "95%",
+        alignSelf: "center"
+    },
+    button: {
+        alignItems: 'center',
+        backgroundColor: COLORS.colorPrimaryLight,
+        padding: 10,
+        borderRadius: 10,
+        width: "95%",
+        alignSelf: "center",
+        marginTop: 15,
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
 });
 

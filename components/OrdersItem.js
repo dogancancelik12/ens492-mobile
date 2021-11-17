@@ -2,18 +2,19 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import moment from "moment";
+import localization from 'moment/locale/tr'
 
 function OrdersItem({item}) {
 
     return (
-        <TouchableOpacity>
+        <TouchableOpacity style={{width: "100%"}}>
             <View style={styles.container}>
-                <Image style={styles.image} source={{uri: item.image}}/>
+                <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 <View>
-                    <Text style={styles.status}>{item.status}</Text>
-                    <Text style={styles.date}>{item.date}</Text>
-                    <Text style={styles.title}>{item.title}</Text>
-                    <Text style={styles.price}>{item.price}</Text>
+                    <Text style={styles.status}>{item.cartStatus}</Text>
+                    <Text style={styles.date}>{moment(item.createdDate).locale("tr", localization).format('l')}</Text>
+                    <Text style={styles.price}>{item.totalPrice}</Text>
                 </View>
                 <FontAwesome5 name={"arrow-right"}
                               style={{position: "absolute", right: 10, alignSelf: 'center'}}
@@ -32,14 +33,13 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
         marginTop: 20,
-        height: "50%",
-        width: "55%",
+        height: "20%",
         flex: 1,
-        marginLeft: 150
+        width: "100%"
     },
     image: {
-        height: 120,
-        width: 120,
+        height: 80,
+        width: 100,
         resizeMode: "cover",
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
