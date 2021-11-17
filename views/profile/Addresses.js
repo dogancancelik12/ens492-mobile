@@ -59,8 +59,9 @@ function Adresses() {
 
 const styles = StyleSheet.create({
     scrollView: {
-        height: "50%",
+        height: "80%",
         width: "170%",
+        flexGrow: 0
     },
     button: {
         alignItems: 'center',
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         width: "70%",
         height: 40,
+        marginTop: 10
     },
 });
 
