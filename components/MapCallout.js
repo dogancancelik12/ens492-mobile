@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 
 function MapCallout() {
 
@@ -10,26 +10,26 @@ function MapCallout() {
             <View style={styles.rowContainer}>
                 <FontAwesome5 style={styles.icon}
                               name={"coins"} size={25}
-                              color={COLORS.colorSecondary}/>
+                              color={colors.getColor().colorSecondary}/>
                 <Text style={styles.description}>Price</Text>
                 <Text style={styles.text}>0.49$/min</Text>
             </View>
             <View style={styles.rowContainer}>
                 <FontAwesome5 style={styles.icon}
                               name={"battery-half"} size={25}
-                              color={COLORS.colorSecondary}/>
+                              color={colors.getColor().colorSecondary}/>
                 <Text style={styles.description}>Battery</Text>
                 <Text style={styles.text}>%23</Text>
             </View>
             <View style={styles.rowContainer}>
                 <FontAwesome5 style={styles.icon}
                               name={"map-marker-alt"} size={25}
-                              color={COLORS.colorSecondary}/>
+                              color={colors.getColor().colorSecondary}/>
                 <Text style={styles.description}>Distance</Text>
                 <Text style={styles.text}>150m</Text>
             </View>
             <TouchableOpacity style={styles.button}>
-                <Text style={{color: COLORS.colorWhite}}>
+                <Text style={{color: colors.getColor().colorWhite}}>
                     START TO RIDE
                 </Text>
             </TouchableOpacity>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         height: "100%",
-        backgroundColor: COLORS.colorWhite,
+        backgroundColor: colors.getColor().colorWhite,
         borderRadius: 10,
     },
     rowContainer: {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorSecondary,
+        backgroundColor: colors.getColor().colorSecondary,
         padding: 10,
         borderRadius: 10,
         marginTop: 10,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     description: {
-        color: COLORS.colorGrey,
+        color: colors.getColor().colorGrey,
         position: "absolute",
         left: 60
     }

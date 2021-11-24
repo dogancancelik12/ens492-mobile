@@ -4,7 +4,7 @@ import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {homeCarouselItems} from '../../constants/MockData';
-import {COLORS} from '../../constants/Colors';
+import {colors} from '../../constants/Colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AddCreditCard from "./AddCreditCard";
 
@@ -48,10 +48,10 @@ function Wallet() {
                 display: 'flex',
                 padding: 10,
                 borderBottomWidth: 1,
-                borderBottomColor: COLORS.colorPrimary
+                borderBottomColor: colors.getColor().colorPrimary
             }}>
                 <FontAwesome5 style={{marginRight: 17}}
-                              name={"credit-card"} size={40} color={COLORS.colorPrimary}/>
+                              name={"credit-card"} size={40} color={colors.getColor().colorPrimary}/>
                 <View>
                     <Text style={{fontSize: 16}}>Card 1</Text>
                     <Text style={{fontSize: 18}}>5168********89</Text>
@@ -62,10 +62,10 @@ function Wallet() {
                 display: 'flex',
                 padding: 10,
                 borderBottomWidth: 1,
-                borderBottomColor: COLORS.colorPrimary
+                borderBottomColor: colors.getColor().colorPrimary
             }}>
                 <FontAwesome5 style={{marginRight: 17}}
-                              name={"credit-card"} size={40} color={COLORS.colorPrimary}/>
+                              name={"credit-card"} size={40} color={colors.getColor().colorPrimary}/>
                 <View>
                     <Text style={{fontSize: 16}}>Card 2</Text>
                     <Text style={{fontSize: 18}}>5168********89</Text>
@@ -76,10 +76,10 @@ function Wallet() {
                 display: 'flex',
                 padding: 10,
                 borderBottomWidth: 1,
-                borderBottomColor: COLORS.colorPrimary
+                borderBottomColor: colors.getColor().colorPrimary
             }}>
                 <FontAwesome5 style={{marginRight: 17}}
-                              name={"credit-card"} size={40} color={COLORS.colorPrimary}/>
+                              name={"credit-card"} size={40} color={colors.getColor().colorPrimary}/>
                 <View>
                     <Text style={{fontSize: 16}}>Card 3</Text>
                     <Text style={{fontSize: 18}}>5168********89</Text>
@@ -91,7 +91,7 @@ function Wallet() {
                     flexDirection: 'row',
                     display: 'flex',
                     padding: 10,
-                    backgroundColor: COLORS.colorPrimaryLight,
+                    backgroundColor: colors.getColor().colorPrimaryLight,
                     borderRadius: 50,
                     width: '50%',
                     justifyContent: 'center'
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         height: 10,
         borderRadius: 6,
         marginHorizontal: 2,
-        backgroundColor: COLORS.colorPrimary
+        backgroundColor: colors.getColor().colorPrimary
     },
     carouselImage: {
         height: 80,

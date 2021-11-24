@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native
 import SurbiHeader from "../../components/SurbiHeader";
 import OrdersItem from "../../components/OrdersItem";
 import {restService} from "../../service/restService";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 function PreviousOrders() {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: colors.getColor().colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         width: "95%",

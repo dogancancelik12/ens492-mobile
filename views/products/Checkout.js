@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Alert, FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {CheckBox} from 'react-native-elements'
 import CartCheckout from "../../components/CartCheckout";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
@@ -38,11 +38,11 @@ function Checkout() {
             <View style={styles.addressContainer}>
                 <View style={styles.container}>
                     <View>
-                        <Text style={{marginLeft: 15, color: COLORS.colorPrimary}}>{item.addressTitle}</Text>
+                        <Text style={{marginLeft: 15, color: colors.getColor().colorPrimary}}>{item.addressTitle}</Text>
                         <Text style={{marginLeft: 15, marginTop: 3}}>{item.addressDescription}</Text>
                     </View>
                     <CheckBox
-                        checkedColor={COLORS.colorPrimaryLight}
+                        checkedColor={colors.getColor().colorPrimaryLight}
                         size={30}
                         checked={selectedAddressId === item.id}
                         onPress={() => setSelectedAddressId(item.id)}
@@ -62,7 +62,7 @@ function Checkout() {
             <View style={{flexDirection: "row", alignItems: "center"}}>
                 <Text style={styles.addressTitle}>Select Address</Text>
                 <TouchableOpacity onPress={() => refRBSheet.current.open()}>
-                    <FontAwesome5 name={"plus-circle"} size={18} color={COLORS.colorPrimaryLight}/>
+                    <FontAwesome5 name={"plus-circle"} size={18} color={colors.getColor().colorPrimaryLight}/>
                 </TouchableOpacity>
             </View>
             <FlatList
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         fontWeight: "400"
     },
     addressContainer: {
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         height: 80,
         width: "95%",
         borderRadius: 10,

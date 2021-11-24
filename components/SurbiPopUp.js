@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 
 function SurbiPopUp({
                    negativeButtonAction,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         elevation: 2,
         margin: 10,
         width: 70,
-        backgroundColor: COLORS.colorPrimaryLight
+        backgroundColor: colors.getColor().colorPrimaryLight
     },
     textStyle: {
         color: "white",

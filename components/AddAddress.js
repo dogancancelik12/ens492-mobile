@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import {restService} from "../service/restService";
 
 function AddAddress({onDismiss, getAddresses}) {
@@ -56,7 +56,7 @@ function AddAddress({onDismiss, getAddresses}) {
 const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: colors.getColor().colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         marginTop: 40,
@@ -64,14 +64,14 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     addAddressTitle: {
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         width: "78%",
         marginLeft: 25,
         borderRadius: 10,
         padding: 10
     },
     addAddress: {
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         width: "78%",
         borderRadius: 10,
         padding: 10

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Alert, Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import SurbiHeader from "../../components/SurbiHeader";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {BarPasswordStrengthDisplay} from "react-native-password-strength-meter";
 import {restService} from "../../service/restService";
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     saveButton: {
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: colors.getColor().colorPrimaryLight,
         alignItems: 'center',
         padding: 10,
         borderRadius: 15,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         marginBottom: 50,
     },
     textInput: {
-        borderColor: COLORS.colorPrimary,
+        borderColor: colors.getColor().colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',
@@ -99,15 +99,15 @@ const styles = StyleSheet.create({
         padding: 6,
         marginLeft: 3,
         marginRight: 1,
-        color: COLORS.colorPrimaryLight,
+        color: colors.getColor().colorPrimaryLight,
         fontSize: 13,
     },
     descriptionContainer: {
         alignItems: 'flex-start',
         marginTop: 45,
-        borderBottomColor: COLORS.colorPrimary,
+        borderBottomColor: colors.getColor().colorPrimary,
         borderBottomWidth: 1,
-        borderTopColor: COLORS.colorPrimary,
+        borderTopColor: colors.getColor().colorPrimary,
         borderTopWidth: 1
     }
 });

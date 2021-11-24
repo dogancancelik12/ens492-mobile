@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import {useNavigation} from "@react-navigation/native";
 import {restService} from '../service/restService';
 
@@ -24,12 +24,14 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false, 
     const getCartQuantity = () => {
         restService.get('products/getMyCart')
             .then(response => {
-                setQuantity(response.data.quantity)
+                if (response.success) {
+                    setQuantity(response.data.quantity)
+                }
             })
     }
 
     return (
-        <View style={{width: "100%", backgroundColor: COLORS.colorPrimary, height: 80}}>
+        <View style={{width: "100%", backgroundColor: colors.getColor().colorPrimary, height: 80}}>
             <View style={{
                 flexDirection: "row",
                 display: "flex",
@@ -46,7 +48,7 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false, 
                     <FontAwesome5
                         name={"chevron-left"}
                         size={20}
-                        color={COLORS.colorWhite}
+                        color={colors.getColor().colorWhite}
                     />
                 </TouchableOpacity>}
                 <Text style={{fontSize: 24, color: "white"}}> {title} </Text>
@@ -60,7 +62,7 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false, 
                         marginBottom: -6,
                         marginLeft: -10,
                         width: 20,
-                        backgroundColor: COLORS.colorSecondary,
+                        backgroundColor: colors.getColor().colorSecondary,
                         borderRadius: 20,
                         alignItems: 'center'
                     }}>
@@ -70,7 +72,7 @@ function SurbiHeader({title, isCartVisible = true, isNavigationVisible = false, 
                         style={{zIndex: 1}}
                         name={"shopping-cart"}
                         size={18}
-                        color={COLORS.colorWhite}
+                        color={colors.getColor().colorWhite}
                     />
                 </TouchableOpacity>}
             </View>

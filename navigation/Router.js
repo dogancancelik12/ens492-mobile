@@ -20,7 +20,7 @@ import Settings from "../views/profile/Settings";
 import AddCreditCard from "../views/profile/AddCreditCard";
 import UserInformation from "../views/profile/UserInformation";
 import ChangePassword from "../views/profile/ChangePassword";
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import BarcodeScanner from "../views/BarcodeScanner";
 
 const Stack = createStackNavigator();
@@ -143,6 +143,14 @@ function OnBoardingStack() {
                     }}
                 />
 
+                <Stack.Screen
+                    name="ProductDetail"
+                    component={ProductDetail}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -150,7 +158,7 @@ function OnBoardingStack() {
 
 const AppStack = () => {
     return (
-        <Tab.Navigator screenOptions={{tabBarActiveTintColor: COLORS.colorSecondary}}>
+        <Tab.Navigator screenOptions={{tabBarActiveTintColor: colors.colorSecondary}}>
             <Tab.Screen
                 name="Home"
                 component={Home}

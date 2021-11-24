@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import moment from "moment";
 import localization from 'moment/locale/tr'
@@ -19,7 +19,7 @@ function OrdersItem({item}) {
                 <FontAwesome5 name={"arrow-right"}
                               style={{position: "absolute", right: 10, alignSelf: 'center'}}
                               size={25}
-                              color={COLORS.colorPrimaryLight}
+                              color={colors.getColor().colorPrimaryLight}
                 />
             </View>
         </TouchableOpacity>
@@ -29,7 +29,7 @@ function OrdersItem({item}) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         borderRadius: 10,
         alignItems: "center",
         marginTop: 20,

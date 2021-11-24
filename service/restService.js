@@ -15,7 +15,7 @@ class RestService {
         })
     }
 
-    get(url, body) {
+    get(url) {
         return new Promise(async (resolve, reject) => {
             const token = await SecureStore.getItemAsync('userToken');
             const headers = {

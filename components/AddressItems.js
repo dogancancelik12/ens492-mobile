@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 function AddressItems({address}) {
@@ -12,7 +12,7 @@ function AddressItems({address}) {
                     <FontAwesome5 name={"home"}
                                   style={{marginRight: 15, left: 16, alignSelf: 'center'}}
                                   size={25}
-                                  color={COLORS.colorPrimaryLight}
+                                  color={colors.getColor().colorPrimaryLight}
                     />
                     <View>
                         <Text style={styles.title}>{address.addressTitle}</Text>
@@ -27,7 +27,7 @@ function AddressItems({address}) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         borderRadius: 10,
         alignItems: "center",
         marginTop: 20,

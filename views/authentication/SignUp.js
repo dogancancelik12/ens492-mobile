@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
 import {Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {BarPasswordStrengthDisplay} from 'react-native-password-strength-meter';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
@@ -14,6 +14,7 @@ function SignUp() {
     const [name, setName] = useState(null)
     const [surname, setSurname] = useState(null)
     const [email, setEmail] = useState(null)
+    const [emailError, setEmailError] = useState(false)
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [errorIsVisible, setErrorIsVisible] = useState(false)
@@ -37,6 +38,14 @@ function SignUp() {
     }, [password, confirmPassword])
 
     const signUp = () => {
+        if (!name || !surname || !password) {
+            Alert.alert('Warning', 'Missing information!')
+            return
+        }
+        if (emailError) {
+            Alert.alert('Warning', 'This is not a valid email!')
+            return
+        }
         if (errorIsVisible) {
             Alert.alert('Warning', 'Passwords did not match!')
             return
@@ -65,6 +74,17 @@ function SignUp() {
             })
     }
 
+    const validateEmail = (text) => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(text) === false) {
+            setEmail(text)
+            setEmailError(true)
+        } else {
+            setEmail(text)
+            setEmailError(false)
+        }
+    }
+
     return (
         <View style={styles.container}>
             <Image style={{width: "90%", height: "30%", resizeMode: "contain", marginTop: 30}}
@@ -89,7 +109,8 @@ function SignUp() {
                     <TextInput autoCorrect={false}
                                style={styles.textInput}
                                placeholder='E-mail'
-                               onChangeText={(email) => setEmail(email)}/>
+                               autoCapitalize={'none'}
+                               onChangeText={(email) => validateEmail(email)}/>
                 </View>
                 <View style={styles.viewIcon}>
                     <FontAwesome5 style={{padding: 5}} name={'lock'}/>
@@ -97,6 +118,7 @@ function SignUp() {
                                style={styles.textInput}
                                placeholder='Password'
                                secureTextEntry={true}
+                               autoCapitalize={'none'}
                                onChangeText={(password) => setPassword(password)}/>
                 </View>
                 {password !== "" &&
@@ -107,6 +129,7 @@ function SignUp() {
                 <View style={styles.viewIcon}>
                     <FontAwesome5 style={{padding: 5}} name={'lock'}/>
                     <TextInput autoCorrect={false}
+                               autoCapitalize={'none'}
                                style={styles.textInput}
                                placeholder='Confirm Password' secureTextEntry={true}
                                onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>
@@ -129,7 +152,7 @@ function SignUp() {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}>
-                <Text style={{color: COLORS.colorPrimaryLight, marginTop: 20}}>Already have an account ?</Text>
+                <Text style={{color: colors.getColor().colorPrimaryLight, marginTop: 20}}>Already have an account ?</Text>
             </TouchableOpacity>
         </View>
     );
@@ -143,7 +166,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorPrimary,
+        backgroundColor: colors.getColor().colorPrimary,
         padding: 10,
         borderRadius: 10,
         marginTop: 40,
@@ -155,7 +178,7 @@ const styles = StyleSheet.create({
     },
     viewIcon: {
         borderRadius: 16,
-        borderColor: COLORS.colorPrimary,
+        borderColor: colors.getColor().colorPrimary,
         borderWidth: 1,
         flexDirection: 'row',
         display: 'flex',

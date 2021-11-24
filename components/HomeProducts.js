@@ -1,7 +1,8 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import {useNavigation} from "@react-navigation/native";
+import {AirbnbRating} from 'react-native-ratings';
 
 function HomeProducts({title, products}) {
     const navigation = useNavigation();
@@ -11,14 +12,22 @@ function HomeProducts({title, products}) {
             <Text style={{fontSize: 18, marginLeft: 15, marginBottom: 15, marginTop: 10}}>{title}</Text>
             <View style={styles.container}>
                 {products.map(product => {
-                    return <TouchableOpacity key={product.id}
-                                             style={styles.imageContainer}
-                                             onPress={() => {
-                                                 navigation.navigate("ProductDetail", {
-                                                     productId: product.id
-                                                 });
-                                             }}>
-                        <Image style={styles.image} source={{uri: product.image}}/>
+                    return <TouchableOpacity
+                        style={styles.carouselItem}
+                        onPress={() => {
+                            navigation.navigate("ProductDetail", {
+                                productId: product.id
+                            });
+                        }}>
+                        <Image style={styles.carouselImage} source={{uri: product.image}}/>
+                        <Text numberOfLines={1} style={styles.carouselTitle}>{product.name}</Text>
+                        <AirbnbRating starContainerStyle={{marginTop: 2}}
+                                      isDisabled={true}
+                                      showRating={false}
+                                      count={5}
+                                      defaultRating={product.rating}
+                                      size={14}
+                        />
                     </TouchableOpacity>
                 })}
             </View>
@@ -33,8 +42,8 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         flexDirection: "row",
         justifyContent: "space-evenly",
-        backgroundColor: COLORS.colorWhiteDark,
-        height: 100,
+        backgroundColor: colors.getColor().colorWhiteDark,
+        height: 150,
         alignItems: "center"
     },
     image: {
@@ -46,7 +55,30 @@ const styles = StyleSheet.create({
     imageContainer: {
         height: "80%",
         width: "25%"
-    }
+    },
+    carouselItem: {
+        backgroundColor: colors.getColor().colorWhiteDark,
+        borderRadius: 5,
+        height: 140,
+        width: "28%",
+        marginTop: 15,
+        alignItems: "center",
+        margin: 10,
+    },
+    carouselImage: {
+        height: 80,
+        width: "100%",
+        resizeMode: "stretch",
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+    },
+    carouselTitle: {
+        fontSize: 16,
+        marginTop: 10,
+        alignSelf: "center",
+        fontWeight: "500",
+        color: colors.getColor().colorPrimary
+    },
 });
 
 

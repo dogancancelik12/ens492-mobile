@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import SurbiLoader from "../../components/SurbiLoader";
 
 function SplashScreen() {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         height: "100%",
-        backgroundColor: COLORS.colorPrimary,
+        backgroundColor: colors.getColor().colorPrimary,
         alignItems: "center",
         justifyContent: "center"
     }

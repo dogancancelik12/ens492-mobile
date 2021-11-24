@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import LottieView from 'lottie-react-native';
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 
 function ProductsGridView({products}) {
 
@@ -54,7 +54,7 @@ function ProductsGridView({products}) {
 
 const styles = StyleSheet.create({
     carouselItem: {
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         borderRadius: 5,
         height: 140,
         width: "28%",
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         alignSelf: "center",
         fontWeight: "500",
-        color: COLORS.colorPrimary
+        color: colors.getColor().colorPrimary
     },
     carouselDescription: {
         fontSize: 14,

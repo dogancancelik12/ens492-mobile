@@ -4,7 +4,7 @@ import {Avatar} from 'react-native-elements';
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiHeader from "../../components/SurbiHeader";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {restService} from "../../service/restService";
 
 
@@ -24,7 +24,6 @@ function Profile() {
     const getUserInfo = () => {
         restService.get('user/getUserInfo')
             .then(response => {
-                console.log(response.data);
                 setUser(response.data);
             })
     }
@@ -36,14 +35,14 @@ function Profile() {
             <ScrollView style={{height: "90%"}}>
                 {user &&
                 <View style={styles.avatarStyle}>
-                    <Avatar containerStyle={{backgroundColor: COLORS.colorSecondary}}
+                    <Avatar containerStyle={{backgroundColor: colors.getColor().colorSecondary}}
                             size="large"
                             title={user.name[0] + user.surname[0]}
                             rounded
                     />
-                    <Text style={{color: COLORS.colorPrimary, marginTop: 10, fontSize: 16}}>{user.name} {user.surname}</Text>
-                    <Text style={{color: COLORS.colorPrimary, marginTop: 5, fontSize: 16}}>{user.email}</Text>
-                    <Text style={{color: COLORS.colorPrimary, marginTop: 8, fontSize: 16}}>{user.phoneNumber}</Text>
+                    <Text style={{color: colors.getColor().colorPrimary, marginTop: 10, fontSize: 16}}>{user.name} {user.surname}</Text>
+                    <Text style={{color: colors.getColor().colorPrimary, marginTop: 5, fontSize: 16}}>{user.email}</Text>
+                    <Text style={{color: colors.getColor().colorPrimary, marginTop: 8, fontSize: 16}}>{user.phoneNumber}</Text>
                 </View>
                 }
                 <TouchableOpacity style={styles.itemStyle}
@@ -85,14 +84,6 @@ function Profile() {
                         <Text style={{color: 'white', fontSize: 15, marginLeft: 5}}>Settings</Text>
                     </View>
                 </TouchableOpacity>
-
-                <TouchableOpacity style={styles.itemStyle}
-                                  onPress={() => navigation.navigate('Login')}>
-                    <View style={{flexDirection: 'row', display: 'flex', alignItems: 'center'}}>
-                        <FontAwesome5 name={"sign-out-alt"} size={17} color={'white'}/>
-                        <Text style={{color: 'white', fontSize: 15, marginLeft: 5}}>Sign Out</Text>
-                    </View>
-                </TouchableOpacity>
             </ScrollView>
         </View>
     );
@@ -100,7 +91,7 @@ function Profile() {
 
 const styles = StyleSheet.create({
     itemStyle: {
-        backgroundColor: COLORS.colorPrimary,
+        backgroundColor: colors.getColor().colorPrimary,
         padding: 20,
         marginVertical: 9,
         marginHorizontal: 16,

@@ -25,7 +25,9 @@ function Cart() {
     const getMyCart = () => {
         restService.get('products/getMyCart')
             .then(response => {
-                setProducts(response.data.cartItemsList);
+                if (response.success) {
+                    setProducts(response.data.cartItemsList);
+                }
             })
     }
 
@@ -49,6 +51,7 @@ function Cart() {
             />}
             {products.length > 0 &&
             <CartCheckout
+                products={products}
                 buttonAction={() => navigation.navigate('Checkout')}
                 buttonText={"CHECK OUT"}
             />}

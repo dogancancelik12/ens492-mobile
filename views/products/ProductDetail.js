@@ -4,7 +4,7 @@ import SurbiHeader from "../../components/SurbiHeader";
 import {AirbnbRating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
 import RentBottomSheet from "../../components/RentBottomSheet";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {restService} from '../../service/restService';
 
 function ProductDetail(props) {
@@ -29,7 +29,6 @@ function ProductDetail(props) {
     const addToCart = () => {
         restService.get(`products/addToCart/${productId}`)
             .then(response => {
-                console.log("aaaaaa",response)
                 setQuantity(response.data)
             })
     }
@@ -54,11 +53,11 @@ function ProductDetail(props) {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button}
                                   onPress={() => setIsRentBottomSheetVisible(true)}>
-                    <Text style={{color: COLORS.colorWhite}}>RENT</Text>
+                    <Text style={{color: colors.getColor().colorWhite}}>RENT</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}
                                   onPress={() => addToCart()}>
-                    <Text style={{color: COLORS.colorWhite}}>BUY</Text>
+                    <Text style={{color: colors.getColor().colorWhite}}>BUY</Text>
                 </TouchableOpacity>
             </View>
             {isRentBottomSheetVisible &&
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: colors.getColor().colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         width: "40%",

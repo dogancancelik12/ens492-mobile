@@ -3,7 +3,7 @@ import {Dimensions, Image, ScrollView, StyleSheet, Text, View} from 'react-nativ
 import SurbiHeader from "../components/SurbiHeader";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import HomeProducts from "../components/HomeProducts";
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import {restService} from '../service/restService';
 
 function Home(props) {
@@ -80,7 +80,7 @@ function Home(props) {
 
 const styles = StyleSheet.create({
     carouselItem: {
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         borderRadius: 5,
         height: 200,
         marginTop: 20,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         height: 12,
         borderRadius: 6,
         marginHorizontal: 6,
-        backgroundColor: COLORS.colorPrimary
+        backgroundColor: colors.getColor().colorPrimary
     },
     carouselImage: {
         height: 140,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginLeft: 15,
         alignSelf: "flex-start",
-        color: COLORS.colorPrimary
+        color: colors.getColor().colorPrimary
     },
     carouselDescription: {
         fontSize: 14,

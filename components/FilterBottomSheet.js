@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import DropDownPicker from "react-native-dropdown-picker";
 import RBSheet from "react-native-raw-bottom-sheet";
-import {COLORS} from '../constants/Colors';
+import {colors} from '../constants/Colors';
 
 function FilterBottomSheet({onCloseAction, filteredValue}) {
 
@@ -51,7 +51,7 @@ function FilterBottomSheet({onCloseAction, filteredValue}) {
                     closeAfterSelecting={true}
                     categorySelectable={false}
                     mode="BADGE"
-                    badgeColors={COLORS.colorPrimaryLight}   //badgeDotColors={["red", "blue", "orange"]}  bu şekilde array yapıp
+                    badgeColors={colors.getColor().colorPrimaryLight}   //badgeDotColors={["red", "blue", "orange"]}  bu şekilde array yapıp
                     // farklı başlıklar farklı renklerde olabilir.
                     badgeDotColors='white'
                     badgeTextStyle={{
@@ -59,7 +59,7 @@ function FilterBottomSheet({onCloseAction, filteredValue}) {
                         fontWeight: '600'
                     }}
                     selectedItemContainerStyle={{
-                        backgroundColor: COLORS.colorWhiteDark
+                        backgroundColor: colors.getColor().colorWhiteDark
                     }}
                     selectedItemLabelStyle={{
                         fontWeight: "bold"

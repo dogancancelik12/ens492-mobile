@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiPopUp from "./SurbiPopUp";
 import {restService} from "../service/restService";
@@ -35,7 +35,7 @@ function CartProductItem({product, getMyCartProp}) {
                               onPress={() => setIsPopUpVisible(true)}>
                 <FontAwesome5 name={"times-circle"}
                               size={18}
-                              color={COLORS.colorPrimaryLight}
+                              color={colors.getColor().colorPrimaryLight}
                 />
             </TouchableOpacity>
             {isPopUpVisible &&
@@ -55,7 +55,7 @@ function CartProductItem({product, getMyCartProp}) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         borderRadius: 10,
         alignItems: "center",
         marginTop: 20,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     title: {
         marginLeft: 20,
         fontSize: 18,
-        color: COLORS.colorPrimary
+        color: colors.getColor().colorPrimary
     },
     description: {
         marginLeft: 20,

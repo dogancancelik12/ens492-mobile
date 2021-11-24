@@ -1,7 +1,7 @@
 import {Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React, {useState} from "react";
 import {useNavigation} from '@react-navigation/native';
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {restService} from '../../service/restService';
 import * as SecureStore from 'expo-secure-store';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -11,9 +11,14 @@ function Login() {
 
     const navigation = useNavigation();
     const [email, setEmail] = useState(null)
+    const [emailError, setEmailError] = useState(false)
     const [password, setPassword] = useState(null)
 
     const login = () => {
+        if (emailError) {
+            Alert.alert('Warning', 'This is not a valid email!')
+            return
+        }
         const loginData = {
             email: email,
             password: password
@@ -46,6 +51,18 @@ function Login() {
             })
     }
 
+    const validateEmail = (text) => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(text) === false) {
+            setEmail(text)
+            setEmailError(true)
+        } else {
+            setEmail(text)
+            setEmailError(false)
+        }
+    }
+
+
     return (
         <View style={styles.container}>
             <Image style={{width: "90%", height: "30%", resizeMode: "contain", marginTop: 30}}
@@ -58,7 +75,7 @@ function Login() {
                         autoCorrect={false}
                         style={styles.textInput}
                         placeholder='E-mail'
-                        onChangeText={(email) => setEmail(email)}/>
+                        onChangeText={(email) => validateEmail(email)}/>
                 </View>
                 <View style={styles.viewIcon}>
                     <FontAwesome5 style={{padding: 5}} name={'lock'}/>
@@ -76,7 +93,7 @@ function Login() {
                 <Text style={{color: 'white'}}>Login</Text>
             </TouchableOpacity>
             <Text onPress={() => navigation.navigate('SignUp')}
-                  style={{marginTop: 20, color: COLORS.colorPrimaryLight}}>
+                  style={{marginTop: 20, color: colors.getColor().colorPrimaryLight}}>
                 Don't have an account ?
             </Text>
         </View>
@@ -91,7 +108,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorPrimary,
+        backgroundColor: colors.getColor().colorPrimary,
         padding: 10,
         borderRadius: 10,
         marginTop: 20,
@@ -103,7 +120,7 @@ const styles = StyleSheet.create({
     },
     viewIcon: {
         borderRadius: 16,
-        borderColor: COLORS.colorPrimary,
+        borderColor: colors.getColor().colorPrimary,
         borderWidth: 1,
         flexDirection: 'row',
         display: 'flex',

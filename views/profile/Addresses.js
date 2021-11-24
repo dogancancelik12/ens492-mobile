@@ -4,7 +4,7 @@ import SurbiHeader from "../../components/SurbiHeader";
 import AddressItems from "../../components/AddressItems";
 import AddAddress from "../../components/AddAddress";
 import RBSheet from "react-native-raw-bottom-sheet";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {restService} from "../../service/restService";
 
 function Adresses() {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: colors.getColor().colorPrimaryLight,
         padding: 10,
         borderRadius: 50,
         marginBottom: 40,

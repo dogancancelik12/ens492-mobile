@@ -1,14 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS} from "../constants/Colors";
+import {colors} from "../constants/Colors";
+import {restService} from '../service/restService';
 
-function CartCheckout({buttonText, buttonAction}) {
+function CartCheckout({buttonText, buttonAction, products}) {
+    const [subtotal, setSubtotal] = useState(0);
+    const [productsToBuy, setProductsToBuy] = useState(products)
+
+    useEffect(() => {
+        getMyCart()
+    }, [products])
+
+    const getMyCart = () => {
+        restService.get('products/getMyCart')
+            .then(response => {
+                if (response.success) {
+                    setProductsToBuy(response.data.cartItemsList);
+                    getTotal();
+                }
+            })
+    }
+
+    const getTotal = () => {
+        let total = 0;
+        if (products) {
+            for (let product of products) {
+                total = total + product.price
+            }
+            setSubtotal(total)
+        }
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.priceContainer}>
                 <Text style={styles.staticText}>Sub Total</Text>
-                <Text style={styles.priceText}>170$</Text>
+                <Text style={styles.priceText}>{subtotal}$</Text>
             </View>
             <View style={styles.priceContainer}>
                 <Text style={styles.staticText}>Shipping</Text>
@@ -16,10 +43,10 @@ function CartCheckout({buttonText, buttonAction}) {
             </View>
             <View style={styles.priceContainer}>
                 <Text style={styles.staticText}>Total</Text>
-                <Text style={styles.priceText}>180$</Text>
+                <Text style={styles.priceText}>{subtotal + 10}$</Text>
             </View>
             <TouchableOpacity style={styles.button} onPress={buttonAction}>
-                <Text style={{color: COLORS.colorWhite}}>{buttonText}</Text>
+                <Text style={{color: colors.getColor().colorWhite}}>{buttonText}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -32,7 +59,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         shadowOpacity: 0.2,
-        backgroundColor: COLORS.colorWhiteDark,
+        backgroundColor: colors.getColor().colorWhiteDark,
         height: "25%",
         width: "85%",
         alignSelf: "center"
@@ -48,7 +75,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: colors.getColor().colorPrimaryLight,
         padding: 10,
         borderRadius: 10,
         marginTop: 40,

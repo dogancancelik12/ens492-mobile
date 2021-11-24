@@ -3,7 +3,7 @@ import {Alert, Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} 
 import {useNavigation} from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiHeader from "../../components/SurbiHeader";
-import {COLORS} from "../../constants/Colors";
+import {colors} from "../../constants/Colors";
 import {restService} from "../../service/restService";
 
 function UserInformation(props) {
@@ -43,13 +43,13 @@ function UserInformation(props) {
                            onChangeText={(surname) => setSurname(surname)}
                            value={surname}/>
                 <TextInput editable={false} selectTextOnFocus={false}
-                           style={styles.textInput} placeholder='buse-sumer@hotmail.com'/>
+                           style={styles.textInput} placeholder={user.email}/>
             </View>
 
             <TouchableOpacity style={styles.button}
                               onPress={() => navigation.navigate('ChangePassword')}>
-                <FontAwesome5 name={"lock"} size={17} color={COLORS.colorPrimaryLight}/>
-                <Text style={{color: COLORS.colorPrimaryLight, marginLeft: 5}}>Change Password</Text>
+                <FontAwesome5 name={"lock"} size={17} color={colors.colorPrimaryLight}/>
+                <Text style={{color: colors.getColor().colorPrimaryLight, marginLeft: 5}}>Change Password</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.saveButton}
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: COLORS.colorPrimaryLight,
+        borderColor: colors.getColor().colorPrimaryLight,
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         display: 'flex',
     },
     saveButton: {
-        backgroundColor: COLORS.colorPrimaryLight,
+        backgroundColor: colors.getColor().colorPrimaryLight,
         alignItems: 'center',
         padding: 10,
         borderRadius: 15,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         marginBottom: 50,
     },
     editTextInput: {
-        borderColor: COLORS.colorPrimary,
+        borderColor: colors.getColor().colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     textInput: {
-        borderColor: COLORS.colorPrimary,
+        borderColor: colors.getColor().colorPrimary,
         borderWidth: 1,
         padding: 12,
         width: '90%',
