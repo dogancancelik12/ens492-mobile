@@ -14,7 +14,7 @@ function OrdersItem({item}) {
                 <View>
                     <Text style={styles.status}>{item.cartStatus}</Text>
                     <Text style={styles.date}>{moment(item.createdDate).locale("tr", localization).format('l')}</Text>
-                    <Text style={styles.price}>{item.totalPrice}</Text>
+                    <Text style={styles.price}>{item.totalPrice}$</Text>
                 </View>
                 <FontAwesome5 name={"arrow-right"}
                               style={{position: "absolute", right: 10, alignSelf: 'center'}}

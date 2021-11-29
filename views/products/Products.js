@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Dimensions, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Dimensions, View, TouchableOpacity, Text} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import SurbiHeader from "../../components/SurbiHeader";
 import {colors} from "../../constants/Colors";
@@ -9,7 +9,6 @@ import {productsBicycles, productsCamping, productsScooters} from "../../constan
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FilterBottomSheet from "../../components/FilterBottomSheet";
 import {restService} from '../../service/restService';
-import {get} from 'react-native-web/dist/vendor/react-native/TurboModule/TurboModuleRegistry';
 
 function Products() {
 
@@ -19,6 +18,8 @@ function Products() {
     const [scooters, setScooters] = useState([]);
     const [bicycles, setBicycles] = useState([]);
     const [camping, setCamping] = useState([]);
+    const [sortByPriceValue, setSortByPriceValue] = useState(0);
+    const [sortByRatingValue, setSortByRatingValue] = useState(0);
     const [routes] = React.useState([
         {key: 'scooters', title: 'Scooters'},
         {key: 'bicycles', title: 'Bicycles'},
@@ -29,19 +30,31 @@ function Products() {
         let filteredScooters = [];
         let filteredBicycles = [];
         let filteredCamping = [];
+        let boolScooter = false;
+        let boolBicycle = false;
+        let boolCamping = false;
         for (let productScooter of scooters) {
-            if (productScooter.name.indexOf(value) !== -1) {
+            for (let i = 0; i < value.length; i++) {
+                boolScooter = productScooter.name.toLowerCase().indexOf(value[i].toLowerCase()) !== -1;
+            }
+            if (boolScooter) {
                 filteredScooters.push(productScooter)
             }
         }
         for (let productBicycle of bicycles) {
-            if (productBicycle.name.indexOf(value) !== -1) {
+            for (let i = 0; i < value.length; i++) {
+                boolBicycle = productBicycle.name.toLowerCase().indexOf(value[i].toLowerCase()) !== -1;
+            }
+            if (boolBicycle) {
                 filteredBicycles.push(productBicycle)
             }
         }
         for (let productCamping of camping) {
-            if (productCamping.name.indexOf(value) !== -1) {
-                filteredCamping.push(productCamping)
+            for (let i = 0; i < value.length; i++) {
+                boolCamping = productCamping.name.toLowerCase().indexOf(value[i].toLowerCase()) !== -1;
+            }
+            if (boolCamping) {
+                filteredBicycles.push(productCamping)
             }
         }
         if (value.length < 1) {
@@ -102,6 +115,78 @@ function Products() {
         }
     };
 
+    const sortByPrice = () => {
+        setSortByRatingValue(0)
+        if (sortByPriceValue === 0) {
+            setSortByPriceValue(1)
+            let sortedScooters = scooters.sort((a, b) => {
+                return a.price > b.price ? 1 : -1
+            })
+            let sortedBicycles = bicycles.sort((a, b) => {
+                return a.price > b.price ? 1 : -1
+            })
+            let sortedCamping = camping.sort((a, b) => {
+                return a.price > b.price ? 1 : -1
+            })
+            setScooters(sortedScooters)
+            setBicycles(sortedBicycles)
+            setCamping(sortedCamping)
+        } else if (sortByPriceValue === 1) {
+            setSortByPriceValue(-1)
+            let sortedScooters = scooters.sort((a, b) => {
+                return a.price > b.price ? -1 : 1
+            })
+            let sortedBicycles = bicycles.sort((a, b) => {
+                return a.price > b.price ? -1 : 1
+            })
+            let sortedCamping = camping.sort((a, b) => {
+                return a.price > b.price ? -1 : 1
+            })
+            setScooters(sortedScooters)
+            setBicycles(sortedBicycles)
+            setCamping(sortedCamping)
+        } else if (sortByPriceValue === -1) {
+            setSortByPriceValue(0)
+            getHomepageProducts()
+        }
+    }
+
+    const sortByRating = () => {
+        setSortByPriceValue(0)
+        if (sortByRatingValue === 0) {
+            setSortByRatingValue(1)
+            let sortedScooters = scooters.sort((a, b) => {
+                return a.rating > b.rating ? 1 : -1
+            })
+            let sortedBicycles = bicycles.sort((a, b) => {
+                return a.rating > b.rating ? 1 : -1
+            })
+            let sortedCamping = camping.sort((a, b) => {
+                return a.rating > b.rating ? 1 : -1
+            })
+            setScooters(sortedScooters)
+            setBicycles(sortedBicycles)
+            setCamping(sortedCamping)
+        } else if (sortByRatingValue === 1) {
+            setSortByRatingValue(-1)
+            let sortedScooters = scooters.sort((a, b) => {
+                return a.rating > b.rating ? -1 : 1
+            })
+            let sortedBicycles = bicycles.sort((a, b) => {
+                return a.rating > b.rating ? -1 : 1
+            })
+            let sortedCamping = camping.sort((a, b) => {
+                return a.rating > b.rating ? -1 : 1
+            })
+            setScooters(sortedScooters)
+            setBicycles(sortedBicycles)
+            setCamping(sortedCamping)
+        } else if (sortByRatingValue === -1) {
+            setSortByRatingValue(0)
+            getHomepageProducts()
+        }
+    }
+
 
     const RenderScooters = () => (
         <ProductsGridView products={scooters}/>
@@ -136,6 +221,18 @@ function Products() {
                     <FontAwesome5 name={"filter"} size={22} color={colors.getColor().colorPrimaryLight}/>
                 </TouchableOpacity>
                 <RenderSearchBar searchedText={(text) => setValue(text)}/>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity style={styles.sortingButton} onPress={() => sortByPrice()}>
+                    <Text>Price</Text>
+                    <FontAwesome5 style={{marginLeft: 5}}
+                                  name={sortByPriceValue === 0 ? 'arrow-right' : sortByPriceValue === 1 ? 'arrow-up' : 'arrow-down'}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => sortByRating()} style={styles.sortingButton}>
+                    <Text>Rating</Text>
+                    <FontAwesome5 style={{marginLeft: 5}}
+                                  name={sortByRatingValue === 0 ? 'arrow-right' : sortByRatingValue === 1 ? 'arrow-up' : 'arrow-down'}/>
+                </TouchableOpacity>
             </View>
         </>
     );
@@ -191,6 +288,17 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    sortingButton: {
+        marginLeft: 12,
+        marginTop: 10,
+        backgroundColor: colors.getColor().colorSecondary,
+        width: 70,
+        alignItems: 'center',
+        borderRadius: 10,
+        padding: 4,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    }
 });
 
 export default Products;

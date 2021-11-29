@@ -56,8 +56,8 @@ function ChangePassword() {
                                             password={confirmPassword}/>
                 }
                 <View style={styles.descriptionContainer}>
-                    <Text style={styles.itemStyle}>* It must be at least 8 characters.</Text>
-                    <Text style={styles.itemStyle}>* It must contain 1 uppercase letter, 1 lowercase letter, 1 symbol
+                    <Text style={styles.itemStyle}>* We suggest it to be at least 8 characters.</Text>
+                    <Text style={styles.itemStyle}>* We suggest it to contain 1 uppercase letter, 1 lowercase letter, 1 symbol
                         and 1 number.</Text>
                 </View>
             </View>

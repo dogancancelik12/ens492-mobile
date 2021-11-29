@@ -3,6 +3,7 @@ import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-n
 import {useNavigation} from "@react-navigation/native";
 import LottieView from 'lottie-react-native';
 import {colors} from "../constants/Colors";
+import {AirbnbRating} from 'react-native-ratings';
 
 function ProductsGridView({products}) {
 
@@ -19,8 +20,15 @@ function ProductsGridView({products}) {
                 }}
             >
                 <Image style={styles.carouselImage} source={{uri: item.image}}/>
-                <Text style={styles.carouselTitle}>{item.name}</Text>
+                <Text numberOfLines={1} style={styles.carouselTitle}>{item.name}</Text>
                 <Text style={styles.carouselPrice}>{item.price}$</Text>
+                <AirbnbRating starContainerStyle={{marginTop: 2}}
+                              isDisabled={true}
+                              showRating={false}
+                              count={5}
+                              defaultRating={item.rating}
+                              size={14}
+                />
             </TouchableOpacity>
         );
     }
@@ -56,7 +64,7 @@ const styles = StyleSheet.create({
     carouselItem: {
         backgroundColor: colors.getColor().colorWhiteDark,
         borderRadius: 5,
-        height: 140,
+        height: 155,
         width: "28%",
         marginTop: 15,
         alignItems: "center",

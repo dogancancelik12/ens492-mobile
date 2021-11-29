@@ -10,8 +10,8 @@ function PreviousOrders() {
 
     const [shippedOrders, setShippedOrders] = useState([]);
     const [completedOrders, setCompletedOrders] = useState([]);
-    const [isShippedOrdersVisible, setIsShippedOrdersVisible] = useState(false);
-    const [isCompletedOrdersVisible, setIsCompletedOrdersVisible] = useState(false);
+    const [isShippedOrdersVisible, setIsShippedOrdersVisible] = useState(true);
+    const [isCompletedOrdersVisible, setIsCompletedOrdersVisible] = useState(true);
 
     useEffect(() => {
         getMyPreviousOrders();
