@@ -4,11 +4,15 @@ import {colors} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import moment from "moment";
 import localization from 'moment/locale/tr'
+import {useNavigation} from "@react-navigation/native";
 
 function OrdersItem({item}) {
 
+    const navigation = useNavigation();
+
     return (
-        <TouchableOpacity style={{width: "100%"}}>
+        <TouchableOpacity style={{width: "100%"}}
+                          onPress={() => navigation.navigate('PreviousOrderDetail', { cartItemList: item.cartItemsList })}>
             <View style={styles.container}>
                 <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 <View>

@@ -22,6 +22,7 @@ import UserInformation from "../views/profile/UserInformation";
 import ChangePassword from "../views/profile/ChangePassword";
 import {colors} from "../constants/Colors";
 import BarcodeScanner from "../views/BarcodeScanner";
+import PreviousOrderDetail from "../views/profile/PreviousOrderDetail";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -83,6 +84,14 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="Orders"
                     component={PreviousOrders}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="PreviousOrderDetail"
+                    component={PreviousOrderDetail}
                     options={{
                         headerShown: false
                     }}
