@@ -53,7 +53,7 @@ function Products() {
                 boolCamping = productCamping.name.toLowerCase().indexOf(value[i].toLowerCase()) !== -1;
             }
             if (boolCamping) {
-                filteredBicycles.push(productCamping)
+                filteredCamping.push(productCamping)
             }
         }
         if (value.length < 1) {

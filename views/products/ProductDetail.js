@@ -22,7 +22,6 @@ function ProductDetail(props) {
     const getProductDetail = () => {
         restService.get(`products/productId/${productId}`)
             .then(response => {
-                console.log('rrrr', response.data)
                 setProduct(response.data)
             })
     }
