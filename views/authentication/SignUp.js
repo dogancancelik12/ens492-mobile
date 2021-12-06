@@ -50,6 +50,10 @@ function SignUp() {
             Alert.alert('Warning', 'Passwords did not match!')
             return
         }
+        if (password && password.length < 5) {
+            Alert.alert('Warning', 'Your password must be at least 6 characters!')
+            return
+        }
         const sigUpData = {
             name: name,
             surname: surname,
@@ -152,7 +156,8 @@ function SignUp() {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}>
-                <Text style={{color: colors.getColor().colorPrimaryLight, marginTop: 20}}>Already have an account ?</Text>
+                <Text style={{color: colors.getColor().colorPrimaryLight, marginTop: 20}}>Already have an account
+                    ?</Text>
             </TouchableOpacity>
         </View>
     );

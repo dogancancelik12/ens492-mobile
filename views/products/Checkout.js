@@ -15,10 +15,19 @@ function Checkout() {
     const navigation = useNavigation();
     const [selectedAddressId, setSelectedAddressId] = useState(null)
     const [addresses, setAddresses] = useState(null)
+    const [products, setProducts] = useState([])
+
     const refRBSheet = useRef();
 
     useEffect(() => {
         getMyAddresses();
+    }, [])
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            getMyCart();
+        });
+        return unsubscribe;
     }, [])
 
     function handleSuccessfulPayment() {
@@ -30,6 +39,15 @@ function Checkout() {
         restService.get('addresses/getMyAddresses')
             .then(response => {
                 setAddresses(response.data);
+            })
+    }
+
+    const getMyCart = () => {
+        restService.get('products/getMyCart')
+            .then(response => {
+                if (response.success) {
+                    setProducts(response.data.cartItemsList);
+                }
             })
     }
 
@@ -71,9 +89,9 @@ function Checkout() {
                 renderItem={renderAddress}
                 keyExtractor={(item, index) => index.toString()}
             />
-            <CartCheckout
-                buttonAction={() => handleSuccessfulPayment()}
-                buttonText={"PAY"}
+            <CartCheckout products={products}
+                          buttonAction={() => handleSuccessfulPayment()}
+                          buttonText={"PAY"}
             />
             <RBSheet
                 ref={refRBSheet}

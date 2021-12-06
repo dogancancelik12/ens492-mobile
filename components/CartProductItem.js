@@ -28,7 +28,7 @@ function CartProductItem({product, getMyCartProp}) {
             <Image style={styles.image} source={{uri: product.image}}/>
             <View>
                 <Text style={styles.title}>{product.name}</Text>
-                <Text style={styles.description}>{product.description}</Text>
+                <Text style={styles.description}>Quantity: {product.quantity}</Text>
             </View>
             <Text style={styles.price}>{product.price}$</Text>
             <TouchableOpacity style={{position: "absolute", top: 10, right: 10}}

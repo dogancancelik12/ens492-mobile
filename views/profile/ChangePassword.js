@@ -36,10 +36,13 @@ function ChangePassword() {
             <SurbiHeader title={"Change Password"}
                          isNavigationVisible={true}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
-                <TextInput style={styles.textInput}
+                <TextInput secureTextEntry={true}
+                           autoCapitalize={'none'}
+                           style={styles.textInput}
                            placeholder='Old Password'
                            onChangeText={(oldPassword) => setOldPassword(oldPassword)}/>
-                <TextInput style={styles.textInput}
+                <TextInput autoCapitalize={'none'}
+                           style={styles.textInput}
                            placeholder='New Password'
                            onChangeText={(newPassword) => setNewPassword(newPassword)}/>
                 {newPassword !== "" &&
@@ -47,7 +50,8 @@ function ChangePassword() {
                                             width={Dimensions.get("screen").width * 0.85}
                                             password={newPassword}/>
                 }
-                <TextInput style={styles.textInput}
+                <TextInput autoCapitalize={'none'}
+                           style={styles.textInput}
                            placeholder='Confirm New Password'
                            onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>
                 {confirmPassword !== "" &&
@@ -56,8 +60,9 @@ function ChangePassword() {
                                             password={confirmPassword}/>
                 }
                 <View style={styles.descriptionContainer}>
-                    <Text style={styles.itemStyle}>* We suggest it to be at least 8 characters.</Text>
-                    <Text style={styles.itemStyle}>* We suggest it to contain 1 uppercase letter, 1 lowercase letter, 1 symbol
+                    <Text style={styles.itemStyle}>* We suggest it to be at least 6 characters.</Text>
+                    <Text style={styles.itemStyle}>* We suggest it to contain 1 uppercase letter, 1 lowercase letter, 1
+                        symbol
                         and 1 number.</Text>
                 </View>
             </View>

@@ -22,6 +22,7 @@ function ProductDetail(props) {
     const getProductDetail = () => {
         restService.get(`products/productId/${productId}`)
             .then(response => {
+                console.log('rrrr', response.data)
                 setProduct(response.data)
             })
     }
@@ -40,10 +41,45 @@ function ProductDetail(props) {
                          quantityProp={quantity}
             />
             <Image style={styles.image} source={{uri: product.image}}/>
-            <View style={styles.descriptionContainer}>
-                <Text>{product.description}</Text>
+            <View style={{height: '40%'}}>
+                <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 50}}>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={{padding: 5, textDecorationLine: 'underline', fontWeight: 'bold', fontSize: 16}}>Product
+                            Type</Text>
+                        <Text>{product.productType}</Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                        <Text
+                            style={{
+                                padding: 5,
+                                textDecorationLine: 'underline',
+                                fontWeight: 'bold',
+                                fontSize: 16
+                            }}>Price</Text>
+                        <Text>{product.price}$</Text>
+                    </View>
+                </View>
+                <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 50}}>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={{padding: 5, textDecorationLine: 'underline', fontWeight: 'bold', fontSize: 16}}>Product
+                            Speed</Text>
+                        <Text>{product.speed ? product.speed + ' km/h' : '-'}</Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                        <Text
+                            style={{
+                                padding: 5,
+                                textDecorationLine: 'underline',
+                                fontWeight: 'bold',
+                                fontSize: 16
+                            }}>Weight</Text>
+                        <Text>{product.weight} kg</Text>
+                    </View>
+                </View>
             </View>
-            <AirbnbRating starContainerStyle={{marginTop: 20}}
+            <Text style={{textAlign: 'center', textDecorationLine: 'underline', fontWeight: 'bold'}}>Average
+                Rating</Text>
+            <AirbnbRating starContainerStyle={{marginTop: 5}}
                           isDisabled={true}
                           showRating={false}
                           count={5}

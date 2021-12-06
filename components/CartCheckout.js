@@ -25,7 +25,7 @@ function CartCheckout({buttonText, buttonAction, products}) {
         let total = 0;
         if (products) {
             for (let product of products) {
-                total = total + product.price
+                total = total + product.price * product.quantity
             }
             setSubtotal(total)
         }
