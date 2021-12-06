@@ -5,7 +5,6 @@ import SurbiHeader from "../../components/SurbiHeader";
 import {colors} from "../../constants/Colors";
 import ProductsGridView from "../../components/ProductsGridView";
 import RenderSearchBar from "../../components/SearchBar";
-import {productsBicycles, productsCamping, productsScooters} from "../../constants/MockData";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FilterBottomSheet from "../../components/FilterBottomSheet";
 import {restService} from '../../service/restService';
