@@ -5,10 +5,10 @@ import PreviousOrderDetailItem from "../../components/PreviousOrderDetailItem";
 
 function PreviousOrderDetail(props) {
 
-    const {cartItemList} = props.route.params;
+    const {cartItemList, cartStatus} = props.route.params;
 
     const cartItemListRender = cartItemList.map((cartItem) => {
-        return <PreviousOrderDetailItem product={cartItem} />
+        return <PreviousOrderDetailItem key={cartItem.id} cartStatus={cartStatus} product={cartItem} />
     })
 
     return (

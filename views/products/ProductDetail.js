@@ -60,8 +60,9 @@ function ProductDetail(props) {
                 </View>
                 <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 50}}>
                     <View style={{alignItems: 'center'}}>
-                        <Text style={{padding: 5, textDecorationLine: 'underline', fontWeight: 'bold', fontSize: 16}}>Product
-                            Speed</Text>
+                        <Text style={{padding: 5, textDecorationLine: 'underline', fontWeight: 'bold', fontSize: 16}}>
+                            Product Speed
+                        </Text>
                         <Text>{product.speed ? product.speed + ' km/h' : '-'}</Text>
                     </View>
                     <View style={{alignItems: 'center'}}>
