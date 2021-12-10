@@ -7,13 +7,14 @@ import moment from "moment";
 import localization from 'moment/locale/tr'
 import {colors} from "../constants/Colors";
 
-function RentBottomSheet({onCloseAction,costPerDay}) {
+function RentBottomSheet({onCloseAction, costPerDay}) {
 
     const navigation = useNavigation();
     const refRBSheet = useRef();
     const [isDatePickerVisible, setIsDatePickerVisible] = useState(false)
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
+    const [totalDate, setTotalDate] = useState(null)
 
     useEffect(() => {
         refRBSheet.current.open()
@@ -22,6 +23,7 @@ function RentBottomSheet({onCloseAction,costPerDay}) {
     function confirmSelectedDate(start, end) {
         setStartDate(start.getTime())
         setEndDate(end.getTime())
+        setTotalDate((end - start) / 86400000)
         setIsDatePickerVisible(false)
     }
 
@@ -60,7 +62,13 @@ function RentBottomSheet({onCloseAction,costPerDay}) {
                 <Text style={{padding: 10, marginTop: 5, fontSize: 16}}>Cost per day: {costPerDay}$/day</Text>
             </View>
             <View style={{flexDirection: "row"}}>
-                <Text style={{padding: 10, marginTop: 5, fontSize: 16}}>Total Cost: 60$/day</Text>
+                <Text style={{padding: 10, marginTop: 5, fontSize: 16}}>
+                    {startDate && endDate ?
+                        `Total Cost : ${(totalDate + 1) * costPerDay}$/day`
+                        :
+                        "Total Cost : -"
+                    }
+                </Text>
             </View>
             <TouchableOpacity onPress={() => handleConfirmRent()}
                               style={[styles.button, {marginTop: 40}]}>

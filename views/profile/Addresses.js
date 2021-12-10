@@ -24,7 +24,7 @@ function Adresses() {
     }
 
     const addressList = () => addresses.map(address =>
-        <AddressItems key={address.id} address={address}/>
+        <AddressItems getAddresses={() => getMyAddresses()} key={address.id} address={address}/>
     )
 
     return (

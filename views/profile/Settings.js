@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, Modal, Switch, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Switch, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import SurbiPopUp from '../../components/SurbiPopUp';
 import {useNavigation} from '@react-navigation/native';

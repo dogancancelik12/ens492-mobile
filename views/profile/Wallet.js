@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../../components/SurbiHeader";
 import {useNavigation} from "@react-navigation/native";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -7,19 +7,35 @@ import {homeCarouselItems} from '../../constants/MockData';
 import {colors} from '../../constants/Colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AddCreditCard from "./AddCreditCard";
+import {restService} from "../../service/restService";
+import CreditCardItem from "../../components/CreditCardItem";
 
 function Wallet() {
 
     const [activeIndex, setActiveIndex] = useState(0)
     const [carouselItems, setCarouselItem] = useState(homeCarouselItems)
+    const [myCreditCards, setMyCreditCards] = useState([])
     const navigation = useNavigation();
 
 
+    useEffect(() => {
+        return navigation.addListener('focus', () => {
+            getMyCards();
+        });
+    }, [])
+
+    const getMyCards = () => {
+        restService.get("/creditCard/getMyCards")
+            .then((response) => {
+                if (response.success) {
+                    setMyCreditCards(response.data)
+                }
+            })
+    }
+
     function renderCarouselItem({item}) {
         return (
-            <View style={styles.carouselItem}>
-                <Image style={styles.carouselImage} source={{uri: item.image}}/>
-            </View>
+            <CreditCardItem creditCard={item}/>
         )
     }
 
@@ -27,76 +43,28 @@ function Wallet() {
 
         <View>
             <SurbiHeader isCartVisible={false} isNavigationVisible={true} title={'My Wallet'}/>
-            <Carousel
-                loop={true}
-                autoplay={true}
-                layout={"default"}
-                data={carouselItems}
-                sliderWidth={Dimensions.get("screen").width}
-                itemWidth={Dimensions.get("screen").width}
-                renderItem={renderCarouselItem}
-                onSnapToItem={index => setActiveIndex(index)}/>
-            <Pagination
-                dotsLength={carouselItems.length}
-                activeDotIndex={activeIndex}
-                dotStyle={styles.paginationDot}
-                inactiveDotOpacity={0.4}
-                inactiveDotScale={0.6}/>
-
-            <View style={{
-                flexDirection: 'row',
-                display: 'flex',
-                padding: 10,
-                borderBottomWidth: 1,
-                borderBottomColor: colors.getColor().colorPrimary
-            }}>
-                <FontAwesome5 style={{marginRight: 17}}
-                              name={"credit-card"} size={40} color={colors.getColor().colorPrimary}/>
-                <View>
-                    <Text style={{fontSize: 16}}>Card 1</Text>
-                    <Text style={{fontSize: 18}}>5168********89</Text>
-                </View>
+            {myCreditCards.length > 0 &&
+            <View style={{marginTop: 20}}>
+                <Carousel
+                    loop={true}
+                    autoplay={true}
+                    layout={"default"}
+                    data={myCreditCards}
+                    sliderWidth={Dimensions.get("screen").width}
+                    itemWidth={Dimensions.get("screen").width}
+                    renderItem={renderCarouselItem}
+                    onSnapToItem={index => setActiveIndex(index)}/>
+                <Pagination
+                    dotsLength={myCreditCards.length}
+                    activeDotIndex={activeIndex}
+                    dotStyle={styles.paginationDot}
+                    inactiveDotOpacity={0.4}
+                    inactiveDotScale={0.6}/>
             </View>
-            <View style={{
-                flexDirection: 'row',
-                display: 'flex',
-                padding: 10,
-                borderBottomWidth: 1,
-                borderBottomColor: colors.getColor().colorPrimary
-            }}>
-                <FontAwesome5 style={{marginRight: 17}}
-                              name={"credit-card"} size={40} color={colors.getColor().colorPrimary}/>
-                <View>
-                    <Text style={{fontSize: 16}}>Card 2</Text>
-                    <Text style={{fontSize: 18}}>5168********89</Text>
-                </View>
-            </View>
-            <View style={{
-                flexDirection: 'row',
-                display: 'flex',
-                padding: 10,
-                borderBottomWidth: 1,
-                borderBottomColor: colors.getColor().colorPrimary
-            }}>
-                <FontAwesome5 style={{marginRight: 17}}
-                              name={"credit-card"} size={40} color={colors.getColor().colorPrimary}/>
-                <View>
-                    <Text style={{fontSize: 16}}>Card 3</Text>
-                    <Text style={{fontSize: 18}}>5168********89</Text>
-                </View>
-            </View>
+            }
             <TouchableOpacity onPress={() => navigation.navigate('AddCreditCard')}
-                              style={{alignItems: 'center', marginTop: '80%'}}>
-                <View style={{
-                    flexDirection: 'row',
-                    display: 'flex',
-                    padding: 10,
-                    backgroundColor: colors.getColor().colorPrimaryLight,
-                    borderRadius: 50,
-                    width: '50%',
-                    justifyContent: 'center'
-
-                }}>
+                              style={{alignItems: 'center', marginTop: 20}}>
+                <View style={styles.button}>
                     <FontAwesome5 style={{marginRight: 17}}
                                   name={"plus-square"} size={23} color='white'/>
                     <View style={{justifyContent: 'center'}}>
@@ -127,6 +95,15 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 5,
         borderTopRightRadius: 5,
     },
+    button: {
+        flexDirection: 'row',
+        display: 'flex',
+        padding: 10,
+        backgroundColor: colors.getColor().colorPrimaryLight,
+        borderRadius: 12,
+        width: '50%',
+        justifyContent: 'center'
+    }
 });
 
 export default Wallet;

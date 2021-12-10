@@ -1,9 +1,25 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import {restService} from "../service/restService";
+import SurbiPopUp from "./SurbiPopUp";
 
-function AddressItems({address}) {
+function AddressItems({address, getAddresses}) {
+
+    const [isPopUpVisible, setIsPopUpVisible] = useState(false)
+
+    const deleteAddress = (addressId) => {
+        restService.post(`addresses/deleteAddress/${addressId}`)
+            .then(response => {
+                if (response.success) {
+                    Alert.alert(response.message)
+                    getAddresses()
+                } else {
+                    Alert.alert(response.message)
+                }
+            })
+    }
 
     return (
         <View>
@@ -18,8 +34,21 @@ function AddressItems({address}) {
                         <Text style={styles.title}>{address.addressTitle}</Text>
                         <Text style={styles.address}>{address.addressDescription}</Text>
                     </View>
+                    <FontAwesome5 style={styles.icon} name={"times-circle"}
+                                  size={18}
+                                  color={colors.getColor().colorPrimaryLight}
+                                  onPress={() => setIsPopUpVisible(true)}
+
+                    />
                 </View>
             </TouchableOpacity>
+            {isPopUpVisible &&
+            <SurbiPopUp title={"Are you sure ?"}
+                        positiveButtonText={"Yes"}
+                        negativeButtonText={"Cancel"}
+                        positiveButtonAction={() => deleteAddress(address.id)}
+                        negativeButtonAction={() => setIsPopUpVisible(false)}/>
+            }
         </View>
     );
 }
@@ -49,6 +78,11 @@ const styles = StyleSheet.create({
         color: 'black',
         fontWeight: "700",
     },
+    icon: {
+        position: 'absolute',
+        right: 15,
+        top: 10
+    }
 });
 
 export default AddressItems;

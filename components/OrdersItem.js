@@ -12,7 +12,10 @@ function OrdersItem({item}) {
 
     return (
         <TouchableOpacity style={{width: "100%"}}
-                          onPress={() => navigation.navigate('PreviousOrderDetail', { cartItemList: item.cartItemsList })}>
+                          onPress={() => navigation.navigate('PreviousOrderDetail', {
+                              cartItemList: item.cartItemsList,
+                              cartStatus: item.cartStatus
+                          })}>
             <View style={styles.container}>
                 <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 <View>
