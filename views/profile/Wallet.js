@@ -33,6 +33,7 @@ function Wallet() {
             })
     }
 
+
     function renderCarouselItem({item}) {
         return (
             <CreditCardItem creditCard={item}/>
