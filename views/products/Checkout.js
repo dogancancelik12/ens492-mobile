@@ -9,30 +9,41 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import RBSheet from "react-native-raw-bottom-sheet";
 import AddAddress from "../../components/AddAddress";
 import {restService} from "../../service/restService";
+import CreditCardItem from "../../components/CreditCardItem";
 
 function Checkout() {
 
     const navigation = useNavigation();
     const [selectedAddressId, setSelectedAddressId] = useState(null)
     const [addresses, setAddresses] = useState(null)
+    const [myCreditCards, setMyCreditCards] = useState([])
+    const [selectedCardId, setSelectedCardId] = useState(null)
     const [products, setProducts] = useState([])
 
     const refRBSheet = useRef();
 
     useEffect(() => {
-        getMyAddresses();
-    }, [])
-
-    useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             getMyCart();
+            getMyAddresses();
+            getMyCards()
         });
         return unsubscribe;
     }, [])
 
+
     function handleSuccessfulPayment() {
         navigation.navigate('Home');
         Alert.alert("Successful")
+    }
+
+    const getMyCards = () => {
+        restService.get("/creditCard/getMyCards")
+            .then((response) => {
+                if (response.success) {
+                    setMyCreditCards(response.data)
+                }
+            })
     }
 
     const getMyAddresses = () => {
@@ -70,6 +81,25 @@ function Checkout() {
         )
     }
 
+    function renderCreditCards({item}) {
+        return (
+            <View style={[styles.addressContainer, {width: 200, margin: 10, marginTop: -100, height: 130, backgroundColor: colors.getColor().colorPrimaryLight}]}>
+                <View style={styles.container}>
+                    <View>
+                        <Text style={{marginLeft: 15, color: colors.getColor().colorWhite}}>{item.cardTitle}</Text>
+                        <Text style={{marginLeft: 15, marginTop: 3, color: colors.getColor().colorWhite}}>{item.cardNumber}</Text>
+                    </View>
+                    <CheckBox
+                        checkedColor={colors.getColor().colorWhiteDark}
+                        size={30}
+                        checked={selectedCardId === item.id}
+                        onPress={() => setSelectedCardId(item.id)}
+                    />
+                </View>
+            </View>
+        )
+    }
+
     return (
         <View style={{height: "100%", width: "100%"}}>
             <SurbiHeader
@@ -87,6 +117,15 @@ function Checkout() {
                 style={styles.addressListContainer}
                 data={addresses}
                 renderItem={renderAddress}
+                keyExtractor={(item, index) => index.toString()}
+            />
+            <Text style={styles.addressTitle}>Select Credit Card</Text>
+            <FlatList
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                style={styles.addressListContainer}
+                data={myCreditCards}
+                renderItem={renderCreditCards}
                 keyExtractor={(item, index) => index.toString()}
             />
             <CartCheckout products={products}
@@ -143,7 +182,7 @@ const styles = StyleSheet.create({
     },
     addressListContainer: {
         width: "100%",
-        height: "40%",
+        height: "30%",
         flexGrow: 0
     }
 });
