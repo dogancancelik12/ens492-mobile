@@ -6,6 +6,7 @@ import {scootersLocation} from "../constants/MockData";
 import MapCallout from "../components/MapCallout";
 import {Dimensions} from "react-native";
 import {useNavigation} from "@react-navigation/native";
+import {restService} from "../service/restService";
 
 
 function Map() {
@@ -13,8 +14,10 @@ function Map() {
     const navigation = useNavigation();
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
+    const [mapProducts, setMapProducts] = useState([])
 
     useEffect(() => {
+        getAllMapProducts()
         getCurrentLocation({enableHighAccuracy: true})
     }, []);
 
@@ -25,19 +28,29 @@ function Map() {
         setLongitude(currentLocation.coords.longitude)
     }
 
-    const ScooterLocations = scootersLocation.map((scooter, index) =>
+    const getAllMapProducts = () => {
+        restService.get("/mapProducts/getAll")
+            .then((response) => {
+                    if (response.success) {
+                        setMapProducts(response.data)
+                    }
+                }
+            )
+    }
+
+    const ScooterLocations = () => mapProducts.map((scooter, index) =>
         <Marker
             key={index}
             coordinate={{
                 latitude: scooter.lat,
-                longitude: scooter.long
+                longitude: scooter.lon
             }}
             title={scooter.title}
             image={require('../constants/scooter.png')}
         >
             <Callout onPress={() => navigation.navigate('BarcodeScanner')} tooltip={true}
                      style={{width: Dimensions.get("screen").width * 0.9, height: 200, borderRadius: 10}}>
-                <MapCallout/>
+                <MapCallout scooter={scooter}/>
             </Callout>
         </Marker>
     )
@@ -59,7 +72,7 @@ function Map() {
                     followsUserLocation={true}
                     showsMyLocationButton={true}
                 >
-                    {ScooterLocations}
+                    {mapProducts && ScooterLocations()}
                 </MapView> :
                 <SurbiLoader/>
             }

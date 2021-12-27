@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {colors} from "../constants/Colors";
 
-function MapCallout() {
+function MapCallout({scooter}) {
 
     return (
         <View style={styles.container}>
@@ -12,21 +12,21 @@ function MapCallout() {
                               name={"coins"} size={25}
                               color={colors.getColor().colorSecondary}/>
                 <Text style={styles.description}>Price</Text>
-                <Text style={styles.text}>0.49$/min</Text>
+                <Text style={styles.text}>{scooter.pricePerMin}TL/min</Text>
             </View>
             <View style={styles.rowContainer}>
                 <FontAwesome5 style={styles.icon}
                               name={"battery-half"} size={25}
                               color={colors.getColor().colorSecondary}/>
                 <Text style={styles.description}>Battery</Text>
-                <Text style={styles.text}>%23</Text>
+                <Text style={styles.text}>{scooter.battery}%</Text>
             </View>
             <View style={styles.rowContainer}>
                 <FontAwesome5 style={styles.icon}
                               name={"map-marker-alt"} size={25}
                               color={colors.getColor().colorSecondary}/>
                 <Text style={styles.description}>Distance</Text>
-                <Text style={styles.text}>150m</Text>
+                <Text style={styles.text}>{scooter.remainingDistance}m</Text>
             </View>
             <TouchableOpacity style={styles.button}>
                 <Text style={{color: colors.getColor().colorWhite}}>
