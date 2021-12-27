@@ -207,6 +207,12 @@ function Products() {
 
     const renderTabBar = props => (
         <>
+            <View style={styles.filter_search}>
+                <TouchableOpacity style={styles.filterButton} onPress={() => setIsFilterBottomSheetVisible(true)}>
+                    <FontAwesome5 name={"filter"} size={22} color={colors.getColor().colorPrimaryLight}/>
+                </TouchableOpacity>
+                <RenderSearchBar searchedText={(text) => setValue(text)}/>
+            </View>
             <TabBar
                 {...props}
                 activeColor={colors.getColor().colorSecondary}
@@ -215,12 +221,6 @@ function Products() {
                 indicatorStyle={styles.indicator}
                 labelStyle={{fontSize: 12, fontWeight: "500"}}
             />
-            <View style={styles.filter_search}>
-                <TouchableOpacity style={styles.filterButton} onPress={() => setIsFilterBottomSheetVisible(true)}>
-                    <FontAwesome5 name={"filter"} size={22} color={colors.getColor().colorPrimaryLight}/>
-                </TouchableOpacity>
-                <RenderSearchBar searchedText={(text) => setValue(text)}/>
-            </View>
             <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity style={styles.sortingButton} onPress={() => sortByPrice()}>
                     <Text>Price</Text>

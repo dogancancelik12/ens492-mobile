@@ -36,13 +36,13 @@ function ChangePassword() {
             <SurbiHeader title={"Change Password"}
                          isNavigationVisible={true}/>
             <View style={{width: Dimensions.get("screen").width, alignItems: "center", marginTop: '40%'}}>
-                <TextInput secureTextEntry={true}
-                           autoCapitalize={'none'}
+                <TextInput autoCapitalize={'none'}
                            style={styles.textInput}
                            placeholder='Old Password'
                            onChangeText={(oldPassword) => setOldPassword(oldPassword)}/>
                 <TextInput autoCapitalize={'none'}
                            style={styles.textInput}
+                           secureTextEntry={true}
                            placeholder='New Password'
                            onChangeText={(newPassword) => setNewPassword(newPassword)}/>
                 {newPassword !== "" &&
@@ -51,6 +51,7 @@ function ChangePassword() {
                                             password={newPassword}/>
                 }
                 <TextInput autoCapitalize={'none'}
+                           secureTextEntry={true}
                            style={styles.textInput}
                            placeholder='Confirm New Password'
                            onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}/>

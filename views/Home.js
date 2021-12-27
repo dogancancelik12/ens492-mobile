@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SurbiHeader from "../components/SurbiHeader";
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import HomeProducts from "../components/HomeProducts";
 import {colors} from "../constants/Colors";
 import {restService} from '../service/restService';
+import SurbiPopUp from '../components/SurbiPopUp';
+import {useNavigation} from '@react-navigation/native';
 
 function Home(props) {
 
@@ -13,6 +15,10 @@ function Home(props) {
     const [scooters, setScooters] = useState([])
     const [bicycles, setBicycles] = useState([])
     const [camping, setCamping] = useState([])
+    const [isPopUpVisible, setIsPopUpVisible] = useState(false)
+    const [promotion, setPromotion] = useState({})
+
+    const navigation = useNavigation();
 
     useEffect(() => {
         getPromotions();
@@ -21,6 +27,7 @@ function Home(props) {
     useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
             getHomepageProducts();
+            getPromotions();
         });
         return unsubscribe;
     }, [])
@@ -43,11 +50,14 @@ function Home(props) {
 
     function renderCarouselItem({item}) {
         return (
-            <View style={styles.carouselItem}>
+            <TouchableOpacity onPress={() => {
+                setPromotion(item)
+                setIsPopUpVisible(true)
+            }} style={styles.carouselItem}>
                 <Image style={styles.carouselImage} source={{uri: item.imagePath}}/>
                 <Text style={styles.carouselTitle}>{item.title}</Text>
                 <Text style={styles.carouselDescription}>{item.text}</Text>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -69,11 +79,29 @@ function Home(props) {
                 dotStyle={styles.paginationDot}
                 inactiveDotOpacity={0.4}
                 inactiveDotScale={0.6}/>
-            <HomeProducts products={scooters} title={"Scooters"}/>
-            <HomeProducts products={bicycles} title={"Bicycles"}/>
+            <HomeProducts products={scooters} title={"Top Rated Scooters"}/>
+            <HomeProducts products={bicycles} title={"Top Rated Bicycles"}/>
             <View style={{marginBottom: 50}}>
-                <HomeProducts products={camping} title={"Camping"}/>
+                <HomeProducts products={camping} title={"Top Rated Camping"}/>
             </View>
+
+            <HomeProducts products={scooters} title={"Most Used Scooters"}/>
+            <HomeProducts products={bicycles} title={"Most Used Bicycles"}/>
+            <View style={{marginBottom: 50}}>
+                <HomeProducts products={camping} title={"Most Used Camping"}/>
+            </View>
+
+            {isPopUpVisible &&
+            <View>
+                <SurbiPopUp negativeButtonAction={() => setIsPopUpVisible(false)}
+                            positiveButtonAction={() => {
+                                setIsPopUpVisible(false);
+                                navigation.navigate("Cart");
+                            }}
+                            title={promotion.detail}
+                            positiveButtonText={"Try It Now"}
+                            negativeButtonText={"Next Time :("}/>
+            </View>}
         </ScrollView>
     );
 }

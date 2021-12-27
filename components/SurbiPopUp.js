@@ -18,7 +18,7 @@ function SurbiPopUp({
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <Text style={styles.modalText}>{title}</Text>
-                    <View style={{flexDirection: "row"}}>
+                    <View style={{flexDirection: "row",alignItems:'center'}}>
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => positiveButtonAction()}

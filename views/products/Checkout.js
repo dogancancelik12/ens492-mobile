@@ -11,7 +11,7 @@ import AddAddress from "../../components/AddAddress";
 import {restService} from "../../service/restService";
 import CreditCardItem from "../../components/CreditCardItem";
 
-function Checkout() {
+function Checkout(props) {
 
     const navigation = useNavigation();
     const [selectedAddressId, setSelectedAddressId] = useState(null)
@@ -19,6 +19,8 @@ function Checkout() {
     const [myCreditCards, setMyCreditCards] = useState([])
     const [selectedCardId, setSelectedCardId] = useState(null)
     const [products, setProducts] = useState([])
+
+    const {promotionObject} = props.route.params;
 
     const refRBSheet = useRef();
 
@@ -83,11 +85,21 @@ function Checkout() {
 
     function renderCreditCards({item}) {
         return (
-            <View style={[styles.addressContainer, {width: 200, margin: 10, marginTop: -100, height: 130, backgroundColor: colors.getColor().colorPrimaryLight}]}>
+            <View style={[styles.addressContainer, {
+                width: 200,
+                margin: 10,
+                marginTop: -100,
+                height: 130,
+                backgroundColor: colors.getColor().colorPrimaryLight
+            }]}>
                 <View style={styles.container}>
                     <View>
                         <Text style={{marginLeft: 15, color: colors.getColor().colorWhite}}>{item.cardTitle}</Text>
-                        <Text style={{marginLeft: 15, marginTop: 3, color: colors.getColor().colorWhite}}>{item.cardNumber}</Text>
+                        <Text style={{
+                            marginLeft: 15,
+                            marginTop: 3,
+                            color: colors.getColor().colorWhite
+                        }}>{item.cardNumber}</Text>
                     </View>
                     <CheckBox
                         checkedColor={colors.getColor().colorWhiteDark}
@@ -129,6 +141,7 @@ function Checkout() {
                 keyExtractor={(item, index) => index.toString()}
             />
             <CartCheckout products={products}
+                          existingPromoCode={promotionObject}
                           buttonAction={() => handleSuccessfulPayment()}
                           buttonText={"PAY"}
             />

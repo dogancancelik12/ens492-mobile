@@ -9,6 +9,7 @@ import LottieView from 'lottie-react-native';
 
 function Cart() {
     const [products, setProducts] = useState([]);
+    const [promotionCode, setPromotionCode] = useState({});
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -39,6 +40,7 @@ function Cart() {
     return (
         <View style={{alignItems: "center", height: "100%", width: "100%"}}>
             <SurbiHeader
+                isPromotionApplied={promotionCode}
                 title={"Cart"}
                 isNavigationVisible={true}
                 isCartVisible={false}
@@ -51,8 +53,9 @@ function Cart() {
             />}
             {products.length > 0 &&
             <CartCheckout
+                setPromotionCode={(promotionObject) => setPromotionCode(promotionObject)}
                 products={products}
-                buttonAction={() => navigation.navigate('Checkout')}
+                buttonAction={() => navigation.navigate('Checkout', {promotionObject: promotionCode})}
                 buttonText={"CHECK OUT"}
             />}
         </View>
