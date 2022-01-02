@@ -30,8 +30,8 @@ function ProductDetail(props) {
     const addToCart = (start, end) => {
         let requestObj = {
             productId: productId,
-            rentStartDate: start,
-            rentEndDate: end
+            rentStartDate: moment(start).format("MMMM Do"),
+            rentEndDate: moment(end).format("MMMM Do")
         }
         restService.post('products/addToCart', requestObj)
             .then(response => {
