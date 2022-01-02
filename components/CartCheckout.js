@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {colors} from "../constants/Colors";
 import {restService} from '../service/restService';
+import moment from 'moment';
 
 function CartCheckout({buttonText, buttonAction, products, setPromotionCode, existingPromoCode}) {
     const [subtotal, setSubtotal] = useState(0);
@@ -35,7 +36,15 @@ function CartCheckout({buttonText, buttonAction, products, setPromotionCode, exi
         let total = 0;
         if (products) {
             for (let product of products) {
-                total = total + product.price * product.quantity
+                let rentCost = 0
+                if (product.rentStartDate) {
+                    let duration = moment.duration(moment(product.rentStartDate).diff(moment(product.rentEndDate)));
+                    let days = duration.asDays()*-1;
+                    console.log('aaa',days)
+                    total = total + product.pricePerDay * days
+                } else {
+                    total = total + product.price * product.quantity
+                }
             }
             setSubtotal(total)
         }
