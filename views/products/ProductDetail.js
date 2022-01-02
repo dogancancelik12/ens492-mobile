@@ -6,12 +6,15 @@ import {useNavigation} from '@react-navigation/native';
 import RentBottomSheet from "../../components/RentBottomSheet";
 import {colors} from "../../constants/Colors";
 import {restService} from '../../service/restService';
+import moment from 'moment';
 
 function ProductDetail(props) {
 
     const [isRentBottomSheetVisible, setIsRentBottomSheetVisible] = useState(false)
     const [product, setProduct] = useState({})
     const [quantity, setQuantity] = useState(0)
+    const [startDate, setStartDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
     const navigation = useNavigation();
     const {productId} = props.route.params;
 
@@ -27,7 +30,12 @@ function ProductDetail(props) {
     }
 
     const addToCart = () => {
-        restService.get(`products/addToCart/${productId}`)
+        let requestObj = {
+            productId: productId,
+            rentStartDate: startDate ? startDate : null,
+            rentEndDate: endDate ? endDate : null
+        }
+        restService.post('products/addToCart', requestObj)
             .then(response => {
                 setQuantity(response.data)
             })
@@ -97,7 +105,16 @@ function ProductDetail(props) {
                 </TouchableOpacity>
             </View>
             {isRentBottomSheetVisible &&
-            <RentBottomSheet costPerDay={product.pricePerDay} onCloseAction={() => setIsRentBottomSheetVisible(false)}/>
+            <RentBottomSheet
+                setRentDays={(start, end) => {
+                    setStartDate(start)
+                    setEndDate(end)
+                    setTimeout(() => {
+                        addToCart()
+                    }, 250)
+                }}
+                costPerDay={product.pricePerDay}
+                onCloseAction={() => setIsRentBottomSheetVisible(false)}/>
             }
 
         </View>
