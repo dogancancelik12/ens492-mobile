@@ -33,6 +33,7 @@ function Cart() {
     }
 
     const cartProductList = products.map(item => {
+        console.log('AAA',item)
         return <CartProductItem key={item.name} product={item}
                                 getMyCartProp={(product) => setProducts(product)}/>
     })

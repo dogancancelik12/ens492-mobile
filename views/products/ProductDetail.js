@@ -13,8 +13,6 @@ function ProductDetail(props) {
     const [isRentBottomSheetVisible, setIsRentBottomSheetVisible] = useState(false)
     const [product, setProduct] = useState({})
     const [quantity, setQuantity] = useState(0)
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
     const navigation = useNavigation();
     const {productId} = props.route.params;
 
@@ -29,11 +27,11 @@ function ProductDetail(props) {
             })
     }
 
-    const addToCart = () => {
+    const addToCart = (start, end) => {
         let requestObj = {
             productId: productId,
-            rentStartDate: startDate ? startDate : null,
-            rentEndDate: endDate ? endDate : null
+            rentStartDate: start,
+            rentEndDate: end
         }
         restService.post('products/addToCart', requestObj)
             .then(response => {
@@ -107,10 +105,8 @@ function ProductDetail(props) {
             {isRentBottomSheetVisible &&
             <RentBottomSheet
                 setRentDays={(start, end) => {
-                    setStartDate(start)
-                    setEndDate(end)
                     setTimeout(() => {
-                        addToCart()
+                        addToCart(start, end)
                     }, 250)
                 }}
                 costPerDay={product.pricePerDay}

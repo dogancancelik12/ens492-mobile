@@ -7,7 +7,7 @@ import moment from "moment";
 import localization from 'moment/locale/tr'
 import {colors} from "../constants/Colors";
 
-function RentBottomSheet({onCloseAction, costPerDay, _setStartDate, _setEndDate,setRentDays}) {
+function RentBottomSheet({onCloseAction, costPerDay, setRentDays}) {
 
     const navigation = useNavigation();
     const refRBSheet = useRef();
@@ -31,7 +31,7 @@ function RentBottomSheet({onCloseAction, costPerDay, _setStartDate, _setEndDate,
         if (startDate === null) {
             Alert.alert("Please select date")
         } else {
-            setRentDays(startDate,endDate)
+            setRentDays(startDate, endDate)
             onCloseAction()
         }
     }
