@@ -4,6 +4,7 @@ import {colors} from "../constants/Colors";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import SurbiPopUp from "./SurbiPopUp";
 import {restService} from "../service/restService";
+import moment from 'moment';
 
 function CartProductItem({product, getMyCartProp}) {
 
@@ -28,6 +29,9 @@ function CartProductItem({product, getMyCartProp}) {
             <Image style={styles.image} source={{uri: product.image}}/>
             <View>
                 <Text style={styles.title}>{product.name}</Text>
+                {product.rentStartDate &&
+                <Text
+                    style={styles.description}>{moment(product.rentStartDate).format("MMMM Do") + '-' + moment(product.rentEndDate).format("MMMM Do")}</Text>}
                 <Text style={styles.description}>Quantity: {product.quantity}</Text>
             </View>
             <Text style={styles.price}>{product.price}$</Text>

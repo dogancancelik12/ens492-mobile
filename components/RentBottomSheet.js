@@ -15,12 +15,17 @@ function RentBottomSheet({onCloseAction, costPerDay, setRentDays}) {
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
     const [totalDate, setTotalDate] = useState(null)
+    const [startMomentDate, setStartMomentDate] = useState(null)
+    const [endMomentDate, setEndMomentDate] = useState(null)
+
 
     useEffect(() => {
         refRBSheet.current.open()
     }, []);
 
     function confirmSelectedDate(start, end) {
+        setStartMomentDate(start)
+        setEndMomentDate(end)
         setStartDate(start.getTime())
         setEndDate(end.getTime())
         setTotalDate((end - start) / 86400000)
@@ -31,7 +36,7 @@ function RentBottomSheet({onCloseAction, costPerDay, setRentDays}) {
         if (startDate === null) {
             Alert.alert("Please select date")
         } else {
-            setRentDays(startDate, endDate)
+            setRentDays(startMomentDate, endMomentDate)
             onCloseAction()
         }
     }
