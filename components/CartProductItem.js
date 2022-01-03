@@ -17,6 +17,20 @@ function CartProductItem({product, getMyCartProp}) {
             })
     }
 
+    const addToCart = (productId) => {
+        let startDate = null
+        let endDate = null
+        let requestObj = {
+            productId: productId,
+            rentStartDate: moment(startDate),
+            rentEndDate: moment(endDate)
+        }
+        restService.post('products/addToCart', requestObj)
+            .then(response => {
+                getMyCart()
+            })
+    }
+
     const getMyCart = () => {
         restService.get('products/getMyCart')
             .then(response => {
@@ -32,7 +46,36 @@ function CartProductItem({product, getMyCartProp}) {
                 {product.rentStartDate &&
                 <Text
                     style={styles.description}>{moment(product.rentStartDate).format("MMMM Do") + '-' + moment(product.rentEndDate).format("MMMM Do")}</Text>}
-                <Text style={styles.description}>Quantity: {product.quantity}</Text>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={styles.description}>Quantity: </Text>
+                    <TouchableOpacity
+                        onPress={() => deleteFromCart(product.id)}
+                        style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            alignSelf: 'center',
+                            marginTop: 10,
+                            backgroundColor: 'white',
+                            borderRadius: 18,
+                            padding: 5
+                        }}>
+                        <FontAwesome5 size={8} name={'minus'}/>
+                    </TouchableOpacity>
+                    <Text style={{marginTop: 10, marginHorizontal: 5, fontWeight: 'bold'}}>{product.quantity}</Text>
+                    <TouchableOpacity
+                        onPress={() => addToCart(product.productId)}
+                        style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        alignSelf: 'center',
+                        marginTop: 10,
+                        backgroundColor: 'white',
+                        borderRadius: 18,
+                        padding: 5
+                    }}>
+                        <FontAwesome5 size={8} name={'plus'}/>
+                    </TouchableOpacity>
+                </View>
             </View>
             <Text style={styles.price}>{product.price}$</Text>
             <TouchableOpacity style={{position: "absolute", top: 10, right: 10}}
