@@ -11,7 +11,7 @@ function HomeProducts({title, products}) {
         <View>
             <Text style={{fontSize: 18, marginLeft: 15, marginBottom: 15, marginTop: 10}}>{title}</Text>
             <View style={styles.container}>
-                {products.map(product => {
+                {products && products.map(product => {
                     return <TouchableOpacity
                         style={styles.carouselItem}
                         onPress={() => {

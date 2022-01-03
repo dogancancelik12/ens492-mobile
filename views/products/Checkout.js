@@ -34,9 +34,16 @@ function Checkout(props) {
     }, [])
 
 
-    const checkout = () => {
-        console.log(selectedCard.cardNumber)
-        restService.post(`/creditCard/checkout/${selectedCard.cardNumber}`)
+    const checkout = (total) => {
+        if (!selectedCard || !selectedAddressId) {
+            Alert.alert("Missing address or credit card")
+            return
+        }
+        const checkoutBody = {
+            totalPrice : total,
+            cardNumber: selectedCard.cardNumber
+        }
+        restService.post(`/creditCard/checkout`, checkoutBody)
             .then(response => {
                 if (response.success) {
                     Alert.alert(response.message)
@@ -150,7 +157,7 @@ function Checkout(props) {
             />
             <CartCheckout products={products}
                           existingPromoCode={promotionObject}
-                          buttonAction={() => checkout()}
+                          buttonAction={(total) => checkout(total)}
                           buttonText={"PAY"}
             />
             <RBSheet
