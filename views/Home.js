@@ -29,6 +29,7 @@ function Home(props) {
         const unsubscribe = props.navigation.addListener('focus', () => {
             getHomepageProducts();
             getPromotions();
+            getMostUsedProducts();
         });
         return unsubscribe;
     }, [])
@@ -46,12 +47,15 @@ function Home(props) {
                 setScooters(response.data.scootersList)
                 setBicycles(response.data.bicyclesList)
                 setCamping(response.data.campingList)
-                let used = []
-                used.push(response.data.scootersList[0])
-                used.push(response.data.bicyclesList[0])
-                used.push(response.data.campingList[0])
-                setMostUsedProducts(used)
+
             })
+    }
+
+    const getMostUsedProducts = () => {
+      restService.get('products/mostUsedProducts')
+          .then(response => {
+              setMostUsedProducts(response.data.slice(0,3))
+          })
     }
 
     function renderCarouselItem({item}) {
