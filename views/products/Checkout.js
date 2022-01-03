@@ -9,7 +9,6 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import RBSheet from "react-native-raw-bottom-sheet";
 import AddAddress from "../../components/AddAddress";
 import {restService} from "../../service/restService";
-import CreditCardItem from "../../components/CreditCardItem";
 
 function Checkout(props) {
 
@@ -18,6 +17,7 @@ function Checkout(props) {
     const [addresses, setAddresses] = useState(null)
     const [myCreditCards, setMyCreditCards] = useState([])
     const [selectedCardId, setSelectedCardId] = useState(null)
+    const [selectedCard, setSelectedCard] = useState(null)
     const [products, setProducts] = useState([])
 
     const {promotionObject} = props.route.params;
@@ -34,9 +34,24 @@ function Checkout(props) {
     }, [])
 
 
-    function handleSuccessfulPayment() {
-        navigation.navigate('Home');
-        Alert.alert("Successful")
+    const checkout = (total) => {
+        if (!selectedCard || !selectedAddressId) {
+            Alert.alert("Missing address or credit card")
+            return
+        }
+        const checkoutBody = {
+            totalPrice : total,
+            cardNumber: selectedCard.cardNumber
+        }
+        restService.post(`/creditCard/checkout`, checkoutBody)
+            .then(response => {
+                if (response.success) {
+                    Alert.alert(response.message)
+                    navigation.navigate('Home');
+                } else {
+                    Alert.alert(response.message)
+                }
+            })
     }
 
     const getMyCards = () => {
@@ -105,7 +120,7 @@ function Checkout(props) {
                         checkedColor={colors.getColor().colorWhiteDark}
                         size={30}
                         checked={selectedCardId === item.id}
-                        onPress={() => setSelectedCardId(item.id)}
+                        onPress={() => {setSelectedCardId(item.id); setSelectedCard(item)}}
                     />
                 </View>
             </View>
@@ -142,7 +157,7 @@ function Checkout(props) {
             />
             <CartCheckout products={products}
                           existingPromoCode={promotionObject}
-                          buttonAction={() => handleSuccessfulPayment()}
+                          buttonAction={(total) => checkout(total)}
                           buttonText={"PAY"}
             />
             <RBSheet

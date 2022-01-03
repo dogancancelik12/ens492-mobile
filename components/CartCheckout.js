@@ -41,7 +41,7 @@ function CartCheckout({buttonText, buttonAction, products, setPromotionCode, exi
                     let duration = moment.duration(moment(product.rentStartDate).diff(moment(product.rentEndDate)));
                     let days = duration.asDays()*-1;
                     console.log('aaa',days)
-                    total = total + product.pricePerDay * days
+                    total = total + product.pricePerDay * (days+1)
                 } else {
                     total = total + product.price * product.quantity
                 }
@@ -123,7 +123,7 @@ function CartCheckout({buttonText, buttonAction, products, setPromotionCode, exi
                 <Text
                     style={styles.priceText}>{subtotal + 10 + discount}$</Text>
             </View>
-            <TouchableOpacity style={styles.button} onPress={buttonAction}>
+            <TouchableOpacity style={styles.button} onPress={() => buttonAction(subtotal + 10 + discount)}>
                 <Text style={{color: colors.getColor().colorWhite}}>{buttonText}</Text>
             </TouchableOpacity>
         </View>

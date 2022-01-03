@@ -20,7 +20,8 @@ function OrdersItem({item}) {
                 <Image style={styles.image} source={{uri: "https://picsum.photos/200/300"}}/>
                 <View>
                     <Text style={styles.status}>{item.cartStatus}</Text>
-                    <Text style={styles.date}>{moment(item.createdDate).locale("tr", localization).format('l')}</Text>
+                    <Text
+                        style={styles.date}>{item.completedDate ? moment(item.completedDate).locale("tr", localization).format('l') : '-'}</Text>
                     <Text style={styles.price}>{item.totalPrice}$</Text>
                 </View>
                 <FontAwesome5 name={"arrow-right"}

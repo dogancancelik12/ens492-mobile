@@ -17,6 +17,7 @@ function Home(props) {
     const [camping, setCamping] = useState([])
     const [isPopUpVisible, setIsPopUpVisible] = useState(false)
     const [promotion, setPromotion] = useState({})
+    const [mostUsedProducts, setMostUsedProducts] = useState(null)
 
     const navigation = useNavigation();
 
@@ -45,6 +46,11 @@ function Home(props) {
                 setScooters(response.data.scootersList)
                 setBicycles(response.data.bicyclesList)
                 setCamping(response.data.campingList)
+                let used = []
+                used.push(response.data.scootersList[0])
+                used.push(response.data.bicyclesList[0])
+                used.push(response.data.campingList[0])
+                setMostUsedProducts(used)
             })
     }
 
@@ -85,10 +91,8 @@ function Home(props) {
                 <HomeProducts products={camping} title={"Top Rated Camping"}/>
             </View>
 
-            <HomeProducts products={scooters} title={"Most Used Scooters"}/>
-            <HomeProducts products={bicycles} title={"Most Used Bicycles"}/>
             <View style={{marginBottom: 50}}>
-                <HomeProducts products={camping} title={"Most Used Camping"}/>
+                <HomeProducts products={mostUsedProducts} title={"Most Used Products"}/>
             </View>
 
             {isPopUpVisible &&
