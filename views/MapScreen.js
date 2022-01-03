@@ -40,6 +40,7 @@ function Map() {
 
     const ScooterLocations = () => mapProducts.map((scooter, index) =>
         <Marker
+            style={{zIndex: 1}}
             key={index}
             coordinate={{
                 latitude: scooter.lat,
@@ -48,7 +49,7 @@ function Map() {
             title={scooter.title}
             image={require('../constants/scooter.png')}
         >
-            <Callout onPress={() => navigation.navigate('BarcodeScanner')} tooltip={true}
+            <Callout onPress={() => navigation.navigate('DistanceCalculator', {scooter: scooter})} tooltip={true}
                      style={{width: Dimensions.get("screen").width * 0.9, height: 200, borderRadius: 10}}>
                 <MapCallout scooter={scooter}/>
             </Callout>

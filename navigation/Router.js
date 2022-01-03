@@ -23,6 +23,7 @@ import ChangePassword from "../views/profile/ChangePassword";
 import {colors} from "../constants/Colors";
 import BarcodeScanner from "../views/BarcodeScanner";
 import PreviousOrderDetail from "../views/profile/PreviousOrderDetail";
+import DistanceCalculator from '../components/DistanceCalculator';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -147,6 +148,14 @@ function OnBoardingStack() {
                 <Stack.Screen
                     name="BarcodeScanner"
                     component={BarcodeScanner}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen
+                    name="DistanceCalculator"
+                    component={DistanceCalculator}
                     options={{
                         headerShown: false
                     }}

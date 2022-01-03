@@ -35,11 +35,13 @@
     "react-native-neat-date-picker": "^1.1.2",
     "react-native-pager-view": "5.0.12",
     "react-native-password-strength-meter": "^0.0.5",
+    "react-native-progress": "^5.0.0",
     "react-native-ratings": "^8.1.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-snap-carousel": "^3.9.1",
+    "react-native-svg": "^12.1.1",
     "react-native-tab-view": "^3.1.1",
     "react-native-web": "~0.13.12"
   },
